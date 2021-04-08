@@ -1,0 +1,8 @@
+li {
+    display: flex;
+    align-items: center;
+}
+
+li p {
+    padding-right: 1rem;
+}

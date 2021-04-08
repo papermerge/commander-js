@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Eugen Ciur">
+    <title>Document Commander</title>
+
+    <!-- CSS file used by this side only -->
+    <link rel="stylesheet" href="static/css/site.css">
+    <link rel="stylesheet" href="static/vendor/bootstrap/bootstrap.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">DCommander</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  {% block content %}
+  {% endblock %}
+
+  <!-- Used by this site only -->
+  <script src="static/vendor/bootstrap/bootstrap.bundle.js"></script>
+  <script src="static/vendor/underscore.js"></script>
+  <script src="static/vendor/jquery.js"></script>
+  <script src="static/vendor/backbone.js"></script>
+  
+  <!-- Distribution bundle (file created and distributed by LEDStatus project) -->
+  <script src="static/dist/dcommander.bundle.js"></script>
+  <script type="module" src="static/js/index.js"></script>
+ 
+  </body>
+</html>
+
