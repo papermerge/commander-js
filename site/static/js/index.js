@@ -6,13 +6,13 @@ $(function(){
     folder = new DC.Folder("My Documents");
 
     doc_html = DC.render(
-        "templates/document.html",
-        doc
+        "templates/document.html",  // path to the template
+        {'object': doc}  // context
     );
 
     folder_html = DC.render(
-        "templates/folder.html",
-        folder
+        "templates/folder.html",  // path to the template
+        {'object': folder}  // context
     );
 
     $("#document").html(doc_html);
