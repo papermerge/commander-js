@@ -1,7 +1,7 @@
 const path = require('path');
 
 let glob = require("glob");
-let entry_point = path.resolve(__dirname, 'document-commander/js/index.js');
+let entry_point = path.resolve(__dirname, 'document-commander/index.js');
 let output_path = path.resolve(__dirname, 'dist');
 let output_filename = "document-commander.bundle.js";
 // used to map bundles to original code lines 
