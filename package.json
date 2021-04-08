@@ -1,0 +1,43 @@
+{
+  "name": "Document Commander",
+  "type": "module",
+  "keywords": [
+    "papermerge",
+    "dms",
+    "file browser",
+    "document browser",
+    "document manager",
+    "document management system"
+  ],
+  "author": "Eugen Ciur <eugen@papermerge.com>",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/register": "^7.13.14",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-preset": "^1.1.7",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "backbone": "^1.4.0",
+    "chai": "^4.3.4",
+    "css-loader": "^5.2.0",
+    "html-loader": "^2.1.2",
+    "jquery": "^3.6.0",
+    "karma": "^6.3.2",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-mocha": "^2.0.1",
+    "mocha": "^8.3.2",
+    "puppeteer": "^8.0.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "source-map": "^0.7.3",
+    "source-map-support": "^0.5.19",
+    "style-loader": "^2.0.0",
+    "underscore": "^1.12.1",
+    "webpack": "^5.30.0",
+    "webpack-cli": "^4.6.0"
+  }
+}
