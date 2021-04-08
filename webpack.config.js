@@ -22,7 +22,7 @@ module.exports = {
   output: {
     path: output_path,
     filename: output_filename,
-    library: 'LEDS',
+    library: 'DocumentCommander',
   },
   module: {
     rules: [
