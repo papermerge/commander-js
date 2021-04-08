@@ -1,9 +1,9 @@
 const path = require('path');
 
 let glob = require("glob");
-let entry_point = path.resolve(__dirname, 'src/js/led_status.js');
+let entry_point = path.resolve(__dirname, 'document-commander/js/index.js');
 let output_path = path.resolve(__dirname, 'dist');
-let output_filename = "leds.bundle.js";
+let output_filename = "document-commander.bundle.js";
 // used to map bundles to original code lines 
 let devtool = false;
 let mode = process.env.NODE_ENV == 'production' ? 'production' : 'development';
