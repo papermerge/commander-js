@@ -5,7 +5,7 @@ let entry_point = path.resolve(__dirname, 'document-commander/index.js');
 let output_path = path.resolve(__dirname, 'dist');
 let output_filename = "document-commander.bundle.js";
 // used to map bundles to original code lines 
-let devtool = false;
+let devtool = "source-map";
 let mode = process.env.NODE_ENV == 'production' ? 'production' : 'development';
 
 
@@ -13,7 +13,6 @@ if ( process.env.TESTBUILD ) {
   entry_point = glob.sync(__dirname + "/tests/**/*_test.js");
   output_path = __dirname + "/test-dist/";
   output_filename = "tests.bundle.js";
-  devtool = "source-map";
 }
 
 module.exports = {

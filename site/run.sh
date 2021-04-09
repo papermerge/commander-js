@@ -2,7 +2,7 @@
 
 # create symlink from site/static/dist to root project's dist
 site_dist=static/dist
-root_proj_dist=../dist
+root_proj_dist=../../dist
 export FLASK_APP=index.py
 
 if [ ! -L  ${site_dist} ]; then
