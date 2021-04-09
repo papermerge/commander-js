@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+  <script type="module" src="static/js/features/basic-rendering.js"></script>
+{% endblock %}
+
+{% block content %}
+  <main class="container py-3">
+    <h1>Basic Rendering</h1>
+    <p>
+        At very least you can instanciate a Document or a Folder) instance
+        and render them, as in example below:
+    </p>
+    <pre>
+        <code class="javascript">
+            let doc, folder, DC, doc_html, folder_html;
+
+            DC = DocumentCommander;
+            doc = new DC.Document("invoice.pdf");
+            folder = new DC.Folder("My Documents");
+
+            doc_html = DC.render(
+                "document.html",  // path to the template
+                {'object': doc}  // context
+            );
+
+            folder_html = DC.render(
+                "folder.html",  // path to the template
+                {'object': folder}  // context
+            );
+
+            $("#document").html(doc_html);
+            $("#folder").html(folder_html);
+        </code>
+    </pre>
+    <p>
+        Result:
+    </p>
+    <div class="example">
+        <div id="document"></div>
+        <div id="folder"></div>
+    </div>
+  </main>
+{% endblock %}
