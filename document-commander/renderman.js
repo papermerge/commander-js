@@ -1,14 +1,13 @@
 import { renderString } from "nunjucks";
-import document_template from "./templates/document.html";
-import folder_template from "./templates/folder.html";
+
+import { get_template } from "./templates/index.js";
 
 
 function render(template_name, context) {
-    if (template_name == "document.html") {
-        return renderString(document_template, context);
-    }
-
-    return renderString(folder_template, context);
+    
+    return renderString(
+        get_template(template_name), context
+    );
 }
 
 
