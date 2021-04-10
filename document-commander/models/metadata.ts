@@ -1,0 +1,7 @@
+
+
+class Metadata {
+
+}
+
+export { Metadata };
