@@ -1,7 +1,10 @@
 
 
 class Node {
-    constructor(title) {
+
+    title: string
+
+    constructor(title: string) {
         this.title = title;
     }
 }

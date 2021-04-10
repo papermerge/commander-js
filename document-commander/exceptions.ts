@@ -1,13 +1,19 @@
 
 class Exception {
-    constructor(message) {
+
+    message: string
+    name: string
+
+    constructor(message: string) {
         this.message = message;
     }
 }
 
 
 class TemplateNotFound extends Exception {
-    constructor(message) {
+    message: string
+
+    constructor(message: string) {
         super(message);
         this.name = 'TemplateNotFound';
     }
@@ -15,7 +21,8 @@ class TemplateNotFound extends Exception {
 
 
 class ValueError extends Exception {
-    constructor(message) {
+
+    constructor(message: string) {
         super(message);
         this.name = 'ValueError';
     }

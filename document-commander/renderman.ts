@@ -1,9 +1,9 @@
 import { renderString } from "nunjucks";
 
-import { get_template } from "./templates/index.js";
+import { get_template } from "./templates/index";
 
 
-function render(template_name, context) {
+function render(template_name: string, context) {
     
     return renderString(
         get_template(template_name), context

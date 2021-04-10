@@ -1,4 +1,4 @@
-import { TemplateNotFound, ValueError } from "../exceptions.js";
+import { TemplateNotFound, ValueError } from "../exceptions";
 
 import document_template from "./document.html";
 import folder_template from "./folder.html";
@@ -9,8 +9,8 @@ let templates_map = {
     'folder.html': folder_template,
 }
 
-function get_template(template_name) {
-    let template = undefined, new_template_name;
+function get_template(template_name: string) {
+    let template = undefined, new_template_name: string;
 
     if (!template_name) {
         throw new ValueError("Empty argument");

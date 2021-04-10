@@ -1,7 +1,7 @@
 const path = require('path');
 
 let glob = require("glob");
-let entry_point = path.resolve(__dirname, 'document-commander/index.js');
+let entry_point = path.resolve(__dirname, 'document-commander/index.ts');
 let output_path = path.resolve(__dirname, 'dist');
 let output_filename = "document-commander.bundle.js";
 // used to map bundles to original code lines 
@@ -45,15 +45,16 @@ module.exports = {
         type: 'asset/source',
       },
       {  // for js files
-        test: /\.js$/,
+        test: /\.ts$/,
         exclude: ["/node_modules/"],
         use: [
-          {
-            loader: "babel-loader",
-          },
+          "ts-loader",
         ],
       }, // end of js rule
     ]  // end of rules
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
   },
   devtool: devtool  // correctly map sources in test mode
 };
