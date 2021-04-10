@@ -4,10 +4,11 @@ import document_template from "./document.html";
 import folder_template from "./folder.html";
 
 // maps template_name to the actual template content
-let templates_map = {
-    'document.html': document_template,
-    'folder.html': folder_template,
-}
+let templates_map = new Map<string, string>();
+
+templates_map.set('document.html', document_template);
+templates_map.set('folder.html', folder_template);
+
 
 function get_template(template_name: string) {
     let template = undefined, new_template_name: string;
@@ -20,9 +21,9 @@ function get_template(template_name: string) {
     if (template_name.startsWith('templates/')) {
         // strip prefix
         new_template_name = template_name.replace(/^templates\//, '')
-        template = templates_map[new_template_name];
+        template = templates_map.get(new_template_name);
     } else { // user asks for template without prefix e.g. "document.html"
-        template = templates_map[template_name];
+        template = templates_map.get(template_name);
     }
 
     if (!template) {
