@@ -15,6 +15,8 @@
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
     "@babel/register": "^7.13.14",
+    "@types/backbone": "^1.4.10",
+    "@types/nunjucks": "^3.1.4",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.2",
     "babel-preset": "^1.1.7",
