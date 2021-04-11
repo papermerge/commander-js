@@ -13,10 +13,9 @@ class PanelBaseView {
 
     render_to_string() {
 
-        let html_panel, context;
+        let html_panel, context: any = {};
 
-        context = new Map<string, any>();
-        context.set('nodes', this.panel.nodes);
+        context['nodes'] = this.panel.nodes;
 
         html_panel = original_render(
             this.template_name,

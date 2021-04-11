@@ -9,9 +9,10 @@ class Panel {
     nodes!: NodesCollection;
     dispatcher!: Events;
     
+    constructor(nodes: NodesCollection);
     constructor(
-        parent?: Node,
         nodes?: NodesCollection,
+        parent?: Node,
         dispatcher?: Events
     ) {
         this.parent = parent;
