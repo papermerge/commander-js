@@ -19,3 +19,5 @@ class Panel {
         this.dispatcher = dispatcher;
     }
 }
+
+export { Panel };

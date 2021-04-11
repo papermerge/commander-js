@@ -1,4 +1,9 @@
 import { Folder } from "./folder";
 import { Document } from "./document";
+import { Panel } from "./panel";
 
-export { Folder, Document };
+export {
+    Folder,
+    Document,
+    Panel
+};

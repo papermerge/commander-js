@@ -1,6 +1,11 @@
 $(function(){
-    let panel, DC, panel_html, nodes;
-
+    let panel,
+    DC,
+    panel_list_html,
+    panel_grid_view,
+    nodes,
+    panel_list_view,
+    panel_grid_view;
 
     DC = DocumentCommander;
     nodes = [
@@ -9,10 +14,12 @@ $(function(){
         new DC.Folder('My Document')
     ]
     panel = new DC.Panel(nodes);
-    panel_html = DC.render(
-        "panel.html",
-        {'object': panel}
-    )
+    panel_list_view = new DC.PanelListView(panel);
+    panel_grid_view = new DC.PanelGridView(panel);
 
-    $("#panel").html(panel_html);
+    panel_list_html = panel_list_view.render();
+    panel_grid_html = panel_grid_view.render();
+
+    $("#panel-list").html(panel_list_html);
+    $("#panel-grid").html(panel_grid_html);
 });
