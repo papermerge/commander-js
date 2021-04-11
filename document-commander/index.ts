@@ -1,5 +1,5 @@
-import { Document } from "./models/document";
-import { Folder } from "./models/folder";
+import { Document, Folder } from "./models/index";
+import { PanelListView, PanelGridView } from "./views/index"
 import { render } from "./renderman";
 
 

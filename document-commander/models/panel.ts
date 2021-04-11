@@ -2,14 +2,15 @@ import { Events } from 'backbone';
 import { Node } from "./node";
 import { NodesCollection } from "./nodes_collection";
 
+
 class Panel {
 
-    parent: Node
-    nodes: NodesCollection
-    dispatcher: Events
+    parent!: Node;
+    nodes!: NodesCollection;
+    dispatcher!: Events;
     
     constructor(
-        parent: Node,
+        parent?: Node,
         nodes?: NodesCollection,
         dispatcher?: Events
     ) {

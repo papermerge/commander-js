@@ -2,9 +2,9 @@ import { Metadata } from "./metadata";
 
 class Node {
 
-    title: string
-    parent: Node
-    metadata: Metadata
+    title: string;
+    parent!: Node;
+    metadata!: Metadata;
 
     constructor(
         title: string,
