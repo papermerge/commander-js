@@ -6,9 +6,10 @@ import { NodesCollection } from "./nodes_collection";
 class Panel {
 
     parent!: Node;
-    nodes!: NodesCollection;
+    nodes: NodesCollection = [];
     dispatcher!: Events;
     
+    constructor();
     constructor(nodes: NodesCollection);
     constructor(
         nodes?: NodesCollection,
@@ -16,7 +17,12 @@ class Panel {
         dispatcher?: Events
     ) {
         this.parent = parent;
-        this.nodes = nodes;
+        if (nodes) {
+            this.nodes = nodes;
+        } else {
+            this.nodes = new NodesCollection();
+        }
+        
         this.dispatcher = dispatcher;
     }
 }
