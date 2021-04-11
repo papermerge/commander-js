@@ -2,7 +2,7 @@ $(function(){
     let panel,
     DC,
     panel_list_html,
-    panel_grid_view,
+    panel_grid_html,
     nodes,
     panel_list_view,
     panel_grid_view;

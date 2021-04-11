@@ -13,6 +13,10 @@ def index():
 def basic_rendering():
     return render_template("features/basic-rendering.html")
 
+@app.route('/basic-panel-with-nodes')
+def basic_panel_with_nodes():
+    return render_template("features/basic-panel-with-nodes.html")
+
 
 @app.route('/about')
 def about():
