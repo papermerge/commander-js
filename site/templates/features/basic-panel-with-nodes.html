@@ -8,7 +8,18 @@
   <main class="container py-3">
     <h1>Basic Panel with Nodes</h1>
     <p>
+    This code example creates two panels with 3 nodes each. Panel is rendered
+    in two modes - list mode and grid mode;
     </p>
+    <div class="example">
+        <h3>Panel list mode:</h3>
+        <div id="panel-list"></div>
+        
+    </div>
+    <div class="example">
+        <h3>Panel grid mode:</h3>
+        <div id="panel-grid"></div>
+    </div>
     <pre>
         <code class="javascript">
             let panel,
@@ -37,17 +48,5 @@
             $("#panel-grid").html(panel_grid_html);
         </code>
     </pre>
-    <p>
-        Result:
-    </p>
-    <div class="example1">
-        <p>Panel list mode:</p>
-        <div id="panel-list"></div>
-        
-    </div>
-    <div class="example2">
-        <p>Panel grid mode:</p>
-        <div id="panel-grid"></div>
-    </div>
   </main>
 {% endblock %}
