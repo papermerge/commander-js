@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+  <script type="module" src="static/js/features/mini-browser.js"></script>
+{% endblock %}
+
+{% block content %}
+  <main class="container py-3">
+    <h1>Mini Browser</h1>
+    <p>
+    Very basic document navigation/browsing featuring a breadcrumb. 
+    </p>
+    <div class="example">
+        <h3>Mini Browser (panel is in grid mode)</h3>
+        <div id="panel"></div>
+    </div>
+    <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+  </main>
+{% endblock %}
