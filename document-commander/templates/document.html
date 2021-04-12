@@ -1,3 +1,4 @@
-<div class="node document">
-    <div class="title">{{ object.title }}</div>
+<div class="node">
+    <div class="icon {% if node.is_document() %} document {% else %} folder {% endif %}"></div>
+    <div class="title">{{ node.title }}</div>
 </div>

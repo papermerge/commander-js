@@ -7,12 +7,12 @@ $(function(){
 
     doc_html = DC.render(
         "document.html",  // path to the template
-        {'object': doc}  // context
+        {'node': doc}  // context
     );
 
     folder_html = DC.render(
         "folder.html",  // path to the template
-        {'object': folder}  // context
+        {'node': folder}  // context
     );
 
     $("#document").html(doc_html);

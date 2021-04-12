@@ -2,6 +2,11 @@
 
     display: flex;
 
+    .icon {
+        width: 4rem;
+        height: 3rem;
+    }
+
     .icon.folder {
         background-image: url("../img/folder.svg");
         background-size: 100% 100%;

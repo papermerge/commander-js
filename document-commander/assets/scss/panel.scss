@@ -7,13 +7,14 @@
 
 .panel.list {
     flex-direction: column;
+
     .node {
         flex-direction: row;
         align-items: center;
 
         .icon {
-            width: 90%;
-            height: 3rem;
+            width: 4rem !important;
+            height: 3rem !important;
         }
     }
 }
@@ -25,8 +26,8 @@
         align-items: center;
 
         .icon {
-            width: 90%;
-            height: 8rem;
+            width: 6rem !important;
+            height: 8rem !important;
         }
     }
 }
