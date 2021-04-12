@@ -6,3 +6,7 @@ li {
 li p {
     padding-right: 1rem;
 }
+
+.panel {
+    border: 1px solid #ccc;
+}

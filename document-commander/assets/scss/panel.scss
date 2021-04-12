@@ -1,0 +1,15 @@
+.panel {
+    display: flex;
+    .node {
+        margin: 1rem;
+    }
+}
+
+.panel.list {
+    flex-direction: row;
+}
+
+.panel.grid {
+    flex-direction: row;
+}
+

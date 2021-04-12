@@ -42,7 +42,7 @@ module.exports = {
       },
       {
         test: /\.svg/,
-        type: 'asset/source',
+        type: 'asset/resource',
       },
       {  // for js files
         test: /\.ts$/,

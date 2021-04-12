@@ -1,3 +1,5 @@
+import "./assets/scss/index.scss";
+
 import { Document, Folder, Panel } from "./models/index";
 import { PanelListView, PanelGridView } from "./views/index";
 import { render } from "./renderman";
