@@ -10,7 +10,9 @@ describe("Document model test suite", () => {
     let document = new Document("invoice.pdf");
 
     assert.isDefined(document);
-    assert.equal(document.title, "invoice.pdf")
+    assert.equal(document.title, "invoice.pdf");
+    assert.isTrue(document.is_document());
+    assert.isFalse(document.is_folder());
   });
 
 });

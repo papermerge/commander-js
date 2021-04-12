@@ -15,6 +15,13 @@ class Node {
         this.parent = parent;
         this.metadata = metadata;
     }
+
+    is_document():boolean {
+        return false;
+    }
+    is_folder():boolean {
+        return false;
+    }
 }
 
 
