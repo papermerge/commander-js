@@ -1,14 +1,13 @@
 .node {
+
+    display: flex;
+
     .icon.folder {
-        width: 90%;
-        height: 8rem;
         background-image: url("../img/folder.svg");
         background-size: 100% 100%;
     }
 
     .icon.document {
-        width: 90%;
-        height: 8rem;
         background-image: url("../img/document.svg");
         background-size: 100% 100%;
     }
