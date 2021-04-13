@@ -1,4 +1,3 @@
-import { render as original_render } from "../../renderman";
 import { PanelBaseView } from "./base";
 
 

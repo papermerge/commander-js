@@ -7,18 +7,13 @@ class Breadcrumb {
     nodes: NodesCollection = [];
     dispatcher!: Events;
     
-    constructor();
-    constructor(nodes: NodesCollection);
-    constructor(
-        nodes?: NodesCollection,
-        dispatcher?: Events
-    ) {
+    constructor(nodes?: NodesCollection, dispatcher?: Events) {
         if (nodes) {
             this.nodes = nodes;
         } else {
             this.nodes = new NodesCollection();
         }
-        
+
         this.dispatcher = dispatcher;
     }
 }

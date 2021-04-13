@@ -9,8 +9,6 @@ class Panel {
     nodes: NodesCollection = [];
     dispatcher!: Events;
     
-    constructor();
-    constructor(nodes: NodesCollection);
     constructor(
         nodes?: NodesCollection,
         parent?: Node,
@@ -24,6 +22,16 @@ class Panel {
         }
         
         this.dispatcher = dispatcher;
+        this.dispatcher.on("nodes.add", this.nodes_add, this);
+        this.dispatcher.on("node.add", this.node_add, this);
+    }
+
+    node_add(node: Node) {
+
+    }
+
+    nodes_add(nodes: NodesCollection) {
+
     }
 }
 
