@@ -1,9 +1,9 @@
-import { Events } from 'backbone';
+import { Model } from "./model";
 import { Node } from "./node";
 import { NodesCollection } from "./nodes_collection";
 
 
-class Breadcrumb extends Events {
+class Breadcrumb extends Model {
 
     nodes: NodesCollection = [];
 

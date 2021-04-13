@@ -34,6 +34,7 @@ class CommanderPanelView{
         );
         this.options = options;
 
+        // when a node is added, panel will be re-rendered 
         this.panel_model.on("change", this.render_panel, this);
         this.panel_model.on("parent_change", this.change_parent, this);
         this.breadcrumb_model.on("change", this.render_breadcrumb, this);

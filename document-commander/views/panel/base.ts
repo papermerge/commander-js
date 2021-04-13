@@ -1,4 +1,4 @@
-import { View } from "backbone";
+import { View } from "../view";
 import { render as original_render } from "../../renderman";
 import { Panel } from "../../models/index";
 
@@ -25,8 +25,9 @@ class PanelBaseView extends View {
         return event_map;
     }
 
-    on_node_clicked() {
+    on_node_clicked(node) {
         console.log("click");
+        this.panel.change_parent(node);
     }
 
     render_to_string() {

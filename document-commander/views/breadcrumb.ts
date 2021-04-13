@@ -1,12 +1,12 @@
+import { View } from "./view";
 import { render as original_render } from "../renderman";
-import { Events } from "backbone";
+import { Events } from "../events";
 import { Breadcrumb } from "../models/breadcrumb";
 
 
-class BreadcrumbView {
+class BreadcrumbView extends View {
 
     breadcrumb: Breadcrumb;
-    dispatcher: Events;
     template_name!: string;
     options: any;
     $el: JQuery<HTMLElement>;
