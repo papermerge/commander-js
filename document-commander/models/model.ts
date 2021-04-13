@@ -1,5 +1,7 @@
+import { Events } from "../events";
 
-class Model {
+
+class Model extends Events {
 
 }
 

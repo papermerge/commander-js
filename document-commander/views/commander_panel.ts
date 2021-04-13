@@ -23,15 +23,15 @@ class CommanderPanelView{
         this.nodes = nodes;
         this.parent = parent;
         this.panel_model = new Panel({ nodes, parent });
-        this.panel_view = new PanelListView(
-            this.panel_model,
-            options['panel']
-        );
+        this.panel_view = new PanelListView({
+            panel: this.panel_model,
+            options: options['panel']
+        });
         this.breadcrumb_model = new Breadcrumb(nodes);
-        this.breadcrumb_view = new BreadcrumbView(
-            this.breadcrumb_model,
-            options['breadcrumb']
-        );
+        this.breadcrumb_view = new BreadcrumbView({
+            breadcrumb: this.breadcrumb_model,
+            options: options['breadcrumb']
+        });
         this.options = options;
 
         // when a node is added, panel will be re-rendered 

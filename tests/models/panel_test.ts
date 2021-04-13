@@ -28,7 +28,7 @@ describe("Panel model test suite", () => {
     nodes.push(new Document("invoice2.pdf"));
     nodes.push(new Folder("My Documents"));
     
-    panel = new Panel(nodes);
+    panel = new Panel({nodes: nodes});
 
     assert.equal(
         panel.nodes.length, 3

@@ -11,7 +11,13 @@ class BreadcrumbView extends View {
     options: any;
     $el: JQuery<HTMLElement>;
 
-    constructor(breadcrumb: Breadcrumb, options?: any ) {
+    constructor(
+        {breadcrumb, options}: {
+            breadcrumb: Breadcrumb,
+            options: any
+        }
+    ) {
+        super();
         this.breadcrumb = breadcrumb;
         this.options = options;
         this.$el = options['el'];

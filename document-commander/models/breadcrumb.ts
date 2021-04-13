@@ -5,7 +5,7 @@ import { NodesCollection } from "./nodes_collection";
 
 class Breadcrumb extends Model {
 
-    nodes: NodesCollection = [];
+    nodes: NodesCollection = new NodesCollection();
 
     constructor(nodes?: NodesCollection) {
         super();

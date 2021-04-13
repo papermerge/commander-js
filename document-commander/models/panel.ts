@@ -1,13 +1,13 @@
-import { Events } from 'backbone';
+import { Model } from './model';
 import { Node } from "./node";
 import { NodesCollection } from "./nodes_collection";
 import { fetch_children } from "../requests";
 
 
-class Panel extends Events {
+class Panel extends Model {
 
     parent!: Node;
-    nodes: NodesCollection = [];
+    nodes: NodesCollection = new NodesCollection();
     
     constructor(
         {nodes, parent}: {
@@ -30,7 +30,13 @@ class Panel extends Events {
         nodes?: NodesCollection
     } = {}
     ) {
-        this.nodes.add(node, nodes);
+        if (node) {
+            this.nodes.add(node);
+        }
+
+        if (nodes) {
+            this.nodes.add(nodes);
+        }
     }
 
     change_parent(parent: Node) {

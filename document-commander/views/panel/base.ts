@@ -1,6 +1,6 @@
 import { View } from "../view";
 import { render as original_render } from "../../renderman";
-import { Panel } from "../../models/index";
+import { Panel, Node } from "../../models/index";
 
 
 class PanelBaseView extends View {
@@ -10,7 +10,12 @@ class PanelBaseView extends View {
     template_name!: string;
     $el: JQuery<HTMLElement>
 
-    constructor(panel: Panel, options: any) {
+    constructor(
+        {panel, options}: {
+            panel: Panel,
+            options: any
+        }
+    ) {
         super();
         this.panel = panel;
         this.options = options;
@@ -25,7 +30,7 @@ class PanelBaseView extends View {
         return event_map;
     }
 
-    on_node_clicked(node) {
+    on_node_clicked(node: Node) {
         console.log("click");
         this.panel.change_parent(node);
     }
