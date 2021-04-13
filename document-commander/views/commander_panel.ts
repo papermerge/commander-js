@@ -7,28 +7,57 @@ import { Breadcrumb } from "../models/breadcrumb";
 
 class CommanderPanelView{
 
-    panel: PanelListView;
-    breadcrumb: BreadcrumbView;
-    dispatcher: Events;
+    nodes: NodesCollection;
+    parent: Node;
+    panel_model: Panel;
+    breadcrumb_model: Breadcrumb;
+    panel_view: PanelListView;
+    breadcrumb_view: BreadcrumbView;
     options: any;
 
     constructor(
         nodes?: NodesCollection,
         parent?: Node,
-        dispatcher?: Events,
         options?: any
     ) {
-        this.panel = new PanelListView(
-            new Panel(nodes, parent, dispatcher),
+        this.nodes = nodes;
+        this.parent = parent;
+        this.panel_model = new Panel({ nodes, parent });
+        this.panel_view = new PanelListView(
+            this.panel_model,
             options['panel']
         );
-        this.breadcrumb = new BreadcrumbView(
-            new Breadcrumb(nodes, dispatcher),
+        this.breadcrumb_model = new Breadcrumb(nodes);
+        this.breadcrumb_view = new BreadcrumbView(
+            this.breadcrumb_model,
             options['breadcrumb']
         );
-        this.dispatcher = dispatcher;
         this.options = options;
+
+        this.panel_model.on("change", this.render_panel, this);
+        this.panel_model.on("parent_change", this.change_parent, this);
+        this.breadcrumb_model.on("change", this.render_breadcrumb, this);
     }
+
+    change_parent(nodes: NodesCollection) {
+        this.breadcrumb_model.change_parent(nodes);
+    }
+
+    render_panel() {
+        this.panel_view.render()
+    }
+
+    render_breadcrumb() {
+        this.breadcrumb_view.render();
+    }
+
+    add(...args: [nodes: NodesCollection]) {
+        //...
+        /*
+            this.panel_model.add(node);
+        */
+    }
+
 }
 
 export { CommanderPanelView };

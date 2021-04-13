@@ -1,42 +1,21 @@
 $(function(){
     let DC = DocumentCommander,
         commander_panel,
-        dispatcher;
+        node,
+        nodes;
 
-    dispatcher = _.clone(Backbone.Events);
-
-    commander_panel = DC.CommanderPanelView(
-        undefined,
-        undefined,
-        dispatcher,
-        {
+    commander_panel = DC.CommanderPanelView({
             'panel': {'el': $('#panel')},
             'breadcrumb': {'el': $("#breadcrumb")}
-        }
-    );
+    });
 
-    dispatcher.trigger(
-        "node.add",  // notice singular here
-        {
-            "title": "invoice.pdf",
-            "type": "document"
-        }
-    );
-    dispatcher.trigger(
-        "nodes.add",  // notice plural here
-        [
-            {
-                "title": "some_doc_1.pdf",
-                "type": "document"
-            },
-            {
-                "title": "some_doc_2.pdf",
-                "type": "document"
-            },
-            {
-                "title": "My Documents",
-                "type": "folder"
-            }
-        ]
-    );
+    node = new DC.Document("invoice.pdf");
+    commander_panel.add(node);
+
+    nodes = new DC.NodesCollection();
+    nodes.add(new DC.Document("payment_1.pdf"));
+    nodes.add(new DC.Document("payment_2.pdf"));
+    nodes.add(new DC.Folder("My Documents"));
+    
+    commander_panel.add(nodes);
 });

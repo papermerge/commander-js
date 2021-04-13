@@ -1,20 +1,19 @@
 import { Events } from 'backbone';
+import { Node } from "./node";
 import { NodesCollection } from "./nodes_collection";
 
 
-class Breadcrumb {
+class Breadcrumb extends Events {
 
     nodes: NodesCollection = [];
-    dispatcher!: Events;
-    
-    constructor(nodes?: NodesCollection, dispatcher?: Events) {
-        if (nodes) {
-            this.nodes = nodes;
-        } else {
-            this.nodes = new NodesCollection();
-        }
 
-        this.dispatcher = dispatcher;
+    constructor(nodes?: NodesCollection) {
+        super();
+        this.nodes = nodes;
+    }
+
+    change_parent(nodes: NodesCollection) {
+        this.nodes = nodes;
     }
 }
 

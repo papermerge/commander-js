@@ -1,8 +1,9 @@
+import { View } from "backbone";
 import { render as original_render } from "../../renderman";
 import { Panel } from "../../models/index";
 
 
-class PanelBaseView {
+class PanelBaseView extends View {
 
     panel: Panel;
     options: any;
@@ -10,9 +11,22 @@ class PanelBaseView {
     $el: JQuery<HTMLElement>
 
     constructor(panel: Panel, options: any) {
+        super();
         this.panel = panel;
         this.options = options;
         this.$el = options['el'];
+    }
+
+    events() {
+        let event_map = {
+            "click .node": "on_node_clicked",
+        };
+
+        return event_map;
+    }
+
+    on_node_clicked() {
+        console.log("click");
     }
 
     render_to_string() {
