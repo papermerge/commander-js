@@ -1,7 +1,7 @@
 
 class Collection<Type> extends Array<Type> {
-    add(arg:any) {
-
+    add(item: Type) {
+        this.push(item);
     }
 }
 

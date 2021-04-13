@@ -1,6 +1,7 @@
+import { Model } from "./model";
 import { Metadata } from "./metadata";
 
-class Node {
+class Node extends Model {
 
     title: string;
     parent!: Node;
@@ -11,6 +12,7 @@ class Node {
         parent?: Node,
         metadata?: Metadata
     ) {
+        super();
         this.title = title;
         this.parent = parent;
         this.metadata = metadata;
