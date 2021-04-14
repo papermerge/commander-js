@@ -5,6 +5,11 @@ import { Node, NodesCollection, Panel} from "../models/index";
 import { Breadcrumb } from "../models/breadcrumb";
 
 
+const DEFAULT_OPTIONS = {
+    'panel': {},
+    'breadcrumb': {}
+};
+
 class CommanderPanelView{
 
     nodes: NodesCollection;
@@ -15,10 +20,11 @@ class CommanderPanelView{
     breadcrumb_view: BreadcrumbView;
     options: any;
 
-    constructor(
-        nodes?: NodesCollection,
-        parent?: Node,
-        options?: any
+    constructor({ nodes, parent, options }: {
+            nodes?: NodesCollection;
+            parent?: Node;
+            options?: any;
+        } = {options: DEFAULT_OPTIONS}
     ) {
         this.nodes = nodes;
         this.parent = parent;
