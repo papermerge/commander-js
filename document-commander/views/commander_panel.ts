@@ -1,4 +1,3 @@
-import { AddOptions, Events, View } from "backbone";
 import { PanelListView } from "../views/panel/list";
 import { BreadcrumbView } from "./breadcrumb";
 import { Node, NodesCollection, Panel} from "../models/index";
@@ -9,6 +8,7 @@ const DEFAULT_OPTIONS = {
     'panel': {},
     'breadcrumb': {}
 };
+
 
 class CommanderPanelView{
 
