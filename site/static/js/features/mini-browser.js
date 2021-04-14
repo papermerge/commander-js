@@ -5,8 +5,10 @@ $(function(){
         nodes;
 
     commander_panel = DC.CommanderPanelView({
+        options: {
             'panel': {'el': $('#panel')},
             'breadcrumb': {'el': $("#breadcrumb")}
+        }
     });
 
     node = new DC.Document("invoice.pdf");

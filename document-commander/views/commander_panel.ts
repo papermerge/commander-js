@@ -12,8 +12,6 @@ const DEFAULT_OPTIONS = {
 
 class CommanderPanelView{
 
-    nodes: NodesCollection;
-    parent: Node;
     panel_model: Panel;
     breadcrumb_model: Breadcrumb;
     panel_view: PanelListView;
@@ -26,8 +24,6 @@ class CommanderPanelView{
             options?: any;
         } = {options: DEFAULT_OPTIONS}
     ) {
-        this.nodes = nodes;
-        this.parent = parent;
         this.panel_model = new Panel({ nodes, parent });
         this.panel_view = new PanelListView({
             panel: this.panel_model,
@@ -58,11 +54,8 @@ class CommanderPanelView{
         this.breadcrumb_view.render();
     }
 
-    add(...args: [nodes: NodesCollection]) {
-        //...
-        /*
-            this.panel_model.add(node);
-        */
+    add(item_or_items: any) {
+        this.panel_model.add(item_or_items);
     }
 
 }

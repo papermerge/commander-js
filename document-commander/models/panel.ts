@@ -24,19 +24,8 @@ class Panel extends Model {
         }
     }
 
-    add(
-        {node, nodes}: {
-        node?: Node,
-        nodes?: NodesCollection
-    } = {}
-    ) {
-        if (node) {
-            this.nodes.add(node);
-        }
-
-        if (nodes) {
-            this.nodes.add(nodes);
-        }
+    add(node_or_nodes: any) {
+        this.nodes.add(node_or_nodes);
     }
 
     change_parent(parent: Node) {
