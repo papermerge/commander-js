@@ -4,7 +4,7 @@ $(function(){
         node,
         nodes;
 
-    commander_panel = DC.CommanderPanelView({
+    commander_panel = new DC.CommanderPanelView({
         options: {
             'panel': {'el': $('#panel')},
             'breadcrumb': {'el': $("#breadcrumb")}

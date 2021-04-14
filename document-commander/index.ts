@@ -1,8 +1,17 @@
 import "./assets/scss/index.scss";
 
 import { Collection } from "./lib/collection";
-import { Document, Folder, Panel } from "./models/index";
-import { PanelListView, PanelGridView } from "./views/index";
+import {
+    Document,
+    Folder,
+    Panel,
+    NodesCollection
+} from "./models/index";
+import {
+    PanelListView,
+    PanelGridView,
+    CommanderPanelView
+} from "./views/index";
 import { render } from "./renderman";
 
 
@@ -14,5 +23,7 @@ export {
     Panel,
     PanelListView,
     PanelGridView,
-    Collection
+    CommanderPanelView,
+    Collection,
+    NodesCollection
 };

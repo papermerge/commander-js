@@ -10,3 +10,6 @@ build:
 
 watch:
 	npx webpack --config webpack.config --watch
+
+run:
+	cd site/ && ./run.sh
