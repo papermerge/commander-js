@@ -10,7 +10,7 @@ const DEFAULT_OPTIONS = {
 };
 
 
-class CommanderPanelView{
+class CommanderPanelView {
 
     panel_model: Panel;
     breadcrumb_model: Breadcrumb;

@@ -1,5 +1,4 @@
-import { Model } from "./model";
-import { Node } from "./node";
+import { Model } from "../lib/model";
 import { NodesCollection } from "./nodes_collection";
 
 
