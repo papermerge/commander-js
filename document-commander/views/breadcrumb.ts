@@ -1,6 +1,6 @@
 import { View } from "./view";
 import { render as original_render } from "../renderman";
-import { Events } from "../events";
+import { Events } from "../lib/events";
 import { Breadcrumb } from "../models/breadcrumb";
 
 

@@ -10,7 +10,7 @@ class Events {
 
     _events: Record<string, Array<EventRecord>> = {};
 
-    on(name: string, callback: CallbackFunc, context: any): void {
+    on(name: string, callback: CallbackFunc, context?: any): void {
         let handlers;
 
         if (this._events[name] == undefined) {
