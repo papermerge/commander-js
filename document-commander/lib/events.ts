@@ -17,6 +17,10 @@ class Events {
             this._events[name] = [];
         };
 
+        if (!context) {
+            context = this;
+        }
+
         if (Array.isArray(this._events[name])) {
             this._events[name].push({
                 callback: callback,
