@@ -7,6 +7,25 @@ type EventRecord = {
 }
 
 class Events {
+    /**
+     * Events is a class that can be "mixed" in any model/class.
+     * On any class instance which inherits from `Events` you can trigger events.
+     * Example:
+     * 
+     * class Model extends Events {
+     *    attr1;
+     *    attr2;
+     *    ...
+     * } 
+     * 
+     * let model = new Model();
+     * 
+     * model.on("change", function() {console.log("Model changed")});
+     *
+     * ... somewhere in code
+     * model.trigger("change")
+     * // will print to consle ("Model changed"); 
+    */
 
     _events: Record<string, Array<EventRecord>> = {};
 
