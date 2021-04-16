@@ -1,9 +1,9 @@
 import { assert } from "chai";
 
-import { Events } from '../../document-commander/lib/events';
+import { Model } from '../../document-commander/lib/model';
 
 
-class SomeModel extends Events {
+class SomeModel extends Model {
   counter: number = 0;
 }
 
@@ -19,7 +19,14 @@ describe("Events test suite", () => {
       1,
       'counter should be incremented.'
     );
-    
+
+    some_model.trigger('event');
+    some_model.trigger('event');
+    assert.equal(
+      some_model.counter,
+      3,
+      'counter should be incremented.'
+    );
   });
 
 });

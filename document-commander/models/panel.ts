@@ -1,4 +1,4 @@
-import { Model } from './model';
+import { Model } from '../lib/model';
 import { Node } from "./node";
 import { NodesCollection } from "./nodes_collection";
 import { fetch_children } from "../requests";

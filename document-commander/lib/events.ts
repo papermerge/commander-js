@@ -1,5 +1,5 @@
-
 type CallbackFunc = (...args: any) => any;
+
 
 type EventRecord = {
     callback: CallbackFunc;
@@ -7,30 +7,9 @@ type EventRecord = {
 }
 
 class Events {
-    /**
-     * Events is a class that can be "mixed" in any model/class.
-     * On any class instance which inherits from `Events` you can trigger events.
-     * Example:
-     * 
-     * class Model extends Events {
-     *    attr1;
-     *    attr2;
-     *    ...
-     * } 
-     * 
-     * let model = new Model();
-     * 
-     * model.on("change", function() {console.log("Model changed")});
-     *
-     * ... somewhere in code
-     * model.trigger("change")
-     * // will print to consle ("Model changed"); 
-    */
-
     _events: Record<string, Array<EventRecord>> = {};
 
     on(name: string, callback: CallbackFunc, context?: any): void {
-        let handlers;
 
         if (this._events[name] == undefined) {
             this._events[name] = [];
@@ -46,7 +25,7 @@ class Events {
                 context: context,
             });
         }
-    };
+    }
 
     trigger(name: string, ...args: any): void {
         let handlers,
@@ -61,7 +40,7 @@ class Events {
                 callback.apply(context, args);
             }
         } 
-    };
+    }
 }
 
 export { Events };
