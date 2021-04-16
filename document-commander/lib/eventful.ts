@@ -6,7 +6,7 @@ type EventRecord = {
     context: any;
 }
 
-class Events {
+class Eventful {
     _events: Record<string, Array<EventRecord>> = {};
 
     on(name: string, callback: CallbackFunc, context?: any): void {
@@ -47,4 +47,4 @@ class Events {
     }
 }
 
-export { Events };
+export { Eventful };

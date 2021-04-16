@@ -1,11 +1,11 @@
-import { Events } from "./events";
+import { Eventful } from "./eventful";
 import { applyMixins } from "./utils";
 
 class Model {
 }
 
-interface Model extends Events {};
+interface Model extends Eventful {};
 
-applyMixins(Model, [Events]);
+applyMixins(Model, [Eventful]);
 
 export { Model };

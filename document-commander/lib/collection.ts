@@ -1,6 +1,3 @@
-import { Events } from "./events";
-import { applyMixins } from "./utils";
-
 
 class Collection<Type> extends Array<Type> {
 
