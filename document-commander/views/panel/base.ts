@@ -13,13 +13,17 @@ class PanelBaseView extends View {
     constructor(
         {panel, options}: {
             panel: Panel,
-            options: any
+            options?: any
         }
     ) {
         super();
         this.panel = panel;
         this.options = options;
-        this.$el = options['el'];
+        if (options) {
+            this.$el = options['el'];
+        } else {
+            this.$el = undefined;
+        }
     }
 
     events() {
@@ -51,8 +55,9 @@ class PanelBaseView extends View {
     render(): string {
         let panel_html = this.render_to_string();
 
-        this.$el.html(panel_html);
-
+        if (this.$el) {
+            this.$el.html(panel_html);
+        }
         return panel_html; 
     }
 };

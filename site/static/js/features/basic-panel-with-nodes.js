@@ -14,8 +14,8 @@ $(function(){
         new DC.Folder('My Document')
     ]
     panel = new DC.Panel(nodes);
-    panel_list_view = new DC.PanelListView(panel);
-    panel_grid_view = new DC.PanelGridView(panel);
+    panel_list_view = new DC.PanelListView({panel: panel});
+    panel_grid_view = new DC.PanelGridView({panel: panel});
 
     panel_list_html = panel_list_view.render();
     panel_grid_html = panel_grid_view.render();
