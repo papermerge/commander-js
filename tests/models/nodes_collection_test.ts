@@ -29,4 +29,19 @@ describe("Collection test suite", () => {
 
   });
 
+  it("Trigger event before listening to it", () => {
+    /**
+     * This tests ensures that calling `trigger` (which
+     * happens inside `add` method) before `on` will not end up in error.
+     */
+    let col = new NodesCollection();
+
+    // note: there is no col.on("change", function() { ... });
+    // should not generate errors
+    col.add(new Document("invoice.pdf"));  // invokes trigger("change")
+    col.add(new Folder("My Documents"));   // invokes trigger("change")
+
+    assert.equal(col.length, 2);
+  });
+
 });

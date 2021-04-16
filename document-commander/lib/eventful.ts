@@ -36,6 +36,10 @@ class Eventful {
             callback,
             context;
 
+        if (!this._events) {
+            this._events = {};
+        }
+
         handlers = this._events[name];
         if (Array.isArray(handlers)) {
             for (let i=0; i < handlers.length; i++) {

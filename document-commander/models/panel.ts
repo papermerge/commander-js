@@ -16,12 +16,16 @@ class Panel extends Model {
         } = {},
     ) {
         super();
+        let that = this;
+        
         this.parent = parent;
         if (nodes) {
             this.nodes = nodes;
         } else {
             this.nodes = new NodesCollection();
         }
+
+        this.nodes.on("change", function(){ that.trigger("change") } );
     }
 
     add(node_or_nodes: any) {
