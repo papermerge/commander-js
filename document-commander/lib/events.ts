@@ -11,6 +11,10 @@ class Events {
 
     on(name: string, callback: CallbackFunc, context?: any): void {
 
+        if (!this._events) {
+            this._events = {};
+        }
+
         if (this._events[name] == undefined) {
             this._events[name] = [];
         };
