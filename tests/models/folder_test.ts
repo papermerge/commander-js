@@ -11,8 +11,8 @@ describe("Folder model test suite", () => {
 
     assert.isDefined(folder);
     assert.equal(folder.title, "My Documents")
-    assert.isTrue(folder.is_folder());
-    assert.isFalse(folder.is_document());
+    assert.isTrue(folder.is_folder);
+    assert.isFalse(folder.is_document);
   });
 
 });

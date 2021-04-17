@@ -11,8 +11,8 @@ describe("Document model test suite", () => {
 
     assert.isDefined(document);
     assert.equal(document.title, "invoice.pdf");
-    assert.isTrue(document.is_document());
-    assert.isFalse(document.is_folder());
+    assert.isTrue(document.is_document);
+    assert.isFalse(document.is_folder);
   });
 
 });

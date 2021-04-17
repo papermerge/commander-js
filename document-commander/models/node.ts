@@ -23,10 +23,10 @@ class Node extends Model {
         this.metadata = metadata;
     }
 
-    is_document():boolean {
+    get is_document():boolean {
         return false;
     }
-    is_folder():boolean {
+    get is_folder():boolean {
         return false;
     }
 }

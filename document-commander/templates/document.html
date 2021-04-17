@@ -1,6 +1,6 @@
 <div class="node" data-id="{{node.id}}">
-    <div class="icon {% if node.is_document() %} document {% else %} folder {% endif %}"></div>
+    <div class="icon {% if node.is_document %} document {% else %} folder {% endif %}"></div>
     <div class="title">
-        <a href="/node/{{node.id}}">{{ node.title }}</a>
+        <a href="{{node.href}}">{{ node.title }}</a>
     </div>
 </div>

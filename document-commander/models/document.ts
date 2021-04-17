@@ -3,12 +3,16 @@ import { Node } from "./node";
 
 class Document extends Node {
     
-    is_document():boolean {
+    get is_document():boolean {
         return true;
     }
     
-    is_folder():boolean {
+    get is_folder():boolean {
         return false;
+    }
+
+    get href() {
+        return `/document/${this.id}`;
     }
 }
 
