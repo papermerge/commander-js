@@ -8,12 +8,14 @@ $(function(){
     panel_grid_view;
 
     DC = DocumentCommander;
-    nodes = [
+
+    nodes = new DC.NodesCollection();
+    nodes.add([
         new DC.Document('invoice1.pdf'),
         new DC.Document('invoice2.pdf'),
         new DC.Folder('My Document')
-    ]
-    panel = new DC.Panel(nodes);
+    ]);
+    panel = new DC.Panel({nodes: nodes});
     panel_list_view = new DC.PanelListView({panel: panel});
     panel_grid_view = new DC.PanelGridView({panel: panel});
 
