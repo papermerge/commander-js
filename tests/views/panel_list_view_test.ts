@@ -1,5 +1,4 @@
 import { assert } from "chai";
-import $ from "jquery";
 
 import { PanelListView } from "../../document-commander/views/panel/list";
 import { Panel } from "../../document-commander/models/panel";
