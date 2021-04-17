@@ -3,16 +3,21 @@ import { Metadata } from "./metadata";
 
 class Node extends Model {
 
+    id: number;
     title: string;
     parent!: Node;
     metadata!: Metadata;
 
     constructor(
-        title: string,
-        parent?: Node,
-        metadata?: Metadata
+        {id, title, parent, metadata}: {
+            id: number,
+            title: string,
+            parent?: Node,
+            metadata?: Metadata
+        }
     ) {
         super();
+        this.id = id;
         this.title = title;
         this.parent = parent;
         this.metadata = metadata;

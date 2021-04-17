@@ -7,7 +7,7 @@ describe("Document model test suite", () => {
 
   it("Can instanciate Document", () => {
 
-    let document = new Document("invoice.pdf");
+    let document = new Document({id: 1, title: "invoice.pdf"});
 
     assert.isDefined(document);
     assert.equal(document.title, "invoice.pdf");

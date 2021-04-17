@@ -7,7 +7,7 @@ describe("Folder model test suite", () => {
 
   it("Can instanciate Folder model", () => {
 
-    let folder = new Folder("My Documents");
+    let folder = new Folder({id: 1, title: "My Documents"});
 
     assert.isDefined(folder);
     assert.equal(folder.title, "My Documents")

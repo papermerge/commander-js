@@ -24,9 +24,9 @@ describe("Panel model test suite", () => {
 
     nodes = new NodesCollection();
 
-    nodes.push(new Document("invoice1.pdf"));
-    nodes.push(new Document("invoice2.pdf"));
-    nodes.push(new Folder("My Documents"));
+    nodes.push(new Document({id: 1, title: "invoice1.pdf"}));
+    nodes.push(new Document({id: 2, title: "invoice2.pdf"}));
+    nodes.push(new Folder({id: 3, title: "My Documents"}));
     
     panel = new Panel({nodes: nodes});
 

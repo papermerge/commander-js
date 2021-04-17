@@ -16,8 +16,8 @@ describe("Collection test suite", () => {
   it("Can add items to the collection", () => {
     let col = new Collection<Node>();
 
-    col.add(new Document("invoice.pdf"));
-    col.add(new Folder("My Documents"));
+    col.add(new Document({id: 1, title: "invoice.pdf"}));
+    col.add(new Folder({id: 2, title: "My Documents"}));
 
     assert.equal(col.length, 2);
   });
@@ -25,8 +25,8 @@ describe("Collection test suite", () => {
   it("Can add an array to the collection", () => {
     let col = new Collection<Node>(), arr = [];
 
-    arr.push(new Document("invoice.pdf"));
-    arr.push(new Folder("My Documents"));
+    arr.push(new Document({id: 1, title: "invoice.pdf"}));
+    arr.push(new Folder({id: 2, title: "My Documents"}));
 
     col.add(arr);
 

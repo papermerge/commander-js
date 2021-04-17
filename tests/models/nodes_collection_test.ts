@@ -17,8 +17,8 @@ describe("Collection test suite", () => {
     let col = new NodesCollection(), calls_count = 0;
 
     col.on('change', function() { calls_count+=1; })
-    col.add(new Document("invoice.pdf"));
-    col.add(new Folder("My Documents"));
+    col.add(new Document({id: 1, title: "invoice.pdf"}));
+    col.add(new Folder({id: 1, title: "My Documents"}));
 
     assert.equal(col.length, 2);
 
@@ -38,8 +38,8 @@ describe("Collection test suite", () => {
 
     // note: there is no col.on("change", function() { ... });
     // should not generate errors
-    col.add(new Document("invoice.pdf"));  // invokes trigger("change")
-    col.add(new Folder("My Documents"));   // invokes trigger("change")
+    col.add(new Document({id: 1, title: "invoice.pdf"}));  // invokes trigger("change")
+    col.add(new Folder({id: 2, title: "My Documents"}));   // invokes trigger("change")
 
     assert.equal(col.length, 2);
   });

@@ -21,9 +21,9 @@ describe("PanelListView test suite", () => {
     nodes = new NodesCollection();
     
     nodes.add([
-        new Document('invoice1.pdf'),
-        new Document('invoice2.pdf'),
-        new Folder('My Document')
+        new Document({id: 1, title: 'invoice1.pdf'}),
+        new Document({id: 2, title: 'invoice2.pdf'}),
+        new Folder({id: 3, title: 'My Document'})
     ]);
     panel = new Panel({nodes: nodes});
     panel_list_view = new PanelListView({panel: panel});
