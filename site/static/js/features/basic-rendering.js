@@ -2,8 +2,8 @@ $(function(){
     let doc, folder, DC, doc_html, folder_html;
 
     DC = DocumentCommander;
-    doc = new DC.Document("invoice.pdf");
-    folder = new DC.Folder("My Documents");
+    doc = new DC.Document({id: 1, title: "invoice.pdf"});
+    folder = new DC.Folder({id: 2, title: "My Documents"});
 
     doc_html = DC.render(
         "document.html",  // path to the template

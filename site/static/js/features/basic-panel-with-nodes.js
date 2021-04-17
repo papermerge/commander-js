@@ -11,9 +11,9 @@ $(function(){
 
     nodes = new DC.NodesCollection();
     nodes.add([
-        new DC.Document('invoice1.pdf'),
-        new DC.Document('invoice2.pdf'),
-        new DC.Folder('My Document')
+        new DC.Document({id: 1, title: 'invoice1.pdf'}),
+        new DC.Document({id: 2, title: 'invoice2.pdf'}),
+        new DC.Folder({id: 3, title: 'My Document'})
     ]);
     panel = new DC.Panel({nodes: nodes});
     panel_list_view = new DC.PanelListView({panel: panel});
