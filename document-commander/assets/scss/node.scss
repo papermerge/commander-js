@@ -1,8 +1,18 @@
+
+.panel.list > .node {
+    padding: 0.25rem 1rem;
+    margin: 0.5rem 1rem;
+}
+
+
+.panel.grid > .node {
+    padding: 1rem;
+    margin: 1rem;
+}
+
 .node {
 
     display: flex;
-    padding: 1rem;
-
     .icon {
         width: 4rem;
         height: 3rem;
