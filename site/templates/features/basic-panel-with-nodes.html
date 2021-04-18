@@ -32,9 +32,9 @@
 
             DC = DocumentCommander;
             nodes = [
-                new DC.Document('invoice1.pdf'),
-                new DC.Document('invoice2.pdf'),
-                new DC.Folder('My Document')
+                new DC.Document({id: 1, title: 'invoice1.pdf'}),
+                new DC.Document({id: 1, title: 'invoice2.pdf'}),
+                new DC.Folder({id: 1, title: 'My Document'})
             ]
             panel = new DC.Panel(nodes);
 
