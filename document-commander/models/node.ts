@@ -1,6 +1,11 @@
 import { Model } from "../lib/model";
 import { Metadata } from "./metadata";
 
+/**
+ * Node is common ancestor of boths Folder and Document classes.
+ *
+ * @class
+ */
 class Node extends Model {
 
     id: number;
