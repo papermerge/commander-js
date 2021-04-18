@@ -1,4 +1,4 @@
-import { CollectionView } from "../../lib/view";
+import { View } from "../../lib/view";
 import { render as original_render } from "../../renderman";
 import {
     Panel,
@@ -8,7 +8,7 @@ import {
 } from "../../models/index";
 
 
-class PanelBaseView extends CollectionView<Node> {
+class PanelBaseView extends View {
 
     panel: Panel;
     options: any;
@@ -33,53 +33,12 @@ class PanelBaseView extends CollectionView<Node> {
 
     events() {
         let event_map = {
-            "node_click": "on_node_clicked",
-            "node_selected": "on_node_selected",
-            "node_generic_action": "on_node_action"
-        };
-
+            "click .node": "on_node_clicked"
+        }
         return event_map;
     }
 
-    /**
-     * Invoked when user clicks a node.
-     * 
-     * @param {Node} node - currently clicked node  
-     */
-    on_node_clicked(node: Node): void {
-        if (node.is_document) {
-            this.panel.open_document(node);
-        } else {  // node is folder
-            this.panel.change_parent(node);
-        }
-    }
-    /**
-    * Invoked when user selects one or multiple nodes.
-    * 
-    * @param {Node} node - user's cursors is hovers over this node
-    * @param {NodesCollection} nodes - all selected nodes including
-    *   one passed as first argument
-    */
-    on_node_selected(node: Node, nodes: NodesCollection): void {
-        this.panel.trigger("selection_changed", node, nodes);
-    }
-
-    /**
-     * Invoked when user triggers an action on one or multiple nodes.
-     * 
-     * @param {Node} node - User mouse hovers over this node
-     * @param {NodesCollection} nodes - All currentl selected nodes
-     * @param {NodesAction} action - Action to be executed
-     */
-    on_node_action(
-        {parent_node, current_node, selected_nodes, action}: {
-            parent_node?: Node,
-            current_node?: Node,
-            selected_nodes?: NodesCollection,
-            action: NodesAction
-        }
-    ): void {
-        action.run({parent_node, current_node, selected_nodes});
+    on_node_clicked(event: Event): void {
     }
 
     render_to_string() {
