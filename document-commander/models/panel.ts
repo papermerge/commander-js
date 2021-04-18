@@ -42,6 +42,10 @@ class Panel extends Model {
             }
         );
     }
+
+    open_document(node: Node) {
+        throw new Error("Method not implemented.");
+    }
 }
 
 export { Panel };
