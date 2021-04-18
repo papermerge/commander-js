@@ -74,8 +74,15 @@ class PanelBaseView extends View {
      * @param {NodesCollection} nodes - All currentl selected nodes
      * @param {NodesAction} action - Action to be executed
      */
-    on_node_action(node: Node, nodes: NodesCollection, action: NodesAction) {
-        action.run(node, nodes);
+    on_node_action(
+        {parent_node, current_node, selected_nodes, action}: {
+            parent_node?: Node,
+            current_node?: Node,
+            selected_nodes?: NodesCollection,
+            action: NodesAction
+        }
+    ): void {
+        action.run({parent_node, current_node, selected_nodes});
     }
 
     render_to_string() {
