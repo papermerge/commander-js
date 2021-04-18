@@ -21,7 +21,7 @@ class PanelBaseView extends View {
             options?: any
         }
     ) {
-        super();
+        super({options: options});
         this.panel = panel;
         this.options = options;
         if (options) {
