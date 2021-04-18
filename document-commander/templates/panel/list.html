@@ -1,6 +1,6 @@
 <div class="panel list">
     {% for node in nodes %}
-        <div class="node" data-id="{{node.id}}">
+        <div class="node {% if node.is_document %} document {% else %} folder {% endif %}" data-id="{{node.id}}">
             <div class="icon {% if node.is_document %} document {% else %} folder {% endif %}"></div>
             <div class="title">
                 <a href="{{node.href}}">{{ node.title }}</a>
