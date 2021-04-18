@@ -1,4 +1,4 @@
-import { View } from "../view";
+import { CollectionView } from "../../lib/view";
 import { render as original_render } from "../../renderman";
 import {
     Panel,
@@ -8,7 +8,7 @@ import {
 } from "../../models/index";
 
 
-class PanelBaseView extends View {
+class PanelBaseView extends CollectionView<Node> {
 
     panel: Panel;
     options: any;
