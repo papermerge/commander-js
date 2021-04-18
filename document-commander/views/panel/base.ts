@@ -46,10 +46,7 @@ class PanelBaseView extends View {
      * 
      * @param {Node} node - currently clicked node  
      */
-    on_node_clicked(node: Node) {
-        /*
-        Node passed as argument was clicked
-        */
+    on_node_clicked(node: Node): void {
         if (node.is_document) {
             this.panel.open_document(node);
         } else {  // node is folder
@@ -63,7 +60,7 @@ class PanelBaseView extends View {
     * @param {NodesCollection} nodes - all selected nodes including
     *   one passed as first argument
     */
-    on_node_selected(node: Node, nodes: NodesCollection) {
+    on_node_selected(node: Node, nodes: NodesCollection): void {
         this.panel.trigger("selection_changed", node, nodes);
     }
 
