@@ -5,7 +5,6 @@
 The core requirements for this project are nodejs, node package manager (npm) and webpack:
 
     * nodejs >= 10.24
-    * typescript >= 4.2.4
     * npm >= 7.8
     * webpack >= 5.30.0
 
