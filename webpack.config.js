@@ -10,7 +10,7 @@ let mode = process.env.NODE_ENV == 'production' ? 'production' : 'development';
 
 
 if ( process.env.TESTBUILD ) {
-  entry_point = glob.sync(__dirname + "/tests/**/*_test.ts");
+  entry_point = glob.sync(__dirname + "/tests/**/*_test.js");
   output_path = __dirname + "/test-dist/";
   output_filename = "tests.bundle.js";
 }
@@ -48,7 +48,7 @@ module.exports = {
         test: /\.js$/,
         exclude: ["/node_modules/"],
         use: [
-          "babbel-loader",
+          "babel-loader",
         ],
       }, // end of js rule
     ]  // end of rules

@@ -1,6 +1,6 @@
 import { assert } from "chai";
 
-import { PanelListView } from "../../document-commander/views/panel/list";
+import { PanelView } from "../../document-commander/views/panel/index";
 import { Panel } from "../../document-commander/models/panel";
 import {
     Document,
@@ -26,7 +26,7 @@ describe("PanelListView test suite", () => {
         new Folder({id: 3, title: 'My Document'})
     ]);
     panel = new Panel({nodes: nodes});
-    panel_list_view = new PanelListView({panel: panel});
+    panel_list_view = new PanelView({panel: panel});
     panel_list_html = panel_list_view.render();
 
     assert.isTrue(

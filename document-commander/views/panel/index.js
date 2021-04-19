@@ -1,4 +1,3 @@
-import { Panel } from "../../models";
 import { PanelBaseView } from "./base";
 
 const DEFAULT_TEMPLATE_NAME = "templates/panel/grid.html";

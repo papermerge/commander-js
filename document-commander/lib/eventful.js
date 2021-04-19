@@ -1,6 +1,5 @@
 
 class Eventful {
-    _events: {};
 
     on(name, callback, context) {
 

@@ -1,5 +1,4 @@
 import { Model } from '../lib/model';
-import { Node } from "./node";
 import { Collection } from "../lib/collection";
 import { fetch_children } from "../requests";
 
@@ -23,7 +22,7 @@ class Panel extends Model {
         this.nodes.on("change", function(){ that.trigger("change") } );
     }
 
-    add(node_or_nodes: any) {
+    add(node_or_nodes) {
         this.nodes.add(node_or_nodes);
     }
 
@@ -34,7 +33,7 @@ class Panel extends Model {
         return this.nodes.get(key);
     }   
 
-    change_parent(parent: Node) {
+    change_parent(parent) {
         let that = this;
 
         this.parent = parent;

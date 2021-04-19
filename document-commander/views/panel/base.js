@@ -1,11 +1,5 @@
 import { View } from "../../lib/view";
 import { render as original_render } from "../../renderman";
-import {
-    Panel,
-    Node,
-    NodesCollection,
-    NodesAction
-} from "../../models/index";
 
 
 class PanelBaseView extends View {

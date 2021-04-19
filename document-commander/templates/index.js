@@ -7,7 +7,7 @@ import panel_grid_template from "./panel/grid.html";
 
 
 // maps template_name to the actual template content
-let templates_map = new Map<string, string>();
+let templates_map = new Map();
 
 templates_map.set('document.html', document_template);
 templates_map.set('folder.html', folder_template);
@@ -15,8 +15,8 @@ templates_map.set('panel/list.html', panel_list_template);
 templates_map.set('panel/grid.html', panel_grid_template);
 
 
-function get_template(template_name: string) {
-    let template = undefined, new_template_name: string;
+function get_template(template_name) {
+    let template = undefined, new_template_name;
 
     if (!template_name) {
         throw new ValueError("Empty argument");
