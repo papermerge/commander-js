@@ -8,7 +8,7 @@ class Collection extends Array {
         let that = this;
         
         if (item_or_items.length) { // if an array
-            item_or_items.map(function(item) {
+            item_or_items.map((item) => {
                 that.push(item);
             });
             return;
@@ -18,7 +18,19 @@ class Collection extends Array {
     }
 
     get(_attrs) {
-        for(let i=0; i <this.length;  i++) {
+        /**
+         * Returns exactly one item of the collection that matches given
+         * set of attributes.
+         * 
+         * Examples:
+         *  
+         *  // returns item that matches by title
+         *  collection.get({title: "Invoice1.pdf"})
+         * 
+         *  // returns item that matches by id
+         *  collection.get({id: "101"})
+         */
+        for(let i=0; i < this.length;  i++) {
             let found = true;
             for(let key in _attrs) {
                 if (_attrs[key] != this[i][key]) {
