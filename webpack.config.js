@@ -54,7 +54,7 @@ module.exports = {
     ]  // end of rules
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.js'],
   },
   devtool: devtool  // correctly map sources in test mode
 };

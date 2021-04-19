@@ -2,7 +2,7 @@
 class Eventful {
     _events: {};
 
-    on(name: string, callback, context): void {
+    on(name, callback, context) {
 
         if (!this._events) {
             this._events = {};
@@ -24,7 +24,7 @@ class Eventful {
         }
     }
 
-    trigger(name: string, ...args: any): void {
+    trigger(name, ...args) {
         let handlers,
             callback,
             context;

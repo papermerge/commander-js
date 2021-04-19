@@ -3,11 +3,11 @@ import { Node } from "./node";
 
 class Document extends Node {
     
-    get is_document():boolean {
+    get is_document() {
         return true;
     }
     
-    get is_folder():boolean {
+    get is_folder() {
         return false;
     }
 

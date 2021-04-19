@@ -1,27 +1,18 @@
 import _ from "underscore";
 
-type Func = (...args: any) => any;
-
 
 class View {
 
-    [key: string]: any; // i.e. we can index e.g. this["method"]
-
-    $el: any
-    el: any
-    cid: string
-    options: Record<string, any>;
-
-    constructor(options: Record<string, any>) {
+    constructor(options) {
         this.options = options;
         this.cid = _.uniqueId('view');
         this.setElement(options['el']);
     }
 
-    delegateEvents(events?: Record<string, any>) {
-        let method: string,
+    delegateEvents(events) {
+        let method,
             match,
-            _method: any;
+            _method;
 
         events || (events = _.result(this, 'events'));
         if (!events) {
@@ -43,7 +34,7 @@ class View {
         return this;
     }
 
-    delegate(eventName: string, selector:string, listener: Func) {
+    delegate(eventName, selector, listener) {
         this.$el.on(
             eventName + '.delegateEvents' + this.cid,
             selector,
@@ -59,14 +50,14 @@ class View {
         return this;
     }
 
-    setElement(element: any) {
+    setElement(element) {
         this.undelegateEvents();
         this._setElement(element);
         this.delegateEvents();
         return this;
     }
 
-    _setElement(el: any) {
+    _setElement(el) {
         if (el instanceof $) {
             this.$el = el;
         } else {
