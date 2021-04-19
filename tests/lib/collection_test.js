@@ -8,13 +8,13 @@ describe("Collection test suite", () => {
 
   it("Can instanciate a empty Collection", () => {
 
-    let col = new Collection<Node>();
+    let col = new Collection();
 
     assert.isDefined(col);
   });
 
   it("Can add items to the collection", () => {
-    let col = new Collection<Node>();
+    let col = new Collection();
 
     col.add(new Document({id: 1, title: "invoice.pdf"}));
     col.add(new Folder({id: 2, title: "My Documents"}));
@@ -23,7 +23,7 @@ describe("Collection test suite", () => {
   });
 
   it("Can add an array to the collection", () => {
-    let col = new Collection<Node>(), arr = [];
+    let col = new Collection(), arr = [];
 
     arr.push(new Document({id: 1, title: "invoice.pdf"}));
     arr.push(new Folder({id: 2, title: "My Documents"}));

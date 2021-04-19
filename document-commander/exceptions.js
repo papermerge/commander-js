@@ -12,7 +12,7 @@ class Exception {
 
 
 class TemplateNotFound extends Exception {
-    constructor(message: string) {
+    constructor(message) {
         super(message);
         this.name = 'TemplateNotFound';
     }
