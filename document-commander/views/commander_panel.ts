@@ -1,6 +1,12 @@
-import { PanelListView } from "../views/panel/list";
+import { PanelView } from "./panel/index";
 import { BreadcrumbView } from "./breadcrumb";
-import { Node, NodesCollection, Panel} from "../models/index";
+import { 
+    Node,
+    Document,
+    Folder,
+    NodesCollection,
+    Panel
+} from "../models/index";
 import { Breadcrumb } from "../models/breadcrumb";
 
 
@@ -14,7 +20,7 @@ class CommanderPanelView {
 
     panel_model: Panel;
     breadcrumb_model: Breadcrumb;
-    panel_view: PanelListView;
+    panel_view: PanelView;
     breadcrumb_view: BreadcrumbView;
     options: any;
 
@@ -25,8 +31,8 @@ class CommanderPanelView {
         } = {options: DEFAULT_OPTIONS}
     ) {
         this.panel_model = new Panel({ nodes, parent });
-        this.panel_view = new PanelListView({
-            panel: this.panel_model,
+        this.panel_view = new PanelView({
+            model: this.panel_model,
             options: options['panel']
         });
         this.breadcrumb_model = new Breadcrumb(nodes);
@@ -40,6 +46,16 @@ class CommanderPanelView {
         this.panel_model.on("change", this.render_panel, this);
         this.panel_model.on("parent_change", this.change_parent, this);
         this.breadcrumb_model.on("change", this.render_breadcrumb, this);
+        this.panel_view.on("folder_clicked", this.folder_clicked, this);
+        this.panel_view.on("document_clicked", this.document_clicked, this);
+    }
+
+    folder_clicked(folder: Folder) {
+        console.log(`Folder id${folder.id}, title=${folder.title} clicked`);
+    }
+
+    document_clicked(doc: Document) {
+        console.log(`Document id${doc.id}, title=${doc.title} clicked`);
     }
 
     change_parent(nodes: NodesCollection) {

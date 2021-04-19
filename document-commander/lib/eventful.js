@@ -1,15 +1,8 @@
-type CallbackFunc = (...args: any) => any;
-
-
-type EventRecord = {
-    callback: CallbackFunc;
-    context: any;
-}
 
 class Eventful {
-    _events: Record<string, Array<EventRecord>> = {};
+    _events: {};
 
-    on(name: string, callback: CallbackFunc, context?: any): void {
+    on(name: string, callback, context): void {
 
         if (!this._events) {
             this._events = {};

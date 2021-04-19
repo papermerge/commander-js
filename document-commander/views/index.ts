@@ -1,9 +1,7 @@
-import { PanelListView } from "./panel/list";
-import { PanelGridView } from "./panel/grid";
+import { PanelView } from "./panel/index";
 import { CommanderPanelView } from "./commander_panel";
 
 export {
-    PanelListView,
-    PanelGridView,
+    PanelView,
     CommanderPanelView
 };

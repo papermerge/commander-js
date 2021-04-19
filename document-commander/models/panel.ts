@@ -32,6 +32,20 @@ class Panel extends Model {
         this.nodes.add(node_or_nodes);
     }
 
+    get(
+        {id, title}: {
+            id?: string,
+            title?:string
+        }
+    ): Node {
+        let key: Map<keyof Node, string>;
+
+        key = new Map();
+        key.set('id', id);
+
+        return this.nodes.get(key);
+    }   
+
     change_parent(parent: Node) {
         let that = this;
 

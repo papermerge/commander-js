@@ -1,7 +1,6 @@
 import _ from "underscore";
 
 type Func = (...args: any) => any;
-type TElement = JQuery<HTMLElement> | HTMLElement | string;
 
 
 class View {
@@ -16,6 +15,7 @@ class View {
     constructor(options: Record<string, any>) {
         this.options = options;
         this.cid = _.uniqueId('view');
+        this.setElement(options['el']);
     }
 
     delegateEvents(events?: Record<string, any>) {

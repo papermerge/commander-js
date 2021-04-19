@@ -8,8 +8,7 @@ import {
     NodesCollection
 } from "./models/index";
 import {
-    PanelListView,
-    PanelGridView,
+    PanelView,
     CommanderPanelView
 } from "./views/index";
 import { render } from "./renderman";
@@ -21,8 +20,7 @@ export {
     Document,
     Folder,
     Panel,
-    PanelListView,
-    PanelGridView,
+    PanelView,
     CommanderPanelView,
     Collection,
     NodesCollection
