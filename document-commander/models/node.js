@@ -9,7 +9,6 @@ class Node extends Model {
         parent,
         metadata
     }) {
-        super();
         this.id = id;
         this.title = title;
         this.parent = parent;

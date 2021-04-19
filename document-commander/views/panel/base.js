@@ -31,8 +31,8 @@ class PanelBaseView extends View {
             node;
         
         node_id = $target.data("id");
-        console.log(`node ${node_id} clicked`);
-        node = this.panel.get({id: node_id});
+        node = this.model.get_node({id: node_id});
+        
         if (node.is_document) {
             this.trigger("document_clicked", node);
         } else {

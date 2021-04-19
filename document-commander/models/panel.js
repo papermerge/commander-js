@@ -26,11 +26,11 @@ class Panel extends Model {
         this.nodes.add(node_or_nodes);
     }
 
-    get({
+    get_node({
         id,
         title
     }) {
-        return this.nodes.get(key);
+        return this.nodes.get({id, title});
     }   
 
     change_parent(parent) {
