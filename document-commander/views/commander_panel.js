@@ -11,12 +11,6 @@ import { Breadcrumb } from "../models/breadcrumb";
 import { Collection } from "backbone";
 
 
-const DEFAULT_OPTIONS = {
-    'panel': {},
-    'breadcrumb': {}
-};
-
-
 class CommanderPanelView {
 
     constructor({
