@@ -1,4 +1,4 @@
-import { View } from "./view";
+import { View } from "../lib/view";
 import { render as original_render } from "../renderman";
 import { Breadcrumb } from "../models/breadcrumb";
 
@@ -16,7 +16,7 @@ class BreadcrumbView extends View {
             options: any
         }
     ) {
-        super();
+        super(options);
         this.breadcrumb = breadcrumb;
         this.options = options;
         this.$el = options['el'];

@@ -11,17 +11,17 @@ import {
 class PanelBaseView extends View {
 
     panel: Panel;
-    options: any;
+    options: Record<string, any>;
     template_name!: string;
     $el: JQuery<HTMLElement>
 
     constructor(
         {panel, options}: {
             panel: Panel,
-            options?: any
+            options?: Record<string, any>
         }
     ) {
-        super({options: options});
+        super(options);
         this.panel = panel;
         this.options = options;
         if (options) {
