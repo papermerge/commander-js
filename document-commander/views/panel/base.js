@@ -6,7 +6,7 @@ class PanelBaseView extends View {
 
     constructor({
         model,
-        options
+        options={}
     }) {
         super(options);
         this.model = model;

@@ -1,3 +1,6 @@
+import { Eventful } from "./eventful";
+import { applyMixins } from "./utils";
+
 
 class Collection extends Array {
 
@@ -28,5 +31,7 @@ class Collection extends Array {
         }
     }
 }
+
+applyMixins(Collection, [Eventful]);
 
 export { Collection };

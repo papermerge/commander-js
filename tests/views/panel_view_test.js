@@ -1,15 +1,14 @@
 import { assert } from "chai";
-
+import { Collection } from "../../document-commander/lib/collection";
 import { PanelView } from "../../document-commander/views/panel/index";
 import { Panel } from "../../document-commander/models/panel";
 import {
     Document,
     Folder,
-    NodesCollection
 } from "../../document-commander/models/index";
 
 
-describe("PanelListView test suite", () => {
+describe("PanelView test suite", () => {
 
   it("Will render nodes", () => {
 
@@ -18,7 +17,7 @@ describe("PanelListView test suite", () => {
     panel_list_html,
     nodes;
 
-    nodes = new NodesCollection();
+    nodes = new Collection();
     
     nodes.add([
         new Document({id: 1, title: 'invoice1.pdf'}),

@@ -6,7 +6,7 @@ class PanelView extends PanelBaseView {
     
     constructor({
         model,
-        options
+        options={}
     }) {
         super({model, options});
         this.template_name = options['template_name'] || DEFAULT_TEMPLATE_NAME;
