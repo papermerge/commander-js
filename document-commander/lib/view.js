@@ -4,7 +4,7 @@ import $ from "jquery";
 
 class View {
 
-    constructor(options) {
+    constructor(options={}) {
         this.options = options;
         this.cid = _.uniqueId('view');
         this.setElement(options['el']);

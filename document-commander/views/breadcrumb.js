@@ -6,7 +6,7 @@ class BreadcrumbView extends View {
 
     constructor({
         breadcrumb,
-        options
+        options={}
     }) {
         super(options);
         this.breadcrumb = breadcrumb;

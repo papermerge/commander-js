@@ -25,7 +25,7 @@ describe("PanelView test suite", () => {
         new Folder({id: 3, title: 'My Document'})
     ]);
     panel = new Panel({nodes: nodes});
-    panel_list_view = new PanelView({panel: panel});
+    panel_list_view = new PanelView({model: panel});
     panel_list_html = panel_list_view.render();
 
     assert.isTrue(

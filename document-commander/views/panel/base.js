@@ -31,6 +31,9 @@ class PanelBaseView extends View {
             node;
         
         node_id = $target.data("id");
+        if (!this.model) {
+            return;
+        }
         node = this.model.get_node({id: node_id});
         
         if (node.is_document) {
@@ -42,13 +45,18 @@ class PanelBaseView extends View {
 
     render_to_string() {
 
-        let html_panel, context = {};
+        let html_panel = "",
+            context = {};
 
-        context['nodes'] = this.panel.nodes;
+        if (!this.model) {
+            return html_panel;
+        }
+        context['nodes'] = this.model.nodes;
         html_panel = original_render(
             this.template_name,
             context
-        )
+        );
+        
 
         return html_panel;
     }

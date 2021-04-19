@@ -1,3 +1,4 @@
+import { Collection } from "backbone";
 import { assert } from "chai";
 import $ from "jquery";
 
@@ -20,7 +21,9 @@ describe("CommanderPanelView test suite", () => {
 
   it("Can instanciate CommanderPanelView with empty parameter list", () => {
 
-    let panel_view = new CommanderPanelView();
+    let panel_view = new CommanderPanelView({
+      nodes: new Collection(),
+    });
 
     assert.isDefined(panel_view);
   });

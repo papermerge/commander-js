@@ -8,6 +8,7 @@ import {
     Panel
 } from "../models/index";
 import { Breadcrumb } from "../models/breadcrumb";
+import { Collection } from "backbone";
 
 
 const DEFAULT_OPTIONS = {
@@ -20,8 +21,8 @@ class CommanderPanelView {
 
     constructor({
         nodes,
-        parent,
-        options
+        parent=undefined,
+        options={}
     }) {
         this.panel_model = new Panel({ nodes, parent });
         this.panel_view = new PanelView({
