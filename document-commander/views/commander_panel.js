@@ -18,18 +18,11 @@ const DEFAULT_OPTIONS = {
 
 class CommanderPanelView {
 
-    panel_model: Panel;
-    breadcrumb_model: Breadcrumb;
-    panel_view: PanelView;
-    breadcrumb_view: BreadcrumbView;
-    options: any;
-
-    constructor({ nodes, parent, options }: {
-            nodes?: NodesCollection;
-            parent?: Node;
-            options?: any;
-        } = {options: DEFAULT_OPTIONS}
-    ) {
+    constructor({
+        nodes,
+        parent,
+        options
+    }) {
         this.panel_model = new Panel({ nodes, parent });
         this.panel_view = new PanelView({
             model: this.panel_model,
@@ -50,15 +43,15 @@ class CommanderPanelView {
         this.panel_view.on("document_clicked", this.document_clicked, this);
     }
 
-    folder_clicked(folder: Folder) {
+    folder_clicked(folder) {
         console.log(`Folder id${folder.id}, title=${folder.title} clicked`);
     }
 
-    document_clicked(doc: Document) {
+    document_clicked(doc) {
         console.log(`Document id${doc.id}, title=${doc.title} clicked`);
     }
 
-    change_parent(nodes: NodesCollection) {
+    change_parent(nodes) {
         this.breadcrumb_model.change_parent(nodes);
     }
 
@@ -70,7 +63,7 @@ class CommanderPanelView {
         this.breadcrumb_view.render();
     }
 
-    add(item_or_items: any) {
+    add(item_or_items) {
         this.panel_model.add(item_or_items);
     }
 

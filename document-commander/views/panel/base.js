@@ -10,17 +10,10 @@ import {
 
 class PanelBaseView extends View {
 
-    model: Panel;
-    options: Record<string, any>;
-    template_name!: string;
-    $el: JQuery<HTMLElement>
-
-    constructor(
-        {model, options}: {
-            model: Panel,
-            options?: Record<string, any>
-        }
-    ) {
+    constructor({
+        model,
+        options
+    }) {
         super(options);
         this.model = model;
         this.options = options;
@@ -38,10 +31,10 @@ class PanelBaseView extends View {
         return event_map;
     }
 
-    on_node_clicked(event: Event): void {
-        let $target:JQuery<EventTarget> = $(event.currentTarget),
-            node_id: string,
-            node: Node;
+    on_node_clicked(event) {
+        let $target = $(event.currentTarget),
+            node_id,
+            node;
         
         node_id = $target.data("id");
         console.log(`node ${node_id} clicked`);
@@ -55,7 +48,7 @@ class PanelBaseView extends View {
 
     render_to_string() {
 
-        let html_panel, context: any = {};
+        let html_panel, context = {};
 
         context['nodes'] = this.panel.nodes;
         html_panel = original_render(
@@ -66,7 +59,7 @@ class PanelBaseView extends View {
         return html_panel;
     }
 
-    render(): string {
+    render() {
         let panel_html = this.render_to_string();
 
         if (this.$el) {

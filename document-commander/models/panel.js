@@ -1,20 +1,15 @@
 import { Model } from '../lib/model';
 import { Node } from "./node";
-import { NodesCollection } from "./nodes_collection";
+import { Collection } from "../lib/collection";
 import { fetch_children } from "../requests";
 
 
 class Panel extends Model {
 
-    parent!: Node;
-    nodes: NodesCollection = new NodesCollection();
-    
-    constructor(
-        {nodes, parent}: {
-            nodes?: NodesCollection;
-            parent?: Node;
-        } = {},
-    ) {
+    constructor({
+        nodes,
+        parent
+    }) {
         super();
         let that = this;
         
@@ -22,7 +17,7 @@ class Panel extends Model {
         if (nodes) {
             this.nodes = nodes;
         } else {
-            this.nodes = new NodesCollection();
+            this.nodes = new Collection();
         }
 
         this.nodes.on("change", function(){ that.trigger("change") } );
@@ -32,17 +27,10 @@ class Panel extends Model {
         this.nodes.add(node_or_nodes);
     }
 
-    get(
-        {id, title}: {
-            id?: string,
-            title?:string
-        }
-    ): Node {
-        let key: Map<keyof Node, string>;
-
-        key = new Map();
-        key.set('id', id);
-
+    get({
+        id,
+        title
+    }) {
         return this.nodes.get(key);
     }   
 
@@ -51,13 +39,13 @@ class Panel extends Model {
 
         this.parent = parent;
         fetch_children(parent).then(
-            (nodes: NodesCollection) => {
+            (nodes) => {
                 that.nodes = nodes;
             }
         );
     }
 
-    open_document(node: Node) {
+    open_document(node) {
         throw new Error("Method not implemented.");
     }
 }

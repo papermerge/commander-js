@@ -1,21 +1,13 @@
 import { View } from "../lib/view";
 import { render as original_render } from "../renderman";
-import { Breadcrumb } from "../models/breadcrumb";
 
 
 class BreadcrumbView extends View {
 
-    breadcrumb: Breadcrumb;
-    template_name!: string;
-    options: any;
-    $el: JQuery<HTMLElement>;
-
-    constructor(
-        {breadcrumb, options}: {
-            breadcrumb: Breadcrumb,
-            options: any
-        }
-    ) {
+    constructor({
+        breadcrumb,
+        options
+    }) {
         super(options);
         this.breadcrumb = breadcrumb;
         this.options = options;
@@ -24,7 +16,7 @@ class BreadcrumbView extends View {
 
     render_to_string() {
 
-        let html_breadcrumb, context: any = {};
+        let html_breadcrumb, context = {};
 
         context['nodes'] = this.breadcrumb.nodes;
         html_breadcrumb = original_render(
@@ -35,7 +27,7 @@ class BreadcrumbView extends View {
         return html_breadcrumb;
     }
 
-    render(): string {
+    render() {
         let breadcrumb_html = this.render_to_string();
 
         this.$el.html(breadcrumb_html);
