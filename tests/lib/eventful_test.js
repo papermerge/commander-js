@@ -4,7 +4,6 @@ import { Model } from '../../document-commander/lib/model';
 
 
 class SomeModel extends Model {
-  counter: number = 0;
 }
 
 describe("Events test suite", () => {

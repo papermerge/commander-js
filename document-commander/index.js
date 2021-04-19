@@ -5,7 +5,6 @@ import {
     Document,
     Folder,
     Panel,
-    NodesCollection
 } from "./models/index";
 import {
     PanelView,
@@ -23,5 +22,4 @@ export {
     PanelView,
     CommanderPanelView,
     Collection,
-    NodesCollection
 };
