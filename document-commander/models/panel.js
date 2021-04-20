@@ -2,13 +2,17 @@ import { Model } from '../lib/model';
 import { Collection } from "../lib/collection";
 import { fetch_children } from "../requests";
 
+const DEFAULT_PANEL = {
+    node: new Collection(),
+    parent: undefined
+}
 
 class Panel extends Model {
 
     constructor({
         nodes,
         parent
-    }) {
+    }=DEFAULT_PANEL) {
         super();
         let that = this;
         

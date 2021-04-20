@@ -1,6 +1,9 @@
 import _ from "underscore";
 import $ from "jquery";
 
+import { Eventful } from "./eventful";
+import { applyMixins } from "./utils";
+
 
 class View {
 
@@ -68,5 +71,6 @@ class View {
     }
 }
 
+applyMixins(View, [Eventful]);
 
 export { View };

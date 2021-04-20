@@ -4,6 +4,14 @@ import { applyMixins } from "./utils";
 
 class Collection extends Array {
 
+    constructor(...args) {
+        if (Array.isArray(args) && args.length > 0) {
+            super(args);
+        } else {
+            super(0);
+        }
+    }
+
     add(item_or_items) {
         let that = this;
         

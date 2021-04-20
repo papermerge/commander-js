@@ -4,6 +4,10 @@ import { Model } from '../../document-commander/lib/model';
 
 
 class SomeModel extends Model {
+  constructor(counter=0) {
+    super();
+    this.counter = counter;
+  }
 }
 
 describe("Events test suite", () => {

@@ -8,7 +8,7 @@ import {
 } from "../../document-commander/models/index";
 
 
-describe("PanelView test suite", () => {
+describe("tests/views/panel_view_test.js", () => {
 
   it("Will render nodes", () => {
 
