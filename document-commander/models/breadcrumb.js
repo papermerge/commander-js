@@ -8,8 +8,8 @@ class Breadcrumb extends Model {
         this.nodes = nodes;
     }
 
-    change_parent(nodes) {
-        this.nodes = nodes;
+    refresh(ancestors) {
+        this.nodes = ancestors;
     }
 }
 

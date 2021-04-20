@@ -27,6 +27,14 @@ class Collection extends Array {
         this.trigger("change");
     }
 
+    remove(item_or_items) {
+
+    }
+
+    reset(item_or_items) {
+        
+    }
+
     get(attrs) {
         /**
          * Returns exactly one item of the collection that matches given

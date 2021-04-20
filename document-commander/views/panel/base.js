@@ -1,6 +1,11 @@
 import { View } from "../../lib/view";
 import { render as original_render } from "../../renderman";
 
+import {
+    EV_DOCUMENT_CLICKED,
+    EV_FOLDER_CLICKED
+} from "../../events";
+
 
 class PanelBaseView extends View {
 
@@ -19,6 +24,7 @@ class PanelBaseView extends View {
     }
 
     events() {
+        // DOM events
         let event_map = {
             "click .node": "on_node_clicked"
         }
@@ -37,9 +43,9 @@ class PanelBaseView extends View {
         node = this.model.get_node({id: node_id});
         
         if (node.is_document) {
-            this.trigger("document_clicked", node);
+            this.trigger(EV_DOCUMENT_CLICKED, node);
         } else {
-            this.trigger("folder_clicked", node);
+            this.trigger(EV_FOLDER_CLICKED, node);
         }
     }
 

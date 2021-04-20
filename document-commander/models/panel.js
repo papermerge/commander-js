@@ -10,7 +10,14 @@ const DEFAULT_PANEL = {
 
 
 class Panel extends Model {
-
+    /**
+     * Panel is a collection of nodes with common parent (node).
+     * 
+     * Panel responsability is to manage nodes (Documents and Folder) i.e.
+     * add/remove/refresh and notify integrested parties with relevent events.
+     * 
+     * 
+     */
     constructor({
         nodes,
         parent
@@ -33,7 +40,13 @@ class Panel extends Model {
     }
 
     add(node_or_nodes) {
+        // add one or more nodes
         this.nodes.add(node_or_nodes);
+    }
+
+    remove(node_or_nodes) {
+        // remove one or more nodes
+        this.nodes.remove(node_or_nodes);
     }
 
     get_node({
@@ -43,20 +56,14 @@ class Panel extends Model {
         return this.nodes.get({id, title});
     }   
 
-    change_parent(parent) {
-        let that = this;
-
+    reset({nodes, parent}) {
+        // empties `this.nodes` collection and fills it anew with
+        // provides `nodes`. Existing `this.parent` is replaced
+        // with `parent`.
+        this.nodes.reset(nodes);
         this.parent = parent;
-        fetch_children(parent).then(
-            (nodes) => {
-                that.nodes = nodes;
-            }
-        );
     }
 
-    open_document(node) {
-        throw new Error("Method not implemented.");
-    }
 }
 
 export { Panel };

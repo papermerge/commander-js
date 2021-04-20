@@ -1,5 +1,5 @@
 
-function fetch_children(node) {
+function fetch_children(folder) {
     return new Promise(resolve => {});
 }
 
