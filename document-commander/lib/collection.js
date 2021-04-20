@@ -43,6 +43,9 @@ class Collection extends Array {
         for(let i=0; i < this.length;  i++) {
             let found = true;
             for(let key in _attrs) {
+                if (_attrs[key] == undefined) {
+                    continue;
+                }
                 if (_attrs[key] != this[i][key]) {
                     found = false;
                 }
