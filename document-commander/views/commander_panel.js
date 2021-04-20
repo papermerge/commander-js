@@ -33,11 +33,11 @@ class CommanderPanelView {
     }
 
     folder_clicked(folder) {
-        console.log(`Folder id${folder.id}, title=${folder.title} clicked`);
+        console.log(`Folder id=${folder.id}, title=${folder.title} clicked`);
     }
 
     document_clicked(doc) {
-        console.log(`Document id${doc.id}, title=${doc.title} clicked`);
+        console.log(`Document id=${doc.id}, title=${doc.title} clicked`);
     }
 
     change_parent(nodes) {
