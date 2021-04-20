@@ -32,6 +32,11 @@ class Collection extends Array {
          * Returns exactly one item of the collection that matches given
          * set of attributes.
          * 
+         * attrs - is expected to be a dictionary like object
+         * 
+         * Returns a collection item when found and `undefined` if item was
+         * not found.
+         * 
          * Examples:
          *  
          *  // returns item that matches by title
@@ -59,6 +64,7 @@ class Collection extends Array {
                 return this[i];
             }
         }
+        return undefined;
     }
 }
 
