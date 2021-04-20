@@ -28,6 +28,10 @@ class Panel extends Model {
         this.nodes.on("change", function(){ that.trigger("change") } );
     }
 
+    toString() {
+        return `Panel(nodes=${this.nodes}, parent=${this.parent})`;
+    }
+
     add(node_or_nodes) {
         this.nodes.add(node_or_nodes);
     }

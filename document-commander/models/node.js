@@ -16,6 +16,10 @@ class Node extends Model {
         this.metadata = metadata;
     }
 
+    toString() {
+        return `Node(id=${this.id}, title=${this.title}, ...)`;
+    }
+
     get is_document() {
         return false;
     }
