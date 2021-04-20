@@ -14,7 +14,7 @@ $(function(){
     node = new DC.Document({id: 5, title: "invoice.pdf"});
     commander_panel.add(node);
 
-    nodes = new DC.NodesCollection();
+    nodes = new DC.Collection();
     nodes.add(
         new DC.Document({id: 1, title: "payment_1.pdf"})
     );

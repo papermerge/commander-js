@@ -19,10 +19,12 @@ class Collection extends Array {
             item_or_items.map((item) => {
                 that.push(item);
             });
+            this.trigger("change");
             return;
         }
 
         this.push(item_or_items);
+        this.trigger("change");
     }
 
     get(_attrs) {

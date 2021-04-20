@@ -1,20 +1,14 @@
 import { PanelView } from "./panel/index";
 import { BreadcrumbView } from "./breadcrumb";
-import { 
-    Node,
-    Document,
-    Folder,
-    NodesCollection,
-    Panel
-} from "../models/index";
+import { Collection } from "../lib/collection";
+import { Panel } from "../models/index";
 import { Breadcrumb } from "../models/breadcrumb";
-import { Collection } from "backbone";
 
 
 class CommanderPanelView {
 
     constructor({
-        nodes,
+        nodes=new Collection(),
         parent=undefined,
         options={}
     }) {
