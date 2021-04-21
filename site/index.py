@@ -86,18 +86,18 @@ def mini_browser_folder(node_id):
 
 @app.route('/document/<int:node_id>')
 def mini_browser_document(node_id):
-    documen_dict = DOCUMENTS.get(node_id, None)
+    document_dict = DOCUMENTS.get(node_id, None)
     
     if not document_dict:
         return render_template("404.html"), 404
 
     content_type = request.headers.get('Content-Type')
     if content_type and content_type == 'application/json':
-       return documen_dict
+       return document_dict
 
     return render_template(
         "features/mini-browser.html",
-        **documen_dict
+        **document_dict
     )
 
 
