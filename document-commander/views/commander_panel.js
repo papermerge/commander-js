@@ -1,6 +1,7 @@
 import { PanelView } from "./panel/index";
 import { BreadcrumbView } from "./breadcrumb";
 import { Collection } from "../lib/collection";
+import { View } from "../lib/view";
 import { Panel } from "../models/index";
 import { Breadcrumb } from "../models/breadcrumb";
 import { fetch_children } from "../requests";
@@ -11,14 +12,14 @@ import {
 } from "../events";
 
 
-
-class CommanderPanelView {
+class CommanderPanelView extends View {
 
     constructor({
         nodes=new Collection(),
         parent=undefined,
         options={}
     }) {
+        super();
         this.panel_model = new Panel({ nodes, parent });
         this.panel_view = new PanelView({
             model: this.panel_model,

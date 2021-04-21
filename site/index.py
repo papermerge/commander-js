@@ -1,4 +1,11 @@
-from flask import Flask, render_template, request
+import os
+
+from flask import (
+    Flask,
+    render_template,
+    request,
+    send_from_directory
+)
 app = Flask(__name__)
 
 app.jinja_env.auto_reload = True
@@ -99,4 +106,15 @@ def mini_browser_document(node_id):
         "features/mini-browser.html",
         document=current_nodes,
         ancestor_nodes=ancestor_nodes
+    )
+
+
+
+@app.route('/favicon.ico')
+def favicon():
+    static_path = os.path.join(app.root_path, 'static')
+    return send_from_directory(
+        static_path,
+        'favicon.ico',
+        mimetype='image/vnd.microsoft.icon'
     )
