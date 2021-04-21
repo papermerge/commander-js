@@ -26,4 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
     );
     
     commander_panel.add(nodes);
+    commander_panel.on('document_clicked', (doc) => {
+        alert(`Document id=${doc.id} title=${doc.title} clicked`);
+      });
 });

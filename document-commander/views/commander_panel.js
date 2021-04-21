@@ -42,7 +42,6 @@ class CommanderPanelView extends View {
 
     folder_clicked(folder) {
         let that = this;
-        console.log(`Folder id=${folder.id}, title=${folder.title} clicked`);
         fetch_children(folder).then((nodes, ancestors) => {
             that.panel_model.refresh({nodes, ancestors})
             that.breadcrumb_model.refresh(ancestors);
@@ -50,10 +49,10 @@ class CommanderPanelView extends View {
     }
 
     document_clicked(doc) {
-        console.log(`Document id=${doc.id}, title=${doc.title} clicked`);
-        // Panel does not know what to do when document was clicked. Just
+        // Panel does not know (and rightfully so)
+        // what to do when document was clicked. Just
         // inform interested parties.
-        this.trigger("document_clicked", doc);
+        this.trigger(EV_DOCUMENT_CLICKED, doc);
     }
 
     render_panel() {
