@@ -13,4 +13,21 @@ function applyMixins(model, arr_mixins) {
     });
 }
 
-export { applyMixins };
+let idCounter = 0;
+function uniqueId(prefix) {
+  let id = ++idCounter + '';
+  return prefix ? prefix + id : id;
+}
+
+function isFunction(func) {
+  if (func && typeof func === "function") {
+    return true
+  }
+  return false
+}
+
+export {
+  applyMixins,
+  uniqueId,
+  isFunction
+};

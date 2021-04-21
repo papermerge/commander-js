@@ -1,32 +1,40 @@
-import _ from "underscore";
 import $ from "jquery";
 
 import { Eventful } from "./eventful";
-import { applyMixins } from "./utils";
+import { applyMixins, isFunction, uniqueId } from "./utils";
 
 
 class View {
 
     constructor(options={}) {
         this.options = options;
-        this.cid = _.uniqueId('view');
+        this.cid = uniqueId('view');
         this.setElement(options['el']);
     }
 
-    delegateEvents(events) {
+    delegateEvents() {
         let method,
             match,
-            _method;
+            _method,
+            events;
 
-        events || (events = _.result(this, 'events'));
+        if (this.events) {
+            events = this.events;
+        };
+
         if (!events) {
             return this;
         }
+
+        if (isFunction(events)) {
+            events = events();
+        }
+
         this.undelegateEvents();
         
         for (let key in events) {
             method = events[key];
-            if (!_.isFunction(method)) {
+            if (!isFunction(method)) {
                 _method = this[method];
             }
             if (!method) {
