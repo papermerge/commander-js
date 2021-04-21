@@ -19,7 +19,7 @@ describe("test/lib/utils_test.js", () => {
     assert.isFalse(
         isFunction(some_obj)
     );
-  });
+  }); // test isFunction
 
   it("tests uniqueId", () => {
     assert.equal(
@@ -34,10 +34,9 @@ describe("test/lib/utils_test.js", () => {
         3,
         uniqueId()
     );
-  });
+  }); // test uniqueId
 
   it("tests applyMixins", () => {
-    
     let instance;
 
     class BaseClass {
@@ -59,6 +58,5 @@ describe("test/lib/utils_test.js", () => {
     assert.isFunction(instance.foo);
     assert.isFunction(instance.mixin1);
     assert.isFunction(instance.mixin2);
-
-  });
+  }); // test applyMixins
 });
