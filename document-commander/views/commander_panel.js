@@ -43,9 +43,9 @@ class CommanderPanelView extends View {
     folder_clicked(folder) {
         let that = this;
 
-        fetch_children(folder).then((nodes, ancestors) => {
-            that.panel_model.refresh({nodes, ancestors})
-            that.breadcrumb_model.refresh(ancestors);
+        fetch_children(folder).then(({nodes, ancestors}) => {
+            that.panel_model.reset({nodes, ancestors});
+            that.breadcrumb_model.reset(ancestors);
         });
     }
 

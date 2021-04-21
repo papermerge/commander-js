@@ -56,12 +56,12 @@ class Panel extends Model {
         return this.nodes.get({id, title});
     }   
 
-    reset({nodes, parent}) {
+    reset({nodes, ancestors}) {
         // empties `this.nodes` collection and fills it anew with
         // provides `nodes`. Existing `this.parent` is replaced
         // with `parent`.
         this.nodes.reset(nodes);
-        this.parent = parent;
+        this.parent = ancestors[0];
     }
 
 }

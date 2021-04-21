@@ -32,7 +32,7 @@ class Collection extends Array {
     }
 
     reset(item_or_items) {
-        
+        console.log(`Collection reset ${item_or_items}`);
     }
 
     get(attrs) {
