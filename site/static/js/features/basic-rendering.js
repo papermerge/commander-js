@@ -1,5 +1,11 @@
-$(function(){
-    let doc, folder, DC, doc_html, folder_html;
+window.addEventListener('DOMContentLoaded', () => {
+    let doc,
+        folder,
+        DC,
+        doc_html,
+        folder_html,
+        div_document,
+        div_folder;
 
     DC = DocumentCommander;
     doc = new DC.Document({id: 1, title: "invoice.pdf"});
@@ -15,6 +21,8 @@ $(function(){
         {'node': folder}  // context
     );
 
-    $("#document").html(doc_html);
-    $("#folder").html(folder_html);
+    div_document = document.querySelector("#document");
+    div_folder = document.querySelector("#folder");
+    div_document.innerHTML = doc_html;
+    div_folder.innerHTML = folder_html;
 });

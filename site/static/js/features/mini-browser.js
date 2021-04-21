@@ -1,4 +1,4 @@
-$(function(){
+window.addEventListener('DOMContentLoaded', () => {
     let DC = DocumentCommander,
         commander_panel,
         node,
@@ -6,8 +6,8 @@ $(function(){
 
     commander_panel = new DC.CommanderPanelView({
         options: {
-            'panel': {'el': $('#panel')},
-            'breadcrumb': {'el': $("#breadcrumb")}
+            'panel': {'el': document.querySelector('#panel')},
+            'breadcrumb': {'el': document.querySelector("#breadcrumb")}
         }
     });
 

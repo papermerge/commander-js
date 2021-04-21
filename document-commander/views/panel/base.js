@@ -17,9 +17,9 @@ class PanelBaseView extends View {
         this.model = model;
         this.options = options;
         if (options) {
-            this.$el = options['el'];
+            this.el = options['el'];
         } else {
-            this.$el = undefined;
+            this.el = undefined;
         }
     }
 
@@ -70,8 +70,8 @@ class PanelBaseView extends View {
     render() {
         let panel_html = this.render_to_string();
 
-        if (this.$el) {
-            this.$el.html(panel_html);
+        if (this.el) {
+            this.el.innerHTML = panel_html;
         }
         return panel_html; 
     }

@@ -23,8 +23,8 @@
 
             commander_panel = new DC.CommanderPanelView({
               options: {
-                'panel': {'el': $('#panel')},
-                'breadcrumb': {'el': $("#breadcrumb")}
+                'panel': {'el': document.querySelect('#panel')},
+                'breadcrumb': {'el': document.querySelect("#breadcrumb")}
               }
             });
 

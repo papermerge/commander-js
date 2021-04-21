@@ -1,4 +1,4 @@
-$(function(){
+window.addEventListener('DOMContentLoaded', () => {
     let panel,
     DC,
     panel_list_html,
@@ -32,6 +32,6 @@ $(function(){
     panel_list_html = panel_list_view.render();
     panel_grid_html = panel_grid_view.render();
 
-    $("#panel-list").html(panel_list_html);
-    $("#panel-grid").html(panel_grid_html);
+    document.querySelector("#panel-list").innerHTML = panel_list_html;
+    document.querySelector("#panel-grid").innerHTML = panel_grid_html;
 });
