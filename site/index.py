@@ -71,43 +71,34 @@ def about():
 
 @app.route('/folder/<int:node_id>')
 def mini_browser_folder(node_id):
-    current_nodes, ancestor_nodes = FOLDERS.get(node_id, (None, None))
-    if not current_nodes:
+    folder_dict = FOLDERS.get(node_id, None)
+    if not folder_dict:
         return render_template("404.html"), 404
 
-    request_xhr_key = request.headers.get('X-Requested-With')
-    if request_xhr_key and request_xhr_key == 'XMLHttpRequest':
-       return {
-           'current_nodes': current_nodes,
-           'ancestor_nodes': ancestor_nodes
-       }
+    content_type = request.headers.get('Content-Type')
+    if content_type and content_type == 'application/json':
+       return folder_dict
 
     return render_template(
-        "features/mini-browser.html",
-        current_nodes=current_nodes,
-        ancestor_nodes=ancestor_nodes
+        "features/mini-browser.html", **folder_dict
     )
 
 
 @app.route('/document/<int:node_id>')
 def mini_browser_document(node_id):
-    document, ancestor_nodes = DOCUMENTS.get(node_id, (None, None))
-    if not document:
+    documen_dict = DOCUMENTS.get(node_id, None)
+    
+    if not document_dict:
         return render_template("404.html"), 404
 
-    request_xhr_key = request.headers.get('X-Requested-With')
-    if request_xhr_key and request_xhr_key == 'XMLHttpRequest':
-       return {
-           'document': current_nodes,
-           'ancestor_nodes': ancestor_nodes
-       }
+    content_type = request.headers.get('Content-Type')
+    if content_type and content_type == 'application/json':
+       return documen_dict
 
     return render_template(
         "features/mini-browser.html",
-        document=current_nodes,
-        ancestor_nodes=ancestor_nodes
+        **documen_dict
     )
-
 
 
 @app.route('/favicon.ico')
