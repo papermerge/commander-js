@@ -1,12 +1,15 @@
 import { assert } from "chai";
 
-import { isFunction } from '../../document-commander/lib/utils';
+import {
+    applyMixins,
+    isFunction,
+    uniqueId
+} from '../../document-commander/lib/utils';
 
 
 describe("test/lib/utils_test.js", () => {
 
   it("tests isFunction", () => {
-
     let func = function(){},
         some_obj = {};
 
@@ -18,4 +21,44 @@ describe("test/lib/utils_test.js", () => {
     );
   });
 
+  it("tests uniqueId", () => {
+    assert.equal(
+        1,
+        uniqueId()
+    );
+    assert.equal(
+        2,
+        uniqueId()
+    );
+    assert.equal(
+        3,
+        uniqueId()
+    );
+  });
+
+  it("tests applyMixins", () => {
+    
+    let instance;
+
+    class BaseClass {
+        foo() {};
+    };
+
+    class Mixin1 {
+        mixin1() {};
+    };
+
+    class Mixin2 {
+        mixin2() {};
+    };
+
+    applyMixins(BaseClass, [Mixin1, Mixin2]);
+
+    instance = new BaseClass();
+
+    assert.isFunction(instance.foo);
+    assert.isFunction(instance.mixin1);
+    assert.isFunction(instance.mixin2);
+
+  });
 });
