@@ -1,6 +1,6 @@
 import { assert } from "chai";
 
-import { Node, Document, Folder } from "../../document-commander/models/index";
+import { Document, Folder } from "../../document-commander/models/index";
 import { Collection } from '../../document-commander/lib/collection';
 
 

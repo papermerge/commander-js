@@ -1,6 +1,6 @@
-import { Collection } from "backbone";
 import { assert } from "chai";
-import $ from "jquery";
+
+import { Collection } from "../../document-commander/lib/collection";
 
 import { CommanderPanelView } from "../../document-commander/views/commander_panel";
 
@@ -11,8 +11,8 @@ describe("CommanderPanelView test suite", () => {
 
     let panel_view = new CommanderPanelView({
         options:{
-            'panel': {'el': $('#panel')},
-            'breadcrumb': {'el': $("#breadcrumb")}
+            'panel': {'el': document.querySelector('#panel')},
+            'breadcrumb': {'el': document.querySelector("#breadcrumb")}
         }
     });
 
