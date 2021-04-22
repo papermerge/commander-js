@@ -1,0 +1,7 @@
+<ol class="breadcrumb">
+    {% for node in nodes %}
+        <li>
+            <a href="{{node.href}}">{{ node.title }}</a>
+        </li>
+    {% endfor %}
+</ol>

@@ -5,6 +5,10 @@ import { render as original_render } from "../renderman";
 
 class BreadcrumbView extends View {
 
+    get template_name() {
+        return "templates/breadcrumb.html";
+    }
+
     constructor({
         breadcrumb=new Collection(),
         options={}

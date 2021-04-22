@@ -58,10 +58,12 @@ class CommanderPanelView extends View {
     }
 
     render_panel() {
+        console.log("redering panel");
         this.panel_view.render()
     }
 
     render_breadcrumb() {
+        console.log("redering breadcrumb");
         this.breadcrumb_view.render();
     }
 
