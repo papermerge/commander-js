@@ -28,11 +28,11 @@ class Collection extends Array {
     }
 
     remove(item_or_items) {
-
     }
 
     reset(item_or_items) {
-        console.log(`Collection reset ${item_or_items}`);
+        this.splice(0, this.length);
+        this.add(item_or_items);
     }
 
     get(attrs) {

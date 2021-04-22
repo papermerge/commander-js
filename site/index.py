@@ -10,16 +10,24 @@ app = Flask(__name__)
 
 app.jinja_env.auto_reload = True
 
+# Mocks server responses for GET /folder/<int:folder_id>
 FOLDERS = {
     3: {
+        # notice 'model' attribute which specifies type of node either document
+        # or folder. There can be only two types of nodes: 'document' and
+        # 'folder'
         'current_nodes': [
-            {'title': 'mydoc1.pdf', 'id': 5},
-            {'title': 'mydoc2.pdf', 'id': 6}
+            {'title': 'mydoc1.pdf', 'id': 5, 'model': 'document'},
+            {'title': 'mydoc2.pdf', 'id': 6, 'model': 'document'},
+            {'title': 'Some Folder', 'id': 7, 'model': 'folder'},
         ],
-        'ancestor_nodes': [ {'title': 'My Documents', 'id': 3} ] 
+        # All ancestors are folders; thus there is no need to specify
+        # model attribute.
+        'ancestor_nodes': [ {'title': 'My Documents', 'id': 3} ]
     }
 }
 
+# Mocks server resonses for GET /document/<int:document_id>
 DOCUMENTS = {
     1: {
         'document': {
