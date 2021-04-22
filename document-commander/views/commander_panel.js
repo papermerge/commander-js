@@ -17,6 +17,7 @@ class CommanderPanelView extends View {
     constructor({
         nodes=new Collection(),
         parent=undefined,
+        ancestors=new Collection(),
         options={}
     }) {
         super();
@@ -25,7 +26,7 @@ class CommanderPanelView extends View {
             model: this.panel_model,
             options: options['panel']
         });
-        this.breadcrumb_model = new Breadcrumb(nodes);
+        this.breadcrumb_model = new Breadcrumb(ancestors);
         this.breadcrumb_view = new BreadcrumbView({
             breadcrumb: this.breadcrumb_model,
             options: options['breadcrumb']

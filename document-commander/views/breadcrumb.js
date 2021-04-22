@@ -1,3 +1,4 @@
+import { Collection } from "../lib/collection";
 import { View } from "../lib/view";
 import { render as original_render } from "../renderman";
 
@@ -5,7 +6,7 @@ import { render as original_render } from "../renderman";
 class BreadcrumbView extends View {
 
     constructor({
-        breadcrumb,
+        breadcrumb=new Collection(),
         options={}
     }) {
         super(options);

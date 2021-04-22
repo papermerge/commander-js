@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 test:
 	TESTBUILD=true npx webpack --config webpack.config.js
 	npx karma start karma.conf.js
@@ -12,4 +14,4 @@ watch:
 	npx webpack --config webpack.config --watch
 
 run:
-	cd site/ && ./run.sh
+	source ./site/.venv/bin/activate && cd site/ && ./run.sh
