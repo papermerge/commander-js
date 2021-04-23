@@ -4,6 +4,7 @@ import document_template from "./document.html";
 import folder_template from "./folder.html";
 import panel_list_template from "./panel/list.html";
 import panel_grid_template from "./panel/grid.html";
+import breadcrumb_template from "./breadcrumb.html";
 
 
 // maps template_name to the actual template content
@@ -13,6 +14,7 @@ templates_map.set('document.html', document_template);
 templates_map.set('folder.html', folder_template);
 templates_map.set('panel/list.html', panel_list_template);
 templates_map.set('panel/grid.html', panel_grid_template);
+templates_map.set('breadcrumb.html', breadcrumb_template);
 
 
 function get_template(template_name) {

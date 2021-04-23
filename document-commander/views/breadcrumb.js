@@ -3,10 +3,13 @@ import { View } from "../lib/view";
 import { render as original_render } from "../renderman";
 
 
+const DEFAULT_TEMPLATE_NAME = "templates/breadcrumb.html";
+
+
 class BreadcrumbView extends View {
 
     get template_name() {
-        return "templates/breadcrumb.html";
+        return this.options['template_name'] || DEFAULT_TEMPLATE_NAME;;
     }
 
     constructor({
@@ -16,7 +19,7 @@ class BreadcrumbView extends View {
         super(options);
         this.breadcrumb = breadcrumb;
         this.options = options;
-        this.$el = options['el'];
+        this.el = options['el'];
     }
 
     render_to_string() {
@@ -35,7 +38,7 @@ class BreadcrumbView extends View {
     render() {
         let breadcrumb_html = this.render_to_string();
 
-        this.$el.html(breadcrumb_html);
+        this.el.innerHTML = breadcrumb_html;
 
         return breadcrumb_html; 
     }
