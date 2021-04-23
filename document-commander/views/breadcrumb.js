@@ -1,6 +1,7 @@
 import { Collection } from "../lib/collection";
 import { View } from "../lib/view";
 import { render as original_render } from "../renderman";
+import { root_url } from "../urls";
 
 
 const DEFAULT_TEMPLATE_NAME = "templates/breadcrumb.html";
@@ -27,6 +28,7 @@ class BreadcrumbView extends View {
         let html_breadcrumb, context = {};
 
         context['nodes'] = this.breadcrumb.nodes;
+        context['root_url'] = root_url();
         html_breadcrumb = original_render(
             this.template_name,
             context

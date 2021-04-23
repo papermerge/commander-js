@@ -1,20 +1,19 @@
 import { Collection } from "./lib/collection";
 import { Folder, Document } from "./models/index";
+import { folder_url } from "./urls";
 
 
 function fetch_children(folder) {
-    let url,
-        options,
+    let options,
         promise,
         response;
 
-    url = `/folder/${folder.id}`;
     options = {
         'headers': {
             'Content-Type': 'application/json'
         }
     }
-    response = fetch(url, options).then(
+    response = fetch(folder_url(folder.id), options).then(
         response => response.json()
     ).then(json_response => {
         let nodes = new Collection(),

@@ -5,4 +5,9 @@ ol.breadcrumb {
             text-decoration: None;
         }
     }
+    li.item::before {
+        display: inline-block;
+        padding-right: .25rem;
+        content: "/";
+    }
 }

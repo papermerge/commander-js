@@ -1,4 +1,5 @@
 import { Node } from "./node";
+import { folder_url } from "../urls";
 
 
 class Folder extends Node {
@@ -16,7 +17,7 @@ class Folder extends Node {
     }
 
     get href() {
-        return `/folder/${this.id}`;
+        return folder_url(this.id);
     }
 }
 

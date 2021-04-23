@@ -24,6 +24,20 @@ FOLDERS = {
         # All ancestors are folders; thus there is no need to specify
         # model attribute.
         'ancestor_nodes': [ {'title': 'My Documents', 'id': 3} ]
+    },
+    7: {
+        'current_nodes': [
+            {'title': 'inv1.pdf', 'id': 8, 'model': 'document'},
+            {'title': 'inv2.pdf', 'id': 9, 'model': 'document'},
+            {'title': 'inv3.pdf', 'id': 10, 'model': 'document'},
+            {'title': 'inv4.pdf', 'id': 11, 'model': 'document'},
+        ],
+        # All ancestors are folders; thus there is no need to specify
+        # model attribute.
+        'ancestor_nodes': [
+            {'title': 'My Documents', 'id': 3},
+            {'title': 'Some Folder', 'id': 7},
+        ]
     }
 }
 
@@ -77,7 +91,7 @@ def about():
     return render_template("about.html")
 
 
-@app.route('/folder/<int:node_id>')
+@app.route('/mini-browser/folder/<int:node_id>')
 def mini_browser_folder(node_id):
     folder_dict = FOLDERS.get(node_id, None)
     if not folder_dict:
@@ -92,7 +106,7 @@ def mini_browser_folder(node_id):
     )
 
 
-@app.route('/document/<int:node_id>')
+@app.route('/mini-browser/document/<int:node_id>')
 def mini_browser_document(node_id):
     document_dict = DOCUMENTS.get(node_id, None)
     
