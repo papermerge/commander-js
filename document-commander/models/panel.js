@@ -39,9 +39,9 @@ class Panel extends Model {
         return `Panel(nodes=${this.nodes}, parent=${this.parent})`;
     }
 
-    add(node_or_nodes) {
+    reset(node_or_nodes) {
         // add one or more nodes
-        this.nodes.add(node_or_nodes);
+        this.nodes.reset(node_or_nodes);
     }
 
     remove(node_or_nodes) {
@@ -56,7 +56,7 @@ class Panel extends Model {
         return this.nodes.get({id, title});
     }   
 
-    reset({nodes, ancestors}) {
+    reset({nodes, ancestors=new Collection()}) {
         // empties `this.nodes` collection and fills it anew with
         // provides `nodes`. Existing `this.parent` is replaced
         // with `parent`.

@@ -67,8 +67,9 @@ class CommanderPanelView extends View {
         this.breadcrumb_view.render();
     }
 
-    add(item_or_items) {
-        this.panel_model.add(item_or_items);
+    reset(item_or_items) {
+        this.panel_model.reset(item_or_items);
+        this.breadcrumb_model.reset(new Collection());
     }
 
 }

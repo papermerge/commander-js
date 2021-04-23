@@ -1,5 +1,5 @@
 import { Eventful } from "./eventful";
-import { applyMixins } from "./utils";
+import { applyMixins, is_non_empty_array } from "./utils";
 
 
 class Collection extends Array {
@@ -32,7 +32,13 @@ class Collection extends Array {
 
     reset(item_or_items) {
         this.splice(0, this.length);
-        this.add(item_or_items);
+
+        if (is_non_empty_array(item_or_items)) {
+            this.add(item_or_items);
+        } else {
+            // avoid triggering twice "change" event
+            this.trigger("change");
+        }
     }
 
     get(attrs) {

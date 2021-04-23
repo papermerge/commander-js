@@ -26,8 +26,13 @@ function isFunction(func) {
   return false
 }
 
+function is_non_empty_array(arr) {
+  return Array.isArray(arr) && arr.length > 0;
+}
+
 export {
   applyMixins,
   uniqueId,
-  isFunction
+  isFunction,
+  is_non_empty_array
 };

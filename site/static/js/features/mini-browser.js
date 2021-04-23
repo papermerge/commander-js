@@ -1,7 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     let DC = DocumentCommander,
         commander_panel,
-        node,
         nodes;
 
     commander_panel = new DC.CommanderPanelView({
@@ -11,10 +10,10 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    node = new DC.Document({id: 5, title: "invoice.pdf"});
-    commander_panel.add(node);
-
     nodes = new DC.Collection();
+    nodes.add(
+        new DC.Document({id: 5, title: "invoice.pdf"})
+    );
     nodes.add(
         new DC.Document({id: 1, title: "payment_1.pdf"})
     );
@@ -25,7 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
         new DC.Folder({id: 3, title: "My Documents"})
     );
     
-    commander_panel.add(nodes);
+    commander_panel.reset({nodes});
     commander_panel.on('document_clicked', (doc) => {
         alert(`Document id=${doc.id} title=${doc.title} clicked`);
       });
