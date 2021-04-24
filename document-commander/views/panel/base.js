@@ -26,17 +26,20 @@ class PanelBaseView extends View {
     events() {
         // DOM events
         let event_map = {
-            "click .node": "on_node_clicked"
+            "click .node": "on_node_clicked",
+            "click .node.title > a": "on_node_clicked"
         }
         return event_map;
     }
 
     on_node_clicked(event) {
-        let $target = $(event.currentTarget),
+        let target = event.currentTarget,
             node_id,
             node;
         
-        node_id = $target.data("id");
+        event.preventDefault();
+        // vanilla js equivalent of $(...).data('id');
+        node_id = target.dataset.id;
         if (!this.model) {
             return;
         }
