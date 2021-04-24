@@ -28,7 +28,7 @@ describe("tests/models/panel_test.js", () => {
     nodes.push(new Document({id: 2, title: "invoice2.pdf"}));
     nodes.push(new Folder({id: 3, title: "My Documents"}));
     
-    panel = new Panel({nodes: nodes});
+    panel = new Panel(nodes);
 
     assert.equal(
         panel.nodes.length, 3

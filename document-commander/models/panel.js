@@ -3,40 +3,26 @@ import { Collection } from "../lib/collection";
 import { fetch_children } from "../requests";
 
 
-const DEFAULT_PANEL = {
-    node: new Collection(),
-    parent: undefined
-}
-
-
 class Panel extends Model {
     /**
-     * Panel is a collection of nodes with common parent (node).
+     * Panel is a collection of nodes.
      * 
      * Panel responsability is to manage nodes (Documents and Folder) i.e.
      * add/remove/refresh and notify integrested parties with relevent events.
      * 
-     * 
      */
-    constructor({
-        nodes,
-        parent
-    }=DEFAULT_PANEL) {
+    constructor(
+        nodes=new Collection()
+    ) {
         super();
         let that = this;
         
-        this.parent = parent;
-        if (nodes) {
-            this.nodes = nodes;
-        } else {
-            this.nodes = new Collection();
-        }
-
+        this.nodes = nodes;
         this.nodes.on("change", function(){ that.trigger("change") } );
     }
 
     toString() {
-        return `Panel(nodes=${this.nodes}, parent=${this.parent})`;
+        return `Panel(nodes=${this.nodes}`;
     }
 
     reset(node_or_nodes) {
@@ -58,10 +44,8 @@ class Panel extends Model {
 
     reset({nodes, ancestors=new Collection()}) {
         // empties `this.nodes` collection and fills it anew with
-        // provides `nodes`. Existing `this.parent` is replaced
-        // with `parent`.
+        // provides `nodes`.
         this.nodes.reset(nodes);
-        this.parent = ancestors[0];
     }
 
 }

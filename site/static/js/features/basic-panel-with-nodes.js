@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
         new DC.Document({id: 2, title: 'invoice2.pdf'}),
         new DC.Folder({id: 3, title: 'My Document'})
     ]);
-    panel = new DC.Panel({nodes: nodes});
+    panel = new DC.Panel(nodes);
     panel_list_view = new DC.PanelView({
         model: panel,
         options: {

@@ -4,10 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
         nodes;
 
     commander_panel = new DC.CommanderPanelView({
-        options: {
-            'panel': {'el': document.querySelector('#panel')},
-            'breadcrumb': {'el': document.querySelector("#breadcrumb")}
-        }
+        'panel': {'el': document.querySelector('#panel')},
+        'breadcrumb': {'el': document.querySelector("#breadcrumb")}
     });
 
     nodes = new DC.Collection();

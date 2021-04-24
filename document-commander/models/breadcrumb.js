@@ -1,9 +1,10 @@
+import { Collection  } from "../lib/collection";
 import { Model } from "../lib/model";
 
 
 class Breadcrumb extends Model {
 
-    constructor(nodes) {
+    constructor(nodes=new Collection()) {
         super();
         let that = this;
         

@@ -1,7 +1,8 @@
-import { Collection } from "../lib/collection";
 import { View } from "../lib/view";
 import { render as original_render } from "../renderman";
 import { root_url } from "../urls";
+
+import { Breadcrumb } from "../models/breadcrumb";
 
 import {
     EV_DOCUMENT_CLICKED,
@@ -19,7 +20,7 @@ class BreadcrumbView extends View {
     }
 
     constructor({
-        model=new Collection(),
+        model=new Breadcrumb(),
         options={}
     }) {
         super(options);

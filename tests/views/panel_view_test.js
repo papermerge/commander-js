@@ -24,7 +24,7 @@ describe("tests/views/panel_view_test.js", () => {
         new Document({id: 2, title: 'invoice2.pdf'}),
         new Folder({id: 3, title: 'My Document'})
     ]);
-    panel = new Panel({nodes: nodes});
+    panel = new Panel(nodes);
     panel_list_view = new PanelView({model: panel});
     panel_list_html = panel_list_view.render();
 

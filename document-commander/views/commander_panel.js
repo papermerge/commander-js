@@ -14,19 +14,14 @@ import {
 
 class CommanderPanelView extends View {
 
-    constructor({
-        nodes=new Collection(),
-        parent=undefined,
-        ancestors=new Collection(),
-        options={}
-    }) {
+    constructor(options={}) {
         super();
-        this.panel_model = new Panel({ nodes, parent });
+        this.panel_model = new Panel();
         this.panel_view = new PanelView({
             model: this.panel_model,
             options: options['panel']
         });
-        this.breadcrumb_model = new Breadcrumb(ancestors);
+        this.breadcrumb_model = new Breadcrumb();
         this.breadcrumb_view = new BreadcrumbView({
             model: this.breadcrumb_model,
             options: options['breadcrumb']
