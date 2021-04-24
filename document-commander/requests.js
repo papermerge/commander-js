@@ -13,9 +13,13 @@ function fetch_children(folder) {
             'Content-Type': 'application/json'
         }
     }
-    response = fetch(folder_url(folder.id), options).then(
-        response => response.json()
-    ).then(json_response => {
+    response = fetch(folder_url(folder), options).then((response) => {
+        if (response.status != 200) {
+            throw new Error(response.statusText);
+        }
+        // response.json() returns a Promise!
+        return response.json();
+    }).then(json_response => {
         let nodes = new Collection(),
             ancestors = new Collection(),
             current_nodes,
@@ -34,7 +38,9 @@ function fetch_children(folder) {
             return new Folder(item_attrs);
         });
 
-        ancestors.add(ancestor_nodes);
+        if (ancestor_nodes.length > 0) {
+            ancestors.add(ancestor_nodes);
+        }
 
         return {nodes, ancestors};
     });

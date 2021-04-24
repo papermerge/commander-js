@@ -65,16 +65,20 @@ class Collection extends Array {
          * value is undefined).
          */
         for(let i=0; i < this.length;  i++) {
-            let found = true;
+            let found = true, matched_attr_count = 0;
+            
             for(let key in attrs) {
                 if (attrs[key] == undefined) {
                     continue;
                 }
                 if (attrs[key] != this[i][key]) {
                     found = false;
+                } else {
+                    matched_attr_count++;
                 }
             }
-            if (found) {
+            // there is at least one attribute which matched.
+            if (found && matched_attr_count > 0) {
                 return this[i];
             }
         }

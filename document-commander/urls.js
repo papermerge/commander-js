@@ -2,7 +2,17 @@
 
 const PREFIX = "/mini-browser"
 
-function folder_url(folder_id) {
+function folder_url(folder) {
+    /**
+     * `folder` parameter can be a `models.Folder` instance or
+     * `undefined`. Latter means that user clicked root folder.
+     */
+    let folder_id = ""; // empty string in case of root folder.
+
+    if (folder) {
+        folder_id = folder.id;
+    }
+    // folder_id here can be empty string!
     return `${PREFIX}/folder/${folder_id}`;
 }
 

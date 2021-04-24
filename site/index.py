@@ -12,6 +12,17 @@ app.jinja_env.auto_reload = True
 
 # Mocks server responses for GET /folder/<int:folder_id>
 FOLDERS = {
+    -1: {
+        'current_nodes': [
+            {'title': 'invoice.pdf', 'id': 5, 'model': 'document'},
+            {'title': 'payment_1.pdf', 'id': 1, 'model': 'document'},
+            {'title': 'payment_2.pdf', 'id': 2, 'model': 'document'},
+            {'title': 'My Documents', 'id': 3, 'model': 'folder'},
+        ],
+        # All ancestors are folders; thus there is no need to specify
+        # model attribute.
+        'ancestor_nodes': [  ]
+    },
     3: {
         # notice 'model' attribute which specifies type of node either document
         # or folder. There can be only two types of nodes: 'document' and
@@ -89,6 +100,13 @@ def mini_browser():
 @app.route('/about')
 def about():
     return render_template("about.html")
+
+
+@app.route('/mini-browser/folder/')
+def mini_browser_root_folder():
+    content_type = request.headers.get('Content-Type')
+    if content_type and content_type == 'application/json':
+        return FOLDERS.get(-1)
 
 
 @app.route('/mini-browser/folder/<int:node_id>')

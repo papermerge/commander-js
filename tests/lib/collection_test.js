@@ -118,4 +118,22 @@ describe("test/lib/collection_test.js", () => {
     assert.equal(doc2.id, 1);
   });
 
+  it("Returns undefined when there is only one undefined attribute", () => {
+    let col = new Collection(),
+    arr = [],
+    found;
+
+    arr.push(
+      new Document({id:1, title:"doc1.pdf"})
+    );
+    arr.push(
+      new Document({id:2, title:"doc2.pdf"})
+    );
+
+    col.add(arr);
+    found = col.get({id: undefined});
+
+    assert.isUndefined(found);
+  });
+
 });

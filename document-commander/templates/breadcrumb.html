@@ -4,7 +4,7 @@
     </li>
     {% for node in nodes %}
         <li class="item">
-            <a href="{{node.href}}">{{ node.title }}</a>
+            <a href="{{node.href}}" data-id="{{ node.id }}">{{ node.title }}</a>
         </li>
     {% endfor %}
 </ol>

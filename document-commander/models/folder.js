@@ -17,7 +17,7 @@ class Folder extends Node {
     }
 
     get href() {
-        return folder_url(this.id);
+        return folder_url(this);
     }
 }
 
