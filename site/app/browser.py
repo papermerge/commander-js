@@ -10,8 +10,9 @@ from flask import (
 def _get_template_name(req):
     name_with_slashes = req.url_rule.rule
     template_name = name_with_slashes.replace('/', '')
-    
+
     return f"{template_name}.html"
+
 
 def _static_folder_abs_path():
     """
@@ -31,7 +32,6 @@ blueprint = Blueprint(
 )
 
 
-
 # Mocks server responses for GET /folder/<int:folder_id>
 FOLDERS = {
     -1: {
@@ -43,7 +43,7 @@ FOLDERS = {
         ],
         # All ancestors are folders; thus there is no need to specify
         # model attribute.
-        'ancestor_nodes': [  ]
+        'ancestor_nodes': []
     },
     3: {
         # notice 'model' attribute which specifies type of node either document
@@ -56,7 +56,7 @@ FOLDERS = {
         ],
         # All ancestors are folders; thus there is no need to specify
         # model attribute.
-        'ancestor_nodes': [ {'title': 'My Documents', 'id': 3} ]
+        'ancestor_nodes': [{'title': 'My Documents', 'id': 3}]
     },
     7: {
         'current_nodes': [
@@ -79,21 +79,21 @@ DOCUMENTS = {
     1: {
         'document': {
             'id': 1,
-            'title': 'payment_1.pdf' 
+            'title': 'payment_1.pdf'
         },
         'ancestor_nodes': []
     },
     2: {
         'document': {
             'id': 2,
-            'title': 'payment_2.pdf' 
+            'title': 'payment_2.pdf'
         },
         'ancestor_nodes': []
     },
     5: {
         'document': {
             'id': 5,
-            'title': 'invoice.pdf' 
+            'title': 'invoice.pdf'
         },
         'ancestor_nodes': []
     },
@@ -123,7 +123,7 @@ def browser_folder(node_id):
 
     content_type = request.headers.get('Content-Type')
     if content_type and content_type == 'application/json':
-       return folder_dict
+        return folder_dict
 
     return render_template(
         template_name, **folder_dict
@@ -134,16 +134,15 @@ def browser_folder(node_id):
 def browser_document(node_id):
     template_name = f"features/{_get_template_name(request)}"
     document_dict = DOCUMENTS.get(node_id, None)
-    
+
     if not document_dict:
         return render_template("404.html"), 404
 
     content_type = request.headers.get('Content-Type')
     if content_type and content_type == 'application/json':
-       return document_dict
+        return document_dict
 
     return render_template(
         template_name,
         **document_dict
     )
-
