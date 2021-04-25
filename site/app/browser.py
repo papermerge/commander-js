@@ -23,11 +23,16 @@ def _static_folder_abs_path():
     return abs_path
 
 
+# Reusable app. It provides views for following URLS:
+#  - /
+#  - /folder/
+#  - /folder/<int:node_id>
+#  - /document/<int:node_id>
 blueprint = Blueprint(
     'reusable_browsing_app',
     __name__,
-    template_folder='templates',
-    static_folder=_static_folder_abs_path()
+    template_folder='templates',  # same folder as for the main app
+    static_folder=_static_folder_abs_path()  # same as for main app
 
 )
 
