@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+  <script type="module" src="static/js/features/selections-and-actions.js"></script>
+{% endblock %}
+
+{% block content %}
+  <main class="container py-3">
+    <h1>Selections and Actions</h1>
+    <p>
+        A <a href="/mini-browser">mini browser</a> with selections and actions.
+    </p>
+    <div class="showroom">
+        <h3>Mini Browser (+ selections and actions)</h3>
+        <div id="breadcrumb">
+        </div>
+        <div id="panel">
+        </div>
+    </div>
+  </main>
+{% endblock %}

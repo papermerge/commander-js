@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+  <script type="module" src="static/js/features/dual-panel-browsing.js"></script>
+{% endblock %}
+
+{% block content %}
+  <main class="container py-3">
+    <h1>Dual Panel Browsing</h1>
+    <p>
+        User can browse in dual panel mode. Use can switch toggle between 
+        single and dual panel modes.
+    </p>
+    <div class="showroom">
+        <div id="browser_panel_1">
+            <div id="breadcrumb_panel_1">
+            </div>
+            <div id="panel_1">
+            </div>
+        </div>
+        <div id="browser_panel_2">
+            <div id="breadcrumb_panel_2">
+            </div>
+            <div id="panel_2">
+            </div>
+        </div>
+    </div>
+  </main>
+{% endblock %}

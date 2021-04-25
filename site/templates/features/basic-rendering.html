@@ -11,28 +11,6 @@
         At very least you can instanciate a Document or a Folder instance
         and render them, as in example below:
     </p>
-    <pre>
-        <code class="javascript">
-            let doc, folder, DC, doc_html, folder_html;
-
-            DC = DocumentCommander;
-            doc = new DC.Document({id: 1, title: "invoice.pdf"});
-            folder = new DC.Folder({id: 1, title: "My Documents"});
-
-            doc_html = DC.render(
-                "document.html",  // path to the template
-                {'object': doc}  // context
-            );
-
-            folder_html = DC.render(
-                "folder.html",  // path to the template
-                {'object': folder}  // context
-            );
-
-            document.querySelect("#document").innerHTML = doc_html;
-            document.querySelect("#folder").innerHTML = folder_html;
-        </code>
-    </pre>
     <p>
         Result:
     </p>

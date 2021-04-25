@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+  <script type="module" src="static/js/features/slow-qeueries-browsing.js"></script>
+{% endblock %}
+
+{% block content %}
+  <main class="container py-3">
+    <h1>Slow Quering Browsing</h1>
+    <p>
+        This scenario is similar <a href="/mini-browser">mini browser</a> with
+        a single very important twist - server side responses are very slow. 
+    </p>
+    <div class="showroom">
+        <h3>Mini Browser (+ slow server side)</h3>
+        <div id="breadcrumb">
+        </div>
+        <div id="panel">
+        </div>
+    </div>
+  </main>
+{% endblock %}

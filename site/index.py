@@ -92,14 +92,14 @@ def basic_panel_with_nodes():
     return render_template("features/basic-panel-with-nodes.html")
 
 
-@app.route('/mini-browser')
-def mini_browser():
-    return render_template("features/mini-browser.html")
-
-
 @app.route('/about')
 def about():
     return render_template("about.html")
+
+
+@app.route('/mini-browser')
+def mini_browser():
+    return render_template("features/mini-browser.html")
 
 
 @app.route('/mini-browser/folder/')
@@ -137,6 +137,50 @@ def mini_browser_document(node_id):
 
     return render_template(
         "features/mini-browser.html",
+        **document_dict
+    )
+
+
+@app.route('/slow-queries-browsing')
+def slow_quering_browsing():
+    return render_template("features/slow-queries-browsing.html")
+
+
+@app.route('/slow-queries-browsing/folder/')
+def slow_queries_browsing_root_folder():
+    content_type = request.headers.get('Content-Type')
+    if content_type and content_type == 'application/json':
+        return FOLDERS.get(-1)
+
+
+
+@app.route('/slow-queries-browsing/folder/<int:node_id>')
+def slow_queries_browsing_folder(node_id):
+    folder_dict = FOLDERS.get(node_id, None)
+    if not folder_dict:
+        return render_template("404.html"), 404
+
+    content_type = request.headers.get('Content-Type')
+    if content_type and content_type == 'application/json':
+       return folder_dict
+
+    return render_template(
+        "features/slow-queries-browsing.html", **folder_dict
+    )
+
+@app.route('/slow-queries-browsing/document/<int:node_id>')
+def slow_queries_browsing_document(node_id):
+    document_dict = DOCUMENTS.get(node_id, None)
+    
+    if not document_dict:
+        return render_template("404.html"), 404
+
+    content_type = request.headers.get('Content-Type')
+    if content_type and content_type == 'application/json':
+       return document_dict
+
+    return render_template(
+        "features/slow-queries-browsing.html",
         **document_dict
     )
 

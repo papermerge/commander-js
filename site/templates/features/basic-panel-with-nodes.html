@@ -20,33 +20,5 @@
         <h3>Panel grid mode:</h3>
         <div id="panel-grid"></div>
     </div>
-    <pre>
-        <code class="javascript">
-            let panel,
-                DC,
-                panel_list_html,
-                panel_grid_html,
-                nodes,
-                panel_list_view,
-                panel_grid_view;
-
-            DC = DocumentCommander;
-            nodes = [
-                new DC.Document({id: 1, title: 'invoice1.pdf'}),
-                new DC.Document({id: 1, title: 'invoice2.pdf'}),
-                new DC.Folder({id: 1, title: 'My Document'})
-            ]
-            panel = new DC.Panel(nodes);
-
-            panel_list_view = new DC.PanelListView(panel);
-            panel_grid_view = new DC.PanelGridView(panel);
-
-            panel_list_html = panel_list_view.render();
-            panel_grid_html = panel_grid_view.render();
-
-            document.querySelect("#panel-list").innerHTML = panel_list_html;
-            document.querySelect("#panel-grid").innerHTML = panel_grid_html;
-        </code>
-    </pre>
   </main>
 {% endblock %}
