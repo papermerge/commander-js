@@ -1,4 +1,5 @@
 import os
+import time
 
 from flask import (
     Blueprint,
@@ -90,11 +91,14 @@ DOCUMENTS = {
     },
 }
 
+
 def create_blueprint(name, request_delay=0):
     """
     Create a blueprint with options.
 
     A blueprint, in flask sense, is a reusable app in django's sense.
+    `request_delay` is the number of seconds to delay handling of the
+    request. With `request_delay` > 0 we simulate slow requests.
     """
 
     # Reusable app. It provides views for following URLS:
@@ -103,8 +107,8 @@ def create_blueprint(name, request_delay=0):
     #  - /folder/<int:node_id>
     #  - /document/<int:node_id>
     blueprint = Blueprint(
-        name, # unique name
-        name, # import_name
+        name,  # unique name
+        name,  # import_name
         template_folder='templates',  # same folder as for the main app
         static_folder=_static_folder_abs_path()  # same as for main app
 
@@ -113,20 +117,20 @@ def create_blueprint(name, request_delay=0):
     @blueprint.route('/')
     def browser():
         template_name = f"features/{_get_template_name(request)}"
+        time.sleep(request_delay)
         return render_template(template_name)
-
 
     @blueprint.route('/folder/')
     def browser_root_folder():
+        time.sleep(request_delay)
         content_type = request.headers.get('Content-Type')
         if content_type and content_type == 'application/json':
             return FOLDERS.get(-1)
 
-
     @blueprint.route('/folder/<int:node_id>')
     def browser_folder(node_id):
+        time.sleep(request_delay)
         template_name = f"features/{_get_template_name(request)}"
-
         folder_dict = FOLDERS.get(node_id, None)
         if not folder_dict:
             return render_template("404.html"), 404
@@ -139,9 +143,9 @@ def create_blueprint(name, request_delay=0):
             template_name, **folder_dict
         )
 
-
     @blueprint.route('/document/<int:node_id>')
     def browser_document(node_id):
+        time.sleep(request_delay)
         template_name = f"features/{_get_template_name(request)}"
         document_dict = DOCUMENTS.get(node_id, None)
 

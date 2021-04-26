@@ -3,7 +3,6 @@ import os
 from flask import (
     Flask,
     render_template,
-    request,
     send_from_directory
 )
 from app.browser import create_blueprint
@@ -17,7 +16,8 @@ app.register_blueprint(
     url_prefix='/mini-browser'
 )
 app.register_blueprint(
-    create_blueprint('slow-quesries-browsing', request_delay=3),
+    # Simulate slow requests. Each request will take `request_delay` seconds.
+    create_blueprint('slow-quesries-browsing', request_delay=4),
     url_prefix='/slow-queries-browsing'
 )
 

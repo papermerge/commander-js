@@ -1,32 +1,39 @@
 
 
-const PREFIX = "/mini-browser"
-
-function folder_url(folder) {
+class UrlConf {
     /**
-     * `folder` parameter can be a `models.Folder` instance or
-     * `undefined`. Latter means that user clicked root folder.
+     * 
+     * Central point for managing urls. 
      */
-    let folder_id = ""; // empty string in case of root folder.
 
-    if (folder) {
-        folder_id = folder.id;
+    constructor(prefix="/browser") {
+        this.prefix = prefix;
     }
-    // folder_id here can be empty string!
-    return `${PREFIX}/folder/${folder_id}`;
+
+    folder_url(folder) {
+        /**
+         * `folder` parameter can be a `models.Folder` instance or
+         * `undefined`. Latter means that user clicked root folder.
+         */
+        let folder_id = ""; // empty string in case of root folder.
+    
+        if (folder) {
+            folder_id = folder.id;
+        }
+        // folder_id here can be empty string!
+        return `${this.prefix}/folder/${folder_id}`;
+    }
+    
+    document_url(document_id) {
+        return `${this.prefix}/document/${document_id}`;
+    }
+    
+    root_url() {
+        return this.prefix;
+    }
 }
 
-function document_url(document_id) {
-    return `${PREFIX}/document/${document_id}`;
-}
-
-function root_url() {
-    return PREFIX;
-}
+let urlconf = new UrlConf();
 
 
-export {
-    folder_url,
-    document_url,
-    root_url
-};
+export { urlconf };

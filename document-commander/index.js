@@ -11,8 +11,7 @@ import {
     CommanderPanelView
 } from "./views/index";
 import { render } from "./renderman";
-
-
+import { urlconf } from "./urls";
 
 export {
     render,
@@ -22,4 +21,5 @@ export {
     PanelView,
     CommanderPanelView,
     Collection,
+    urlconf
 };

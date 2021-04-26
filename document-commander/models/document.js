@@ -1,5 +1,5 @@
 import { Node } from "./node";
-import { document_url } from "../urls";
+import { urlconf } from "../urls";
 
 
 class Document extends Node {
@@ -17,7 +17,7 @@ class Document extends Node {
     }
 
     get href() {
-        return document_url(this.id);
+        return urlconf.document_url(this.id);
     }
 }
 

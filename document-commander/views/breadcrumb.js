@@ -1,6 +1,6 @@
 import { View } from "../lib/view";
 import { render as original_render } from "../renderman";
-import { root_url } from "../urls";
+import { urlconf } from "../urls";
 
 import { Breadcrumb } from "../models/breadcrumb";
 
@@ -62,7 +62,7 @@ class BreadcrumbView extends View {
         let html_breadcrumb, context = {};
 
         context['nodes'] = this.model.nodes;
-        context['root_url'] = root_url();
+        context['root_url'] = urlconf.root_url();
         html_breadcrumb = original_render(
             this.template_name,
             context

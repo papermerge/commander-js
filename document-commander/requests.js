@@ -1,6 +1,6 @@
 import { Collection } from "./lib/collection";
 import { Folder, Document } from "./models/index";
-import { folder_url } from "./urls";
+import { urlconf } from "./urls";
 
 
 function fetch_children(folder) {
@@ -13,7 +13,7 @@ function fetch_children(folder) {
             'Content-Type': 'application/json'
         }
     }
-    response = fetch(folder_url(folder), options).then((response) => {
+    response = fetch(urlconf.folder_url(folder), options).then((response) => {
         if (response.status != 200) {
             throw new Error(response.statusText);
         }

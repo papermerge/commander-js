@@ -1,5 +1,5 @@
 import { Node } from "./node";
-import { folder_url } from "../urls";
+import { urlconf } from "../urls";
 
 
 class Folder extends Node {
@@ -17,7 +17,7 @@ class Folder extends Node {
     }
 
     get href() {
-        return folder_url(this);
+        return urlconf.folder_url(this);
     }
 }
 

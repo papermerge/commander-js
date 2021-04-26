@@ -3,6 +3,9 @@ window.addEventListener('DOMContentLoaded', () => {
         commander_panel,
         nodes;
 
+
+    DC.urlconf.prefix = '/mini-browser';
+
     commander_panel = new DC.CommanderPanelView({
         'panel': {'el': document.querySelector('#panel')},
         'breadcrumb': {'el': document.querySelector("#breadcrumb")}
