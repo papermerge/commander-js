@@ -39,6 +39,9 @@ function fetch_children(folder) {
     the root folder is assumed to be always there.
     'ancestor_nodes' are used to render breadcrumbs.
     */
+    let options,
+        response,
+        promise;
 
     options = {
         'headers': {
