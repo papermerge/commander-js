@@ -23,20 +23,6 @@ def _static_folder_abs_path():
     return abs_path
 
 
-# Reusable app. It provides views for following URLS:
-#  - /
-#  - /folder/
-#  - /folder/<int:node_id>
-#  - /document/<int:node_id>
-blueprint = Blueprint(
-    'reusable_browsing_app',
-    __name__,
-    template_folder='templates',  # same folder as for the main app
-    static_folder=_static_folder_abs_path()  # same as for main app
-
-)
-
-
 # Mocks server responses for GET /folder/<int:folder_id>
 FOLDERS = {
     -1: {
@@ -104,50 +90,71 @@ DOCUMENTS = {
     },
 }
 
+def create_blueprint(name, request_delay=0):
+    """
+    Create a blueprint with options.
 
-@blueprint.route('/')
-def browser():
-    template_name = f"features/{_get_template_name(request)}"
-    return render_template(template_name)
+    A blueprint, in flask sense, is a reusable app in django's sense.
+    """
 
+    # Reusable app. It provides views for following URLS:
+    #  - /
+    #  - /folder/
+    #  - /folder/<int:node_id>
+    #  - /document/<int:node_id>
+    blueprint = Blueprint(
+        name, # unique name
+        name, # import_name
+        template_folder='templates',  # same folder as for the main app
+        static_folder=_static_folder_abs_path()  # same as for main app
 
-@blueprint.route('/folder/')
-def browser_root_folder():
-    content_type = request.headers.get('Content-Type')
-    if content_type and content_type == 'application/json':
-        return FOLDERS.get(-1)
-
-
-@blueprint.route('/folder/<int:node_id>')
-def browser_folder(node_id):
-    template_name = f"features/{_get_template_name(request)}"
-
-    folder_dict = FOLDERS.get(node_id, None)
-    if not folder_dict:
-        return render_template("404.html"), 404
-
-    content_type = request.headers.get('Content-Type')
-    if content_type and content_type == 'application/json':
-        return folder_dict
-
-    return render_template(
-        template_name, **folder_dict
     )
 
+    @blueprint.route('/')
+    def browser():
+        template_name = f"features/{_get_template_name(request)}"
+        return render_template(template_name)
 
-@blueprint.route('/document/<int:node_id>')
-def browser_document(node_id):
-    template_name = f"features/{_get_template_name(request)}"
-    document_dict = DOCUMENTS.get(node_id, None)
 
-    if not document_dict:
-        return render_template("404.html"), 404
+    @blueprint.route('/folder/')
+    def browser_root_folder():
+        content_type = request.headers.get('Content-Type')
+        if content_type and content_type == 'application/json':
+            return FOLDERS.get(-1)
 
-    content_type = request.headers.get('Content-Type')
-    if content_type and content_type == 'application/json':
-        return document_dict
 
-    return render_template(
-        template_name,
-        **document_dict
-    )
+    @blueprint.route('/folder/<int:node_id>')
+    def browser_folder(node_id):
+        template_name = f"features/{_get_template_name(request)}"
+
+        folder_dict = FOLDERS.get(node_id, None)
+        if not folder_dict:
+            return render_template("404.html"), 404
+
+        content_type = request.headers.get('Content-Type')
+        if content_type and content_type == 'application/json':
+            return folder_dict
+
+        return render_template(
+            template_name, **folder_dict
+        )
+
+
+    @blueprint.route('/document/<int:node_id>')
+    def browser_document(node_id):
+        template_name = f"features/{_get_template_name(request)}"
+        document_dict = DOCUMENTS.get(node_id, None)
+
+        if not document_dict:
+            return render_template("404.html"), 404
+
+        content_type = request.headers.get('Content-Type')
+        if content_type and content_type == 'application/json':
+            return document_dict
+
+        return render_template(
+            template_name,
+            **document_dict
+        )
+
+    return blueprint

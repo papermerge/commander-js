@@ -6,18 +6,18 @@ from flask import (
     request,
     send_from_directory
 )
-from app.browser import blueprint as browser_blueprint
+from app.browser import create_blueprint
 
 app = Flask(__name__)
 
 app.jinja_env.auto_reload = True
 
 app.register_blueprint(
-    browser_blueprint,
+    create_blueprint('mini-browser'),
     url_prefix='/mini-browser'
 )
 app.register_blueprint(
-    browser_blueprint,
+    create_blueprint('slow-quesries-browsing', request_delay=3),
     url_prefix='/slow-queries-browsing'
 )
 
