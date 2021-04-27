@@ -9,17 +9,25 @@ import {
 
 class PanelBaseView extends View {
 
+    get default_options() {
+        return {
+            'loader': true,
+            'el': undefined
+        }
+    }
+
     constructor({
         model,
         options={}
     }) {
         super(options);
         this.model = model;
-        this.options = options;
-        if (options) {
-            this.el = options['el'];
-        } else {
-            this.el = undefined;
+        this.options = Object.assign({}, this.default_options, options);
+
+        this.el = this.options['el'];
+
+        if (this.options['loader']) {
+            this.loader = this._create_loader();
         }
     }
 
@@ -52,6 +60,29 @@ class PanelBaseView extends View {
         }
     }
 
+    _create_loader() {
+        if (this.el) {
+            div_element = document.createElement("div");
+            div_element.classList.add('loader');
+            this.el.appendChild(div_element);
+            return div_element;
+        } else {
+            console.log("Cannot create loader. There is nothing to attach to.");
+        }
+    }
+
+    show_loader() {
+        if (this.loader) {
+            this.loader.display = 'block';
+        }
+    }
+
+    hide_loader() {
+        if (this.loader) {
+            this.loader.display = 'hidden';
+        }
+    }
+
     render_to_string() {
 
         let html_panel = "",
@@ -65,7 +96,6 @@ class PanelBaseView extends View {
             this.template_name,
             context
         );
-        
 
         return html_panel;
     }

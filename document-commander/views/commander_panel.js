@@ -40,12 +40,16 @@ class CommanderPanelView extends View {
     folder_clicked(folder) {
         let that = this;
 
+        this.start_folder_clicked_feedback();
         // notice that `folder` parameter here might be `undefined`
         // (which means that user clicked the root folder).
         fetch_children(folder).then(({nodes, ancestors}) => {
             that.panel_model.reset({nodes, ancestors});
             that.breadcrumb_model.reset(ancestors);
+
+            that.stop_folder_clicked_feedback();
         }).catch((error) => {
+            that.stop_folder_clicked_feedback();
             alert(`Error while fetchinf folder '${folder}': ${error}`);
         });
     }
@@ -56,6 +60,32 @@ class CommanderPanelView extends View {
         // inform interested parties.
         this.trigger(EV_DOCUMENT_CLICKED, doc);
     }
+
+    start_folder_clicked_feedback() {
+        /**
+         * Provies folder click UI feedback.
+         *
+         * There might be (long) delays bewteen folder click event and
+         * actual http server side response followed by changing of the folder
+         * content. To provide user an immediate feedback, this function
+         * performs following:
+         *
+         *  1. Marks current content of the folder (i.e. all nodes) as
+         *   invisible. They are still present as model objects, but
+         *   invisible in DOM (not visible, but still nodes take space).
+         * This marking triggers a `change` event (which in turn
+         * renders the panel view).
+         *
+         *  2. Displays a spinner.
+         */
+        this.panel_model.set_nodes_attr('visible', false);
+        this.panel_view.show_spinner();
+    }
+
+    stop_folder_clicked_feedback() {
+        this.panel_view.hide_spinner();
+    }
+
 
     render_panel() {
         console.log("redering panel");

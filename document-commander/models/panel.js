@@ -48,6 +48,11 @@ class Panel extends Model {
         this.nodes.reset(nodes);
     }
 
+    set_nodes_attr(key, value) {
+        this.nodes.map((node) => {node[key] = value;});
+        this.nodes.trigger("change");
+    }
+
 }
 
 export { Panel };
