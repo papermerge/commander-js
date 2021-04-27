@@ -1,5 +1,9 @@
 $foreground: red;
 
+.loader {
+  visibility: hidden;
+}
+
 .loader, .loader:before, .loader:after {
     background: $foreground;
     -webkit-animation: load 1s infinite ease-in-out;
@@ -12,7 +16,6 @@ $foreground: red;
 
   color: $foreground;
   text-indent: -9999em;
-  margin: 88px auto;
   position: relative;
   font-size: 11px;
   -webkit-transform: translateZ(0);

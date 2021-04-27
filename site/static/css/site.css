@@ -14,3 +14,11 @@ li p {
 .nav-item > a.nav-link {
     color: white;
 }
+
+#panel_container {
+    position: relative;
+}
+
+.loader {
+    position: absolute !important;
+}

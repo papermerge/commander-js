@@ -11,7 +11,7 @@ class PanelBaseView extends View {
 
     get default_options() {
         return {
-            'loader': true,
+            'loader_selector': '.loader',
             'el': undefined
         }
     }
@@ -25,10 +25,6 @@ class PanelBaseView extends View {
         this.options = Object.assign({}, this.default_options, options);
 
         this.el = this.options['el'];
-
-        if (this.options['loader']) {
-            this.loader = this._create_loader();
-        }
     }
 
     events() {
@@ -44,7 +40,7 @@ class PanelBaseView extends View {
         let target = event.currentTarget,
             node_id,
             node;
-        
+
         event.preventDefault();
         // vanilla js equivalent of $(...).data('id');
         node_id = target.dataset.id;
@@ -52,7 +48,7 @@ class PanelBaseView extends View {
             return;
         }
         node = this.model.get_node({id: node_id});
-        
+
         if (node.is_document) {
             this.trigger(EV_DOCUMENT_CLICKED, node);
         } else {
@@ -60,26 +56,29 @@ class PanelBaseView extends View {
         }
     }
 
-    _create_loader() {
-        if (this.el) {
-            div_element = document.createElement("div");
-            div_element.classList.add('loader');
-            this.el.appendChild(div_element);
-            return div_element;
-        } else {
-            console.log("Cannot create loader. There is nothing to attach to.");
-        }
-    }
-
     show_loader() {
-        if (this.loader) {
-            this.loader.display = 'block';
+        let selector, loader;
+
+        selector = this.options['loader_selector'];
+        if (selector) {
+            loader = document.querySelector(selector);
+
+            if (loader) {
+                loader.style.visibility = 'visible';
+            }
         }
     }
 
     hide_loader() {
-        if (this.loader) {
-            this.loader.display = 'hidden';
+        let selector, loader;
+
+        selector = this.options['loader_selector'];
+        if (selector) {
+            loader = document.querySelector(selector);
+
+            if (loader) {
+                loader.style.visibility = 'hidden';
+            }
         }
     }
 

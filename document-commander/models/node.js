@@ -14,6 +14,7 @@ class Node extends Model {
         this.title = title;
         this.parent = parent;
         this.metadata = metadata;
+        this.visible = true;
     }
 
     toString() {

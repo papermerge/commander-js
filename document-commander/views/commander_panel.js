@@ -79,11 +79,11 @@ class CommanderPanelView extends View {
          *  2. Displays a spinner.
          */
         this.panel_model.set_nodes_attr('visible', false);
-        this.panel_view.show_spinner();
+        this.panel_view.show_loader();
     }
 
     stop_folder_clicked_feedback() {
-        this.panel_view.hide_spinner();
+        this.panel_view.hide_loader();
     }
 
 
