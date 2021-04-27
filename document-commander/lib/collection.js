@@ -14,7 +14,7 @@ class Collection extends Array {
 
     add(item_or_items) {
         let that = this;
-        
+
         if (item_or_items.length) { // if an array
             item_or_items.map((item) => {
                 that.push(item);

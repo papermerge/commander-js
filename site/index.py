@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.jinja_env.auto_reload = True
 
 app.register_blueprint(
-    create_blueprint('mini-browser'),
+    create_blueprint('mini-browser', request_delay=0.2),
     url_prefix='/mini-browser'
 )
 app.register_blueprint(

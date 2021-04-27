@@ -23,8 +23,8 @@ window.addEventListener('DOMContentLoaded', () => {
     nodes.add(
         new DC.Folder({id: 3, title: "My Documents"})
     );
-    
-    commander_panel.reset({nodes});
+
+    commander_panel.reset(nodes);
     commander_panel.on('document_clicked', (doc) => {
         alert(`Document id=${doc.id} title=${doc.title} clicked`);
     });
