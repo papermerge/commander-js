@@ -32,10 +32,7 @@ FOLDERS = {
             {'title': 'payment_1.pdf', 'id': 1, 'model': 'document'},
             {'title': 'payment_2.pdf', 'id': 2, 'model': 'document'},
             {'title': 'My Documents', 'id': 3, 'model': 'folder'},
-        ],
-        # All ancestors are folders; thus there is no need to specify
-        # model attribute.
-        'ancestor_nodes': []
+        ]
     },
     3: {
         # notice 'model' attribute which specifies type of node either document
@@ -46,9 +43,6 @@ FOLDERS = {
             {'title': 'mydoc2.pdf', 'id': 6, 'model': 'document'},
             {'title': 'Some Folder', 'id': 7, 'model': 'folder'},
         ],
-        # All ancestors are folders; thus there is no need to specify
-        # model attribute.
-        'ancestor_nodes': [{'title': 'My Documents', 'id': 3}]
     },
     7: {
         'current_nodes': [
@@ -57,12 +51,6 @@ FOLDERS = {
             {'title': 'inv3.pdf', 'id': 10, 'model': 'document'},
             {'title': 'inv4.pdf', 'id': 11, 'model': 'document'},
         ],
-        # All ancestors are folders; thus there is no need to specify
-        # model attribute.
-        'ancestor_nodes': [
-            {'title': 'My Documents', 'id': 3},
-            {'title': 'Some Folder', 'id': 7},
-        ]
     }
 }
 
