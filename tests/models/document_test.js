@@ -7,12 +7,12 @@ describe("Document model test suite", () => {
 
   it("Can instanciate Document", () => {
 
-    let document = new Document({id: 1, title: "invoice.pdf"});
+    let doc = new Document({id: 1, title: "invoice.pdf"});
 
-    assert.isDefined(document);
-    assert.equal(document.title, "invoice.pdf");
-    assert.isTrue(document.is_document);
-    assert.isFalse(document.is_folder);
+    assert.isDefined(doc);
+    assert.equal(doc.title, "invoice.pdf");
+    assert.isTrue(doc.is_document);
+    assert.isFalse(doc.is_folder);
   });
 
 });

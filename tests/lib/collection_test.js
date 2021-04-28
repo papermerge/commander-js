@@ -56,7 +56,7 @@ describe("test/lib/collection_test.js", () => {
 
     // get by title
     doc2 = col.get({title: "doc2.pdf"});
-    
+
     assert.isDefined(doc2);
     assert.equal(doc2.id, 2);
   });
@@ -85,7 +85,7 @@ describe("test/lib/collection_test.js", () => {
 
     // get by id, but id is passed as string, not as integer
     doc2 = col.get({id: "1"});
-    
+
     assert.isDefined(doc2);
     assert.equal(doc2.id, 1);
   });
@@ -113,7 +113,7 @@ describe("test/lib/collection_test.js", () => {
 
     // get by id, but id is passed as string, not as integer
     doc2 = col.get({id: 1, title: undefined});
-    
+
     assert.isDefined(doc2, "doc2 was not found");
     assert.equal(doc2.id, 1);
   });
@@ -134,6 +134,28 @@ describe("test/lib/collection_test.js", () => {
     found = col.get({id: undefined});
 
     assert.isUndefined(found);
+  });
+
+  it("Returns correctly first item", () => {
+    let col = new Collection(), first;
+
+    col.add(new Folder({id: 1, title: "My Documents"}));
+    col.add(new Folder({id: 1, title: "Payments"}));
+    col.add(new Folder({id: 1, title: "Invoices"}));
+
+    first = col.first();
+    assert.equal(first.title, "My Documents");
+  });
+
+  it("Returns correctly last item", () => {
+    let col = new Collection(), last;
+
+    col.add(new Folder({id: 1, title: "My Documents"}));
+    col.add(new Folder({id: 1, title: "Payments"}));
+    col.add(new Folder({id: 1, title: "Invoices"}));
+
+    last = col.last();
+    assert.equal(last.title, "Invoices");
   });
 
 });

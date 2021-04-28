@@ -45,20 +45,20 @@ class Collection extends Array {
         /**
          * Returns exactly one item of the collection that matches given
          * set of attributes.
-         * 
+         *
          * attrs - is expected to be a dictionary like object
-         * 
+         *
          * Returns a collection item when found and `undefined` if item was
          * not found.
-         * 
+         *
          * Examples:
-         *  
+         *
          *  // returns item that matches by title
          *  collection.get({title: "Invoice1.pdf"})
-         * 
+         *
          *  // returns item that matches by id
          *  collection.get({id: "101"})
-         * 
+         *
          * Note that passed attributes with value 'undefined' will be ignored
          * i.e. col.get({id: 1}) is same as col.get({id: 1, title: undefined})
          * because title attribute will be ignored (because its
@@ -66,7 +66,7 @@ class Collection extends Array {
          */
         for(let i=0; i < this.length;  i++) {
             let found = true, matched_attr_count = 0;
-            
+
             for(let key in attrs) {
                 if (attrs[key] == undefined) {
                     continue;
@@ -83,6 +83,40 @@ class Collection extends Array {
             }
         }
         return undefined;
+    }
+
+    first() {
+        /*
+        Returns non-empty item in collection
+        with lowerest index value.
+        */
+        let found;
+
+        for(let i=0; i < this.length;  i++) {
+            if (this[i]) {
+                found = this[i];
+                break;
+            }
+        }
+
+        return found;
+    }
+
+    last() {
+        /*
+        Returns non-empty item in collection
+        with highest index value.
+        */
+        let found;
+
+        for(let i=this.length; i >= 0;  i--) {
+            if (this[i]) {
+                found = this[i];
+                break;
+            }
+        }
+
+        return found;
     }
 }
 

@@ -40,7 +40,7 @@ class CommanderPanelView extends View {
     folder_clicked(folder) {
         let that = this;
 
-        this.breadcrumb_model.change(folder);
+        this.breadcrumb_model.change_parent(folder);
         this.start_folder_clicked_feedback();
         // notice that `folder` parameter here might be `undefined`
         // (which means that user clicked the root folder).
