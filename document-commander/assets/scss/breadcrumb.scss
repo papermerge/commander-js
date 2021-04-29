@@ -5,6 +5,17 @@ ol.breadcrumb {
             text-decoration: None;
         }
     }
+    li.item.placeholder {
+        width: 5rem;
+        height: 1rem;
+        background-color: #ddd;
+        border-radius: 0.25rem;
+        margin-right: 1rem;
+    }
+    li.item.placeholder::before {
+        content: "";
+        padding-right: 0;
+    }
     li.item::before {
         display: inline-block;
         padding-right: .2rem;

@@ -1,3 +1,5 @@
+
+
 .panel {
     display: flex;
 }
@@ -13,6 +15,14 @@
             width: 4rem !important;
             height: 3rem !important;
         }
+        .icon.placeholder {
+            background-color: #ddd;
+            height: 100%;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 3rem !important;
+            height: 2rem !important;
+        }
     }
 }
 
@@ -25,6 +35,21 @@
         .icon {
             width: 6rem !important;
             height: 8rem !important;
+        }
+        .icon.placeholder {
+            background-color: #ddd;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 4.5rem !important;
+            height: 6rem !important;
+            margin-top: 1rem;
+        }
+        .title.placeholder {
+             height: 1rem;
+             width: 6rem;
+             background-color: #ccc;
+             border-radius: 0.3rem;
+             margin: 1rem;
         }
     }
 }

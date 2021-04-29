@@ -20,6 +20,10 @@ app.register_blueprint(
     create_blueprint('slow-quesries-browsing', request_delay=4),
     url_prefix='/slow-queries-browsing'
 )
+app.register_blueprint(
+    create_blueprint('dual-panel-browsing', request_delay=0.4),
+    url_prefix='/dual-panel-browsing'
+)
 
 
 @app.route('/')

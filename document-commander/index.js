@@ -8,7 +8,8 @@ import {
 } from "./models/index";
 import {
     PanelView,
-    CommanderPanelView
+    CommanderPanelView,
+    CommanderDualPanelView
 } from "./views/index";
 import { render } from "./renderman";
 import { urlconf } from "./urls";
@@ -20,6 +21,7 @@ export {
     Panel,
     PanelView,
     CommanderPanelView,
+    CommanderDualPanelView,
     Collection,
     urlconf
 };

@@ -37,6 +37,17 @@ class CommanderPanelView extends View {
         this.breadcrumb_view.on(EV_FOLDER_CLICKED, this.folder_clicked, this);
     }
 
+    initial_fetch(folder) {
+        let that = this;
+
+        fetch_children(folder).then((nodes) => {
+            that.panel_model.reset(nodes);
+            this.breadcrumb_model.change_parent(folder);
+        }).catch((error) => {
+            alert(`Error while fetchinf folder '${folder}': ${error}`);
+        });
+    }
+
     folder_clicked(folder) {
         let that = this;
 

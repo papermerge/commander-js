@@ -8,20 +8,56 @@
   <main class="container py-3">
     <h1>Dual Panel Browsing</h1>
     <p>
-        User can browse in dual panel mode. Use can switch toggle between 
+        User can browse in dual panel mode. Use can switch toggle between
         single and dual panel modes.
     </p>
     <div class="showroom">
-        <div id="browser_panel_1">
-            <div id="breadcrumb_panel_1">
+        <div id="browser_panel_left">
+            <div id="breadcrumb_left">
+                <ol class="breadcrumb">
+                    {% for _ in range(1, 3) %}
+                        <li class="item placeholder">
+                        </li>
+                    {% endfor %}
+                </ol>
             </div>
-            <div id="panel_1">
+            <div id="panel_container_left">
+                <div id="loader_left" class="loader">
+                </div>
+                <div id="panel_left">
+                    <div class="panel grid">
+                        {% for _ in range(1, 5) %}
+                            <div class="node">
+                                <div class="icon placeholder"></div>
+                                <div class="title placeholder"></div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="browser_panel_2">
-            <div id="breadcrumb_panel_2">
+        <div id="browser_panel_right">
+            <div id="breadcrumb_right">
+                <ol class="breadcrumb">
+                    {% for _ in range(1, 3) %}
+                        <li class="item placeholder">
+                        </li>
+                    {% endfor %}
+                </ol>
             </div>
-            <div id="panel_2">
+            <div id="panel_container_right">
+                <div id="loader_right" class="loader">
+                </div>
+                <div id="panel_right">
+                    <div class="panel grid">
+                        {% for _ in range(1, 5) %}
+                            <div class="node">
+                                <div class="icon placeholder"></div>
+                                <div class="title placeholder"></div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

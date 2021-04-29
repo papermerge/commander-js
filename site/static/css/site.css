@@ -19,6 +19,14 @@ li p {
     position: relative;
 }
 
+#panel_container_left {
+    position: relative;
+}
+
+#panel_container_right {
+    position: relative;
+}
+
 .loader {
     position: absolute !important;
 }

@@ -1,4 +1,4 @@
-$foreground: red;
+$foreground: #55daff;
 
 .loader {
   visibility: hidden;
@@ -16,13 +16,22 @@ $foreground: red;
 
   color: $foreground;
   text-indent: -9999em;
-  position: relative;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 11px;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
+
 
   &:before, &:after {
     position: absolute;

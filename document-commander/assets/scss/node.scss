@@ -13,6 +13,7 @@
 .node {
 
     display: flex;
+
     .icon {
         width: 4rem;
         height: 3rem;
@@ -27,6 +28,7 @@
         background-image: url("../img/document.svg");
         background-size: 100% 100%;
     }
+
 
     &:hover {
         background-color: #8ed2fe66;
