@@ -1,5 +1,3 @@
-
-
 .panel {
     display: flex;
 }
@@ -28,29 +26,53 @@
 
 .panel.grid {
     flex-direction: row;
+    flex-wrap: wrap;
+
     .node {
         flex-direction: column;
         align-items: center;
+        position: relative;
+
+        input[type=checkbox] {
+            position: absolute;
+            left: 0;
+            margin: 0.25rem;
+        }
+        &:hover {
+            input[type=checkbox] {
+                display: block;
+            }
+        }
+        &.checked {
+            input[type=checkbox] {
+                display: block;
+            }
+        }
+        & {
+            input[type=checkbox] {
+                display: none;
+            }
+        }
 
         .icon {
             width: 6rem !important;
             height: 8rem !important;
-        }
-        .icon.placeholder {
-            background-color: #ddd;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            width: 4.5rem !important;
-            height: 6rem !important;
-            margin-top: 1rem;
-        }
-        .title.placeholder {
-             height: 1rem;
-             width: 6rem;
-             background-color: #ccc;
-             border-radius: 0.3rem;
-             margin: 1rem;
-        }
-    }
-}
 
+            &.placeholder {
+                background-color: #ddd;
+                padding: 2rem;
+                border-radius: 0.5rem;
+                width: 4.5rem !important;
+                height: 6rem !important;
+                margin-top: 1rem;
+            }
+            &.placeholder {
+                 height: 1rem;
+                 width: 6rem;
+                 background-color: #ccc;
+                 border-radius: 0.3rem;
+                 margin: 1rem;
+            }
+        } // .icon
+    } // .node
+} // .panel.grid

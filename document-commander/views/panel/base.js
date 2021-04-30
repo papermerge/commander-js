@@ -3,7 +3,9 @@ import { render as original_render } from "../../renderman";
 
 import {
     EV_DOCUMENT_CLICKED,
-    EV_FOLDER_CLICKED
+    EV_FOLDER_CLICKED,
+    EV_DOCUMENT_SELECTED,
+    EV_FOLDER_SELECTED
 } from "../../events";
 
 
@@ -30,16 +32,43 @@ class PanelBaseView extends View {
     events() {
         // DOM events
         let event_map = {
+            "click .node > input[type=checkbox]": "on_node_selected",
             "click .node": "on_node_clicked",
             "click .node.title > a": "on_node_clicked"
         }
         return event_map;
     }
 
+    on_node_selected(event) {
+        let current_target = event.current_target,
+            node_id,
+            node;
+
+        event.preventDefault();
+        node_id = target.dataset.id;
+        if (!this.model) {
+            return;
+        }
+        node = this.model.get_node({id: node_id});
+
+        if (node.is_document) {
+            this.trigger(EV_DOCUMENT_SELECTED, node);
+        } else {
+            this.trigger(EV_FOLDER_SELECTED, node);
+        }
+    }
+
     on_node_clicked(event) {
         let target = event.currentTarget,
             node_id,
             node;
+
+        if (event.target.type == "checkbox") {
+            // user clicked node's checkbox, which is not the concern
+            // of current event handler. Instead `on_node_selected`
+            // handler will should process this event.
+            return;
+        }
 
         event.preventDefault();
         // vanilla js equivalent of $(...).data('id');

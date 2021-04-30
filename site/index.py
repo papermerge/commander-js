@@ -24,6 +24,10 @@ app.register_blueprint(
     create_blueprint('dual-panel-browsing', request_delay=0.4),
     url_prefix='/dual-panel-browsing'
 )
+app.register_blueprint(
+    create_blueprint('selections-and-actions', request_delay=0.3),
+    url_prefix='/selections-and-actions'
+)
 
 
 @app.route('/')
