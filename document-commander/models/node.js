@@ -55,9 +55,7 @@ class Node extends Model {
     }
 
     toggle_selection() {
-        console.log(`selected=${this.selected}`);
         this.selected = !this.selected;
-        console.log(`selected=${this.selected}`);
         return this.selected;
     }
 }

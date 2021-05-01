@@ -43,7 +43,13 @@ class Panel extends Model {
     }
 
     get_selection() {
-        this.nodes.filter((node) => { return node.is_selected; });
+        let selection;
+
+        selection = this.nodes.filter(
+            (node) => { return node.is_selected; }
+        );
+
+        return selection;
     }
 
     reset(nodes) {
