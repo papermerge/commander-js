@@ -33,6 +33,10 @@ class Node extends Model {
         By default node is visible (or in view context - node is rendered as visible).
         */
         this.visible = true;
+        /*
+        If node is visually selected
+        */
+        this.selected = false;
     }
 
     toString() {
@@ -44,6 +48,17 @@ class Node extends Model {
     }
     get is_folder() {
         return false;
+    }
+
+    get is_selected() {
+        return this.selected;
+    }
+
+    toggle_selection() {
+        console.log(`selected=${this.selected}`);
+        this.selected = !this.selected;
+        console.log(`selected=${this.selected}`);
+        return this.selected;
     }
 }
 

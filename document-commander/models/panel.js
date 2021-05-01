@@ -42,6 +42,10 @@ class Panel extends Model {
         return this.nodes.get({id, title});
     }
 
+    get_selection() {
+        this.nodes.filter((node) => { return node.is_selected; });
+    }
+
     reset(nodes) {
         // empties `this.nodes` collection and fills it anew with
         // provides `nodes`.

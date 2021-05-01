@@ -4,8 +4,7 @@ import { render as original_render } from "../../renderman";
 import {
     EV_DOCUMENT_CLICKED,
     EV_FOLDER_CLICKED,
-    EV_DOCUMENT_SELECTED,
-    EV_FOLDER_SELECTED
+    EV_NODE_SELECTED,
 } from "../../events";
 
 
@@ -40,22 +39,42 @@ class PanelBaseView extends View {
     }
 
     on_node_selected(event) {
-        let current_target = event.current_target,
+        let current_target = event.currentTarget,
             node_id,
-            node;
+            node,
+            new_state,
+            parent,
+            current_selection;
 
-        event.preventDefault();
-        node_id = target.dataset.id;
+        // parent is DOM element with .node class,
+        // which among others contains the checkbox
+        parent = current_target.parentNode;
+        if (!parent) {
+            console.error(`No parent defined for target ${current_target}`);
+            return;
+        }
+
+        node_id = parent.dataset.id;
         if (!this.model) {
             return;
         }
         node = this.model.get_node({id: node_id});
 
-        if (node.is_document) {
-            this.trigger(EV_DOCUMENT_SELECTED, node);
-        } else {
-            this.trigger(EV_FOLDER_SELECTED, node);
+        if (!node) {
+            console.error(`Node not found for target ${current_target}`);
+            return;
         }
+
+        new_state = node.toggle_selection();
+        if (new_state) {
+            parent.classList.add('checked');
+        } else {
+            parent.classList.remove('checked');
+        }
+
+        current_selection = this.model.get_selection();
+
+        this.trigger(EV_NODE_SELECTED, node, current_selection);
     }
 
     on_node_clicked(event) {
