@@ -27,6 +27,11 @@ class CommanderPanelView extends View {
             model: this.breadcrumb_model,
             options: options['breadcrumb']
         });
+        this.ctx_menu_model = new CtxMenu();
+        this.ctx_menu_view = new CtxMenuView({
+            model: this.ctx_menu_model,
+            options: options['ctx_menu']
+        });
         this.options = options;
 
         // when a node is added, panel will be re-rendered
@@ -37,6 +42,7 @@ class CommanderPanelView extends View {
         this.panel_view.on(EV_DOCUMENT_CLICKED, this.document_clicked, this);
         this.panel_view.on(EV_NODE_SELECTED, this.node_selected, this);
         this.breadcrumb_view.on(EV_FOLDER_CLICKED, this.folder_clicked, this);
+        this.ctx_menu_view.on(EV_ACTION_CLICKED, this.action_clicked, this);
     }
 
     initial_fetch(folder) {
@@ -50,8 +56,17 @@ class CommanderPanelView extends View {
         });
     }
 
+    get_selection() {
+        return this.panel_model.get_selection();
+    }
+
     node_selected(node, current_selection) {
         this.trigger(EV_NODE_SELECTED, node, current_selection);
+        this.ctx_menu_view.render(node, current_selection);
+    }
+
+    action_clicked(action) {
+        action.run(this.get_selection());
     }
 
     folder_clicked(folder) {
