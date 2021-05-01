@@ -3,6 +3,7 @@ import { Collection } from "../lib/collection";
 
 import { EV_NODE_SELECTED } from "../events";
 
+
 class CtxMenu extends Model {
 
     constructor() {
