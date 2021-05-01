@@ -4,7 +4,11 @@ import { Collection } from "../lib/collection";
 class CtxMenu extends Model {
 
     constructor() {
-        this.actions = new Collection();
+        this.items = new Collection();
+    }
+
+    add(action_or_actions) {
+        this.items.add(action_or_actions);
     }
 }
 

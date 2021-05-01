@@ -1,0 +1,7 @@
+<ul class="ctx-menu">
+    {% for item in items %}
+        <li id="{{item.id}}" class="dropdown-item {{ item.enabled }}">
+           <a><i class="{{item.item_class}}"></i>{{ item.title }}</a>
+        </li>
+    {% endfor %}
+</ul>

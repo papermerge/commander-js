@@ -31,7 +31,7 @@ class CtxMenuView extends View {
     events() {
         // DOM events
         let event_map = {
-            "click li.item > a": "on_item_clicked",
+            "click li.dropdown-item > a": "on_item_clicked",
         }
         return event_map;
     }
