@@ -29,6 +29,7 @@ let default_actions = [
         title: 'Rename',
         icon_class: 'fa fa-edit',
         id: "#rename",
+        enabled: false,
         condition: function({selection, parent}) {
             return selection.length == 1;
         },
@@ -52,6 +53,7 @@ default_actions = default_actions.map(
         action_item instance. It is possible only if
         `run` was declared using `function` keyword.
         */
+        action_item.condition = action_item.condition.bind(action_item);
         action_item.run = action_item.run.bind(action_item);
 
         return action_item;

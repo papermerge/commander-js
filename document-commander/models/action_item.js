@@ -5,7 +5,7 @@ class ActionItem {
         title,
         icon_class,
         condition,
-        enabled,
+        enabled=true,
         run
     }){
         this.id = id;

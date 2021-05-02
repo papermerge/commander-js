@@ -71,9 +71,9 @@ class CommanderPanelView extends View {
         return this.breadcrumb_model.parent;
     }
 
-    node_selected(node, current_selection) {
-        this.trigger(EV_NODE_SELECTED, node, current_selection);
-        this.ctx_menu_model.trigger(EV_NODE_SELECTED, node, current_selection);
+    node_selected({node, selection}) {
+        this.trigger(EV_NODE_SELECTED, {node, selection});
+        this.ctx_menu_model.trigger(EV_NODE_SELECTED, {node, selection});
     }
 
     action_clicked(action) {

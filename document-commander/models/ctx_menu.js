@@ -17,9 +17,9 @@ class CtxMenu extends Model {
         this.trigger("change");
     }
 
-    on_node_selected(node, current_selection) {
+    on_node_selected({node, selection}) {
         this.items.forEach((item) => {
-                item.enabled = item.condition(current_selection);
+                item.enabled = item.condition({selection});
             }
         );
         this.trigger("change");

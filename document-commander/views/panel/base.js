@@ -74,7 +74,13 @@ class PanelBaseView extends View {
 
         current_selection = this.model.get_selection();
 
-        this.trigger(EV_NODE_SELECTED, node, current_selection);
+        this.trigger(
+            EV_NODE_SELECTED,
+            {
+                node:node,
+                selection:current_selection
+            }
+        );
     }
 
     on_node_clicked(event) {
