@@ -14,6 +14,7 @@ class CtxMenu extends Model {
 
     add(action_or_actions) {
         this.items.add(action_or_actions);
+        this.trigger("change");
     }
 
     on_node_selected(node, current_selection) {

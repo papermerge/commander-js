@@ -7,7 +7,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     commander_panel = new DC.CommanderPanelView({
         'panel': {'el': document.querySelector('#panel')},
-        'breadcrumb': {'el': document.querySelector("#breadcrumb")}
+        'breadcrumb': {'el': document.querySelector("#breadcrumb")},
+        'ctx_menu': {'el': document.querySelector('#ctx_menu')}
     });
 
     commander_panel.initial_fetch();
