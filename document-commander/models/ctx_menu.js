@@ -7,6 +7,7 @@ import { EV_NODE_SELECTED } from "../events";
 class CtxMenu extends Model {
 
     constructor() {
+        super();
         this.items = new Collection();
         this.on(EV_NODE_SELECTED, this.on_node_selected, this);
     }

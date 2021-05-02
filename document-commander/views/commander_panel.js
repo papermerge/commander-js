@@ -7,11 +7,13 @@ import { Panel } from "../models/index";
 import { Breadcrumb } from "../models/breadcrumb";
 import { CtxMenu } from "../models/ctx_menu";
 import { fetch_children } from "../requests";
+import { default_actions } from "../default_actions";
 
 import {
     EV_DOCUMENT_CLICKED,
     EV_FOLDER_CLICKED,
     EV_NODE_SELECTED,
+    EV_ACTION_CLICKED
 } from "../events";
 
 

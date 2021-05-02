@@ -1,4 +1,4 @@
-class Action {
+class ActionItem {
 
     constructor({
         id,
@@ -17,4 +17,4 @@ class Action {
     }
 }
 
-export { Action };
+export { ActionItem };

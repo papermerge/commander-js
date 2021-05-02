@@ -1,4 +1,4 @@
-
+import { ActionItem } from "./models/action_item";
 
 let default_actions = [
     {
@@ -31,7 +31,7 @@ let default_actions = [
 
 default_actions = default_actions.map(
     (params) => {
-        return new Action(params);
+        return new ActionItem(params);
     }
 );
 
