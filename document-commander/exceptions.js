@@ -16,6 +16,7 @@ class TemplateNotFound extends Exception {
     }
 }
 
+
 class NotImplemented extends Exception {
 
     constructor(message) {
@@ -32,5 +33,6 @@ class ValueError extends Exception {
         this.name = 'ValueError';
     }
 }
+
 
 export { TemplateNotFound, ValueError, NotImplemented };
