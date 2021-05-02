@@ -1,10 +1,8 @@
 
-class Exception {
+class Exception extends Error {
 
-    constructor(message) {
-        if (!message) {
-            message = "Not yet implemented";
-        }
+    constructor(message="Not yet implemented") {
+        super(message);
         this.message = message;
         this.name = "Exception";
     }
@@ -19,7 +17,7 @@ class TemplateNotFound extends Exception {
 }
 
 class NotImplemented extends Exception {
-    
+
     constructor(message) {
         super(message);
         this.name = "NotImplemented";

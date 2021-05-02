@@ -20,7 +20,9 @@ templates_map.set('ctx_menu.html', ctx_menu_template);
 
 
 function get_template(template_name) {
-    let template = undefined, new_template_name;
+
+    let template = undefined,
+        new_template_name;
 
     if (!template_name) {
         throw new ValueError("Empty argument");
