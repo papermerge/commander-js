@@ -2,36 +2,41 @@ import { ActionItem } from "./models/action_item";
 
 let default_actions = [
     {
-        'name': 'New Folder',
-        'icon_class': 'fa fa-plus',
-        'id': "#new-folder",
-        'condition': (selection, parent_item) => { return true; },
-        'run': (selection, item, parent_item) => {
+        title: 'New Folder',
+        icon_class: 'fa fa-plus',
+        id: "#new-folder",
+        condition: function(selection, parent_item) {
+            return true;
+        },
+        run: function(selection)  {
             console.log(`Action ${this.id}`);
-            console.log(`selection = ${this.selection}`);
-            console.log(`item = ${this.item}`);
-            console.log(`parent_item = ${this.parent_item}`);
+            console.log(`title ${this.title}`);
+            console.log(`selection = ${selection}`);
         }
     },
     {
-        'name': 'Rename',
-        'icon_class': 'fa fa-edit',
-        'id': "#rename",
-        'condition': (selection, parent_item) => {
+        title: 'Rename',
+        icon_class: 'fa fa-edit',
+        id: "#rename",
+        condition: function(selection, parent_item) {
             return selection.length == 1;
         },
-        'run': (selection, item, parent_item) => {
+        run: function(selection) {
             console.log(`Action ${this.id}`);
-            console.log(`selection = ${this.selection}`);
-            console.log(`item = ${this.item}`);
-            console.log(`parent_item = ${this.parent_item}`);
+            console.log(`title ${this.title}`);
+            console.log(`selection = ${selection}`);
         }
     },
 ];
 
 default_actions = default_actions.map(
     (params) => {
-        return new ActionItem(params);
+        let action_item;
+
+        action_item = new ActionItem(params);
+        action_item.run = action_item.run.bind(action_item);
+
+        return action_item;
     }
 );
 

@@ -39,17 +39,29 @@ class CtxMenuView extends View {
     on_item_clicked(event) {
         let target = event.currentTarget,
         item_id,
+        parent,
         item;
 
         event.preventDefault();
-        // vanilla js equivalent of $(...).data('id');
-        item_id = target.dataset.id;
+        // target is <a> element
+        // target.parentNode is <li> element
+        parent = target.parentNode
+        if (!parent) {
+            console.error("CtxMenu unable to retrieve id of clicked element.");
+            return;
+        }
+        item_id = parent.id;
 
         if (!this.model) {
             return;
         }
 
         item = this.model.items.get({id: item_id});
+
+        if (!item) {
+            console.error("Context menu item not found.");
+            return;
+        }
 
         // If user clicked root folder, node will be `undefined`.
         // Root breadcrumb item does not have dataset id attribute set.
