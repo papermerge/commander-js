@@ -70,14 +70,6 @@ class BreadcrumbView extends View {
 
         return html_breadcrumb;
     }
-
-    render() {
-        let breadcrumb_html = this.render_to_string();
-
-        this.el.innerHTML = breadcrumb_html;
-
-        return breadcrumb_html;
-    }
 };
 
 export { BreadcrumbView };

@@ -31,7 +31,7 @@ class View {
         }
 
         this.undelegateEvents();
-        
+
         for (let key in events) {
             method = events[key];
             if (!isFunction(method)) {
@@ -76,6 +76,16 @@ class View {
             this.$el = $(el);
         }
         this.el = this.$el[0];
+    }
+
+    render() {
+        let html = this.render_to_string();
+
+        if (this.el) {
+            this.el.innerHTML = html;
+        }
+
+        return html;
     }
 }
 

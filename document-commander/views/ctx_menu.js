@@ -80,14 +80,6 @@ class CtxMenuView extends View {
 
         return html;
     }
-
-    render() {
-        let html = this.render_to_string();
-
-        this.el.innerHTML = html;
-
-        return html;
-    }
 };
 
 export { CtxMenuView };

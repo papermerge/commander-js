@@ -153,7 +153,7 @@ class PanelBaseView extends View {
         if (this.el) {
             this.el.innerHTML = panel_html;
         }
-        return panel_html; 
+        return panel_html;
     }
 };
 

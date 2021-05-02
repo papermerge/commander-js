@@ -21,9 +21,7 @@ describe("CommanderPanelView test suite", () => {
 
   it("Can instanciate CommanderPanelView with empty parameter list", () => {
 
-    let panel_view = new CommanderPanelView({
-      nodes: new Collection(),
-    });
+    let panel_view = new CommanderPanelView();
 
     assert.isDefined(panel_view);
   });
