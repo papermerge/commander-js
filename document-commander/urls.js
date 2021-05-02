@@ -2,8 +2,8 @@
 
 class UrlConf {
     /**
-     * 
-     * Central point for managing urls. 
+     *
+     * Central point for managing urls.
      */
 
     constructor(prefix="/browser") {
@@ -16,18 +16,18 @@ class UrlConf {
          * `undefined`. Latter means that user clicked root folder.
          */
         let folder_id = ""; // empty string in case of root folder.
-    
+
         if (folder) {
             folder_id = folder.id;
         }
         // folder_id here can be empty string!
         return `${this.prefix}/folder/${folder_id}`;
     }
-    
+
     document_url(document_id) {
         return `${this.prefix}/document/${document_id}`;
     }
-    
+
     root_url() {
         return this.prefix;
     }
