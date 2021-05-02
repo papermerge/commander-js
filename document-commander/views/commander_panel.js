@@ -67,13 +67,20 @@ class CommanderPanelView extends View {
         return this.panel_model.get_selection();
     }
 
+    get_parent() {
+        return this.breadcrumb_model.parent;
+    }
+
     node_selected(node, current_selection) {
         this.trigger(EV_NODE_SELECTED, node, current_selection);
         this.ctx_menu_model.trigger(EV_NODE_SELECTED, node, current_selection);
     }
 
     action_clicked(action) {
-        action.run(this.get_selection());
+        action.run({
+            selection: this.get_selection(),
+            parent: this.get_parent()
+        });
     }
 
     folder_clicked(folder) {

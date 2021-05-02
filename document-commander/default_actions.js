@@ -15,26 +15,28 @@ let default_actions = [
         title: 'New Folder',
         icon_class: 'fa fa-plus',
         id: "#new-folder",
-        condition: function(selection, parent_item) {
+        condition: function({selection, parent}) {
             return true;
         },
-        run: function(selection)  {
+        run: function({selection, parent})  {
             console.log(`Action ${this.id}`);
             console.log(`title ${this.title}`);
             console.log(`selection = ${selection}`);
+            console.log(`parent = ${parent}`);
         }
     },
     {
         title: 'Rename',
         icon_class: 'fa fa-edit',
         id: "#rename",
-        condition: function(selection, parent_item) {
+        condition: function({selection, parent}) {
             return selection.length == 1;
         },
-        run: function(selection) {
+        run: function({selection, parent}) {
             console.log(`Action ${this.id}`);
             console.log(`title ${this.title}`);
             console.log(`selection = ${selection}`);
+            console.log(`parent = ${parent}`);
         }
     },
 ];
