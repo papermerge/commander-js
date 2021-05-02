@@ -1,7 +1,10 @@
 import { assert } from "chai";
 
 import { get_template } from '../document-commander/templates/index';
-import { TemplateNotFound } from '../document-commander/exceptions';
+import {
+    TemplateNotFound,
+    ValueError
+} from '../document-commander/exceptions';
 
 
 describe("Templates API test suite", () => {
@@ -23,9 +26,17 @@ describe("Templates API test suite", () => {
 
   it("throws TemplateNotFound when template is not there", () => {
     assert.throws(
-        () => { get_template("blah.html")},
+        () => { get_template("blah.html"); },
         TemplateNotFound,
         /not found/
+    );
+  });
+
+  it("throws ValueError when get_template is invoked with empty arguments", () => {
+    assert.throws(
+        () => { get_template(); },
+        ValueError,
+        /empty/i
     );
   });
 
