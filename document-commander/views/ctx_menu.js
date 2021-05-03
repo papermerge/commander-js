@@ -26,12 +26,14 @@ class CtxMenuView extends View {
         this.model = model;
         this.options = options;
         this.el = options['el'];
+        this.el_menu = options['el_menu'];
     }
 
     events() {
         // DOM events
         let event_map = {
             "click li.dropdown-item > a": "on_item_clicked",
+            "contextmenu": "context_menu_trigger",
         }
         return event_map;
     }
@@ -66,6 +68,19 @@ class CtxMenuView extends View {
         // If user clicked root folder, node will be `undefined`.
         // Root breadcrumb item does not have dataset id attribute set.
         this.trigger(EV_ACTION_CLICKED, item);
+        this._dropdown_toggle();
+    }
+
+    context_menu_trigger(event) {
+        let dropdown_menu;
+
+        event.preventDefault();
+
+        if (this.el_menu) {
+            this._dropdown_toggle();
+            this.el_menu.style.top = `${event.pageY}px`;
+            this.el_menu.style.left = `${event.pageX}px`;
+        }
     }
 
     render_to_string() {
@@ -79,6 +94,31 @@ class CtxMenuView extends View {
         )
 
         return html;
+    }
+
+    render() {
+        let html = this.render_to_string();
+
+        if (this.el_menu) {
+            this.el_menu.innerHTML = html;
+        }
+
+        return html;
+    }
+
+    _dropdown_toggle() {
+        let dropdown_menu;
+
+        if (this.el_menu) {
+            dropdown_menu = this.el_menu.querySelector('.dropdown-menu');
+            if (dropdown_menu) {
+                dropdown_menu.classList.toggle('show');
+            } else {
+                console.error(".dropdown-menu not found");
+            }
+        } else {
+            console.error("el_menu is undefined");
+        }
     }
 };
 

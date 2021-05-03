@@ -1,4 +1,4 @@
-<ul class="ctx-menu">
+<ul class="ctx-menu dropdown-menu">
     {% for item in items %}
         <li id="{{item.id}}" class="dropdown-item {% if item.enabled %} enabled {% else %} disabled {% endif %}">
            <a><i class="{{item.item_class}}"></i>{{ item.title }}</a>
