@@ -2,7 +2,7 @@ import { assert } from "chai";
 
 import { Breadcrumb } from '../../document-commander/models/breadcrumb';
 import { Folder } from "../../document-commander/models/folder";
-import { Collection } from '../../document-commander/lib/collection';
+import { Collection } from 'symposium';
 
 
 describe("Breadcrumb model test suite", () => {

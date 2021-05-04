@@ -1,8 +1,8 @@
+import { Collection, View } from "symposium";
+
 import { PanelView } from "./panel/index";
 import { BreadcrumbView } from "./breadcrumb";
 import { CtxMenuView } from "./ctx_menu";
-import { Collection } from "../lib/collection";
-import { View } from "../lib/view";
 import { Panel } from "../models/index";
 import { Breadcrumb } from "../models/breadcrumb";
 import { CtxMenu } from "../models/ctx_menu";

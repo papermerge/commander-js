@@ -1,5 +1,5 @@
-import { Model } from '../lib/model';
-import { Collection } from "../lib/collection";
+import { Model } from 'symposium';
+import { Collection } from "symposium";
 
 import { EV_NODE_SELECTED } from "../events";
 

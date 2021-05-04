@@ -1,4 +1,4 @@
-import { View } from "../lib/view";
+import { View } from "symposium";
 import { fetch_children } from "../requests";
 
 import { CommanderPanelView } from "./commander_panel";

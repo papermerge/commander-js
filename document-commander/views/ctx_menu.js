@@ -1,6 +1,6 @@
-import { View } from "../lib/view";
-import { render as original_render } from "../renderman";
+import { View } from "symposium";
 
+import { render as original_render } from "../renderman";
 import { CtxMenu } from "../models/ctx_menu";
 
 import {

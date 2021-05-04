@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { Collection } from "../../document-commander/lib/collection";
+import { Collection } from "symposium";
 import { PanelView } from "../../document-commander/views/panel/index";
 import { Panel } from "../../document-commander/models/panel";
 import {
@@ -18,7 +18,7 @@ describe("tests/views/panel_view_test.js", () => {
     nodes;
 
     nodes = new Collection();
-    
+
     nodes.add([
         new Document({id: 1, title: 'invoice1.pdf'}),
         new Document({id: 2, title: 'invoice2.pdf'}),

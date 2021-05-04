@@ -1,4 +1,4 @@
-import { Collection } from "./lib/collection";
+import { Collection } from "symposium";
 import { Folder, Document } from "./models/index";
 import { urlconf } from "./urls";
 

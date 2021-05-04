@@ -1,5 +1,6 @@
 import { assert } from "chai";
-import { Collection } from "../../document-commander/lib/collection";
+import { Collection } from "symposium";
+
 import {
     Folder,
     Document,

@@ -1,5 +1,4 @@
-import { Collection  } from "../lib/collection";
-import { Model } from "../lib/model";
+import { Collection, Model  } from "symposium";
 
 
 class Breadcrumb extends Model {

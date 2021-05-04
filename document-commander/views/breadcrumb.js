@@ -1,4 +1,4 @@
-import { View } from "../lib/view";
+import { View } from "symposium";
 import { render as original_render } from "../renderman";
 import { urlconf } from "../urls";
 

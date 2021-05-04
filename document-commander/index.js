@@ -1,6 +1,6 @@
 import "./assets/scss/index.scss";
 
-import { Collection } from "./lib/collection";
+import { Collection } from "symposium";
 import {
     Document,
     Folder,

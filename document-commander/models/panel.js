@@ -1,5 +1,5 @@
-import { Model } from '../lib/model';
-import { Collection } from "../lib/collection";
+import { Model, Collection } from "symposium";
+
 import { fetch_children } from "../requests";
 
 
