@@ -1,14 +1,8 @@
-import { renderString } from "nunjucks";
+import { Renderman } from "symposium";
 
-import { get_template } from "./templates/index";
-
-
-function render(template_name, context) {
-
-    return renderString(
-        get_template(template_name), context
-    );
-}
+import { templates_map } from "./templates/index";
 
 
-export { render };
+let renderman = new Renderman(templates_map);
+
+export { renderman };

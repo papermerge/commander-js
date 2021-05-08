@@ -1,6 +1,6 @@
 import { View } from "symposium";
 
-import { render as original_render } from "../renderman";
+import { renderman } from "../renderman";
 import { CtxMenu } from "../models/ctx_menu";
 
 import {
@@ -88,7 +88,7 @@ class CtxMenuView extends View {
         let html, context = {};
 
         context['items'] = this.model.items;
-        html = original_render(
+        html = renderman.render(
             this.template_name,
             context
         )

@@ -1,5 +1,5 @@
 import { View } from "symposium";
-import { render as original_render } from "../renderman";
+import { renderman } from "../renderman";
 import { urlconf } from "../urls";
 
 import { Breadcrumb } from "../models/breadcrumb";
@@ -63,7 +63,7 @@ class BreadcrumbView extends View {
 
         context['nodes'] = this.model.nodes;
         context['root_url'] = urlconf.root_url();
-        html_breadcrumb = original_render(
+        html_breadcrumb = renderman.render(
             this.template_name,
             context
         )

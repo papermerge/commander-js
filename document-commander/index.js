@@ -11,11 +11,11 @@ import {
     CommanderPanelView,
     CommanderDualPanelView
 } from "./views/index";
-import { render } from "./renderman";
+import { renderman } from "./renderman";
 import { urlconf } from "./urls";
 
 export {
-    render,
+    renderman,
     Document,
     Folder,
     Panel,

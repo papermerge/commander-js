@@ -1,41 +1,38 @@
 import { assert } from "chai";
 
-import { get_template } from '../document-commander/templates/index';
-import {
-    TemplateNotFound,
-    ValueError
-} from '../document-commander/exceptions';
+import { renderman } from '../document-commander/renderman';
+import { exceptions } from 'symposium';
 
 
 describe("Templates API test suite", () => {
 
   it("can retrieve basic templates with get_template", () => {
     assert.isDefined(
-        get_template("panel/grid.html")
+        renderman.get_template("panel/grid.html")
     );
     assert.isDefined(
-        get_template("panel/list.html")
+        renderman.get_template("panel/list.html")
     );
     assert.isDefined(
-        get_template("breadcrumb.html")
+        renderman.get_template("breadcrumb.html")
     );
     assert.isDefined(
-        get_template("ctx_menu.html")
+        renderman.get_template("ctx_menu.html")
     );
   });
 
   it("throws TemplateNotFound when template is not there", () => {
     assert.throws(
-        () => { get_template("blah.html"); },
-        TemplateNotFound,
+        () => { renderman.get_template("blah.html"); },
+        exceptions.TemplateNotFound,
         /not found/
     );
   });
 
   it("throws ValueError when get_template is invoked with empty arguments", () => {
     assert.throws(
-        () => { get_template(); },
-        ValueError,
+        () => { renderman.get_template(); },
+        exceptions.ValueError,
         /empty/i
     );
   });

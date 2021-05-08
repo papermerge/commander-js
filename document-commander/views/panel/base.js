@@ -1,5 +1,5 @@
 import { View } from "symposium";
-import { render as original_render } from "../../renderman";
+import { renderman } from "../../renderman";
 
 import {
     EV_DOCUMENT_CLICKED,
@@ -145,7 +145,7 @@ class PanelBaseView extends View {
             return html_panel;
         }
         context['nodes'] = this.model.nodes;
-        html_panel = original_render(
+        html_panel = renderman.render(
             this.template_name,
             context
         );
