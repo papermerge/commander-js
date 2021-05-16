@@ -1,16 +1,16 @@
 
-.panel.list > .node {
+.panel.list > .item {
     padding: 0.25rem 1rem;
     margin: 0.5rem 1rem;
 }
 
 
-.panel.grid > .node {
+.panel.grid > .item {
     padding: 1rem;
     margin: 1rem;
 }
 
-.node {
+.item {
 
     display: flex;
 

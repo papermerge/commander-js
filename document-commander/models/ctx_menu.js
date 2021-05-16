@@ -1,7 +1,7 @@
 import { Model } from 'symposium';
 import { Collection } from "symposium";
 
-import { EV_NODE_SELECTED } from "../events";
+import { EV_PANEL_ITEM_SELECTED } from "symposium";
 
 
 class CtxMenu extends Model {
@@ -9,7 +9,7 @@ class CtxMenu extends Model {
     constructor() {
         super();
         this.items = new Collection();
-        this.on(EV_NODE_SELECTED, this.on_node_selected, this);
+        this.on(EV_PANEL_ITEM_SELECTED, this.on_node_selected, this);
     }
 
     add(action_or_actions) {

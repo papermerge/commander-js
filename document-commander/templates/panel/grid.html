@@ -1,10 +1,10 @@
 <div class="panel grid">
-    {% for node in nodes %}
-        <div class="node {% if node.visible %} visible {% else %} hidden {% endif %} {% if node.is_document %} document {% else %} folder {% endif %}" data-id="{{node.id}}">
-            <div class="icon {% if node.is_document %} document {% else %} folder {% endif %}"></div>
-            <input type="checkbox" name="_selected_action" value="{{ node.id }}" class="action-select">
+    {% for obj in objects %}
+        <div class="item {% if obj.visible %} visible {% else %} hidden {% endif %} {% if obj.is_document %} document {% else %} folder {% endif %}" data-id="{{obj.id}}">
+            <div class="icon {% if obj.is_document %} document {% else %} folder {% endif %}"></div>
+            <input type="checkbox" name="_selected_action" value="{{ obj.id }}" class="action-select">
             <div class="title">
-                <a href="{{node.href}}">{{ node.title }}</a>
+                <a href="{{obj.href}}">{{ obj.title }}</a>
             </div>
         </div>
     {% endfor %}
