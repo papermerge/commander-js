@@ -1,3 +1,5 @@
+[![Unittests](https://github.com/papermerge/document-commander/actions/workflows/unittests.yml/badge.svg)](https://github.com/papermerge/document-commander/actions/workflows/unittests.yml)
+
 # Document Commander
 
 NodeJs package for (reusable) client side files browsing i.e. javascript code for navigating documents and folders.
