@@ -20,11 +20,11 @@ class BreadcrumbView extends View {
     }
 
     constructor({
-        model=new Breadcrumb(),
+        collection=new Breadcrumb(),
         options={}
     }) {
         super(options);
-        this.model = model;
+        this.collection = collection;
         this.options = options;
         this.el = options['el'];
     }
@@ -46,11 +46,11 @@ class BreadcrumbView extends View {
         // vanilla js equivalent of $(...).data('id');
         node_id = target.dataset.id;
 
-        if (!this.model) {
+        if (!this.collection) {
             return;
         }
 
-        node = this.model.nodes.get({id: node_id});
+        node = this.collection.get({id: node_id});
 
         // If user clicked root folder, node will be `undefined`.
         // Root breadcrumb item does not have dataset id attribute set.
@@ -61,7 +61,7 @@ class BreadcrumbView extends View {
 
         let html_breadcrumb, context = {};
 
-        context['nodes'] = this.model.nodes;
+        context['nodes'] = this.collection;
         context['root_url'] = urlconf.root_url();
         html_breadcrumb = renderman.render(
             this.template_name,

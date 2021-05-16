@@ -27,7 +27,7 @@ describe("Breadcrumb model test suite", () => {
     breadcrumb.reset(collection);
 
     assert.equal(
-        breadcrumb.nodes.length,
+        breadcrumb.length,
         collection.length
     );
   }); // it

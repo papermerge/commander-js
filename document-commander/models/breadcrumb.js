@@ -1,7 +1,7 @@
-import { Collection, Model  } from "symposium";
+import { Collection } from "symposium";
 
 
-class Breadcrumb extends Model {
+class Breadcrumb extends Collection {
     /**
     Breadcrumb indicates the current browsing’s location
     within a navigational hierarchy.
@@ -32,29 +32,6 @@ class Breadcrumb extends Model {
     Last item in breadcrumb (Invoices) is accessible via last() method.
     */
 
-    constructor(nodes=new Collection()) {
-        super();
-        let that = this;
-
-        this.nodes = nodes;
-
-        // propagate `change` events form
-        // `this.nodes` collection via `this` model upwards
-        // to the interested parties.
-        this.nodes.on(
-            "change",
-            () => { that.trigger("change"); }
-        );
-        this.nodes.on(
-            "reset",
-            () => { that.trigger("reset"); }
-        );
-    }
-
-    reset(ancestors) {
-        this.nodes.reset(ancestors);
-    }
-
     change_parent(folder) {
         /**
         Change breadcrumb's parent folder.
@@ -81,20 +58,20 @@ class Breadcrumb extends Model {
 
         if (!folder) {
             // will trigger `change` event on the `nodes` collection
-            this.nodes.reset([]);
+            this.reset([]);
             this.trigger("change-parent");
             return;
         }
         // at this point `folder` is defined
-        found = this.nodes.get(folder);
+        found = this.get({id: folder.id});
         if (!found) {
-            this.nodes.push(folder);
+            this.push(folder);
             this.trigger("change-parent");
             return;
         }
 
         // change parent to one of existing ancestors
-        index = this.nodes.findIndex(
+        index = this.findIndex(
             (node) => { return node.id == folder.id; }
         )
 
@@ -103,21 +80,9 @@ class Breadcrumb extends Model {
             // by doing so, array automatically trimms all items outside
             // array's length. Here we use this particular javascript weirdness
             // to our own advantage.
-            this.nodes.length = index + 1;
+            this.length = index + 1;
         }
         this.trigger("change-parent");
-    }
-
-    get length() {
-        return this.nodes.length;
-    }
-
-    first() {
-        return this.nodes.first();
-    }
-
-    last() {
-        return this.nodes.last();
     }
 
     get parent() {
@@ -126,7 +91,7 @@ class Breadcrumb extends Model {
         is the most recent ancestor of documents and folders of the user's current
         browsing location.
         */
-        return this.nodes.last();
+        return this.last();
     }
 }
 
