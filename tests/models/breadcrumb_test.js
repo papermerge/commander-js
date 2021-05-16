@@ -115,8 +115,6 @@ describe("Breadcrumb model test suite", () => {
 
   it("triggers change-parent event when changing parent", () => {
     let breadcrumb = new Breadcrumb(),
-        collection = new Collection(),
-        arr = [],
         folder_1,
         folder_2,
         folder_3,
@@ -126,12 +124,9 @@ describe("Breadcrumb model test suite", () => {
     folder_2 = new Folder({id: 2, title: "Payments"});
     folder_3 = new Folder({id: 3, title: "Invoices"});
 
-    arr.push(folder_1)
-    arr.push(folder_2);
-    arr.push(folder_3);
-    collection.add(arr);
-
-    breadcrumb.reset(collection);
+    breadcrumb.add(folder_1)
+    breadcrumb.add(folder_2);
+    breadcrumb.add(folder_3);
     /*
     Everytime when changing parent, breadcrumb model
     generates an "change" event.
