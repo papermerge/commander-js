@@ -45,6 +45,10 @@ class Breadcrumb extends Model {
             "change",
             () => { that.trigger("change"); }
         );
+        this.nodes.on(
+            "reset",
+            () => { that.trigger("reset"); }
+        );
     }
 
     reset(ancestors) {

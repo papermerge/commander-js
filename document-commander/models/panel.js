@@ -18,7 +18,8 @@ class Panel extends Model {
         let that = this;
 
         this.nodes = nodes;
-        this.nodes.on("change", function(){ that.trigger("change") } );
+        this.nodes.on("reset", function(){ that.trigger("reset"); } );
+        this.nodes.on("change", function(){ that.trigger("change"); } );
     }
 
     toString() {
