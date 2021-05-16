@@ -4,7 +4,6 @@ import { Collection } from "symposium";
 import {
     Document,
     Folder,
-    Panel,
 } from "./models/index";
 import {
     PanelView,
@@ -18,7 +17,6 @@ export {
     renderman,
     Document,
     Folder,
-    Panel,
     PanelView,
     CommanderPanelView,
     CommanderDualPanelView,

@@ -113,7 +113,7 @@ describe("Breadcrumb model test suite", () => {
     );
   }); // it
 
-  it("triggers change event when changing parent", () => {
+  it("triggers change-parent event when changing parent", () => {
     let breadcrumb = new Breadcrumb(),
         collection = new Collection(),
         arr = [],
@@ -136,7 +136,7 @@ describe("Breadcrumb model test suite", () => {
     Everytime when changing parent, breadcrumb model
     generates an "change" event.
     */
-    breadcrumb.on("change", () => { counter++;} );
+    breadcrumb.on("change-parent", () => { counter++;} );
     breadcrumb.change_parent( // will increment counter
         new Folder({id: 1, title: "My Documents"})
     );

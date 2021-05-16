@@ -1,7 +1,6 @@
 import { assert } from "chai";
 import { Collection } from "symposium";
 import { PanelView } from "../../document-commander/views/panel/index";
-import { Panel } from "../../document-commander/models/panel";
 import {
     Document,
     Folder,
@@ -12,10 +11,9 @@ describe("tests/views/panel_view_test.js", () => {
 
   it("Will render nodes", () => {
 
-    let panel,
-    panel_list_view,
-    panel_list_html,
-    nodes;
+    let panel_list_view,
+        panel_list_html,
+        nodes;
 
     nodes = new Collection();
 
@@ -24,8 +22,7 @@ describe("tests/views/panel_view_test.js", () => {
         new Document({id: 2, title: 'invoice2.pdf'}),
         new Folder({id: 3, title: 'My Document'})
     ]);
-    panel = new Panel(nodes);
-    panel_list_view = new PanelView({model: panel});
+    panel_list_view = new PanelView({collection: nodes});
     panel_list_html = panel_list_view.render();
 
     assert.isTrue(

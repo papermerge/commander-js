@@ -3,7 +3,6 @@ import { Collection, View } from "symposium";
 import { PanelView } from "./panel/index";
 import { BreadcrumbView } from "./breadcrumb";
 import { CtxMenuView } from "./ctx_menu";
-import { Panel } from "../models/index";
 import { Breadcrumb } from "../models/breadcrumb";
 import { CtxMenu } from "../models/ctx_menu";
 import { fetch_children } from "../requests";
@@ -21,14 +20,14 @@ class CommanderPanelView extends View {
 
     constructor(options={}) {
         super();
-        this.panel_model = new Panel();
+        this.nodes_col = new Collection();
         this.panel_view = new PanelView({
-            model: this.panel_model,
+            collection: this.nodes_col,
             options: options['panel']
         });
         this.breadcrumb_model = new Breadcrumb();
         this.breadcrumb_view = new BreadcrumbView({
-            model: this.breadcrumb_model,
+            collection: this.breadcrumb_model,
             options: options['breadcrumb']
         });
         this.ctx_menu_model = new CtxMenu();
@@ -39,8 +38,8 @@ class CommanderPanelView extends View {
         this.options = options;
 
         // when a node is added, panel will be re-rendered
-        this.panel_model.on("reset", this.render_panel, this);
-        this.panel_model.on("change", this.render_panel, this);
+        this.nodes_col.on("reset", this.render_panel, this);
+        this.nodes_col.on("change", this.render_panel, this);
         this.breadcrumb_model.on("reset", this.render_breadcrumb, this);
         this.breadcrumb_model.on("change", this.render_breadcrumb, this);
         this.ctx_menu_model.on("change", this.render_ctx_menu, this);
@@ -58,7 +57,7 @@ class CommanderPanelView extends View {
         let that = this;
 
         fetch_children(folder).then((nodes) => {
-            that.panel_model.reset(nodes);
+            that.nodes_col.reset(nodes);
             this.breadcrumb_model.change_parent(folder);
         }).catch((error) => {
             alert(`Error while fetchinf folder '${folder}': ${error}`);
@@ -66,7 +65,9 @@ class CommanderPanelView extends View {
     }
 
     get_selection() {
-        return this.panel_model.get_selection();
+        return this.nodes_col.filter(
+            (node) => { return node.is_selected; }
+        );
     }
 
     get_parent() {
@@ -93,7 +94,7 @@ class CommanderPanelView extends View {
         // notice that `folder` parameter here might be `undefined`
         // (which means that user clicked the root folder).
         fetch_children(folder).then((nodes) => {
-            that.panel_model.reset(nodes);
+            that.nodes_col.reset(nodes);
             that.stop_folder_clicked_feedback();
         }).catch((error) => {
             that.stop_folder_clicked_feedback();
@@ -125,7 +126,10 @@ class CommanderPanelView extends View {
          *
          *  2. Displays a spinner.
          */
-        this.panel_model.set_nodes_attr('visible', false);
+        this.nodes_col.forEach((node) => {
+            // triggers change on the node model
+            node.visible = false;
+        });
         this.panel_view.show_loader();
     }
 
@@ -146,7 +150,7 @@ class CommanderPanelView extends View {
     }
 
     reset(item_or_items) {
-        this.panel_model.reset(item_or_items);
+        this.nodes_col.reset(item_or_items);
         this.breadcrumb_model.reset(new Collection());
     }
 

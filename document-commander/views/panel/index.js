@@ -9,10 +9,10 @@ class PanelView extends PanelBaseView {
     }
 
     constructor({
-        model,
+        collection,
         options={}
     }) {
-        super({model, options});
+        super({collection, options});
     }
 
 };

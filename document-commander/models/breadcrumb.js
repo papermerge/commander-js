@@ -82,13 +82,14 @@ class Breadcrumb extends Model {
         if (!folder) {
             // will trigger `change` event on the `nodes` collection
             this.nodes.reset([]);
+            this.trigger("change-parent");
             return;
         }
         // at this point `folder` is defined
         found = this.nodes.get(folder);
         if (!found) {
             this.nodes.push(folder);
-            this.trigger("change");
+            this.trigger("change-parent");
             return;
         }
 
@@ -104,7 +105,7 @@ class Breadcrumb extends Model {
             // to our own advantage.
             this.nodes.length = index + 1;
         }
-        this.trigger("change");
+        this.trigger("change-parent");
     }
 
     get length() {

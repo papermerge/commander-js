@@ -18,11 +18,11 @@ class PanelBaseView extends View {
     }
 
     constructor({
-        model,
+        collection,
         options={}
     }) {
         super(options);
-        this.model = model;
+        this.collection = collection;
         this.options = Object.assign({}, this.default_options, options);
 
         this.el = this.options['el'];
@@ -55,10 +55,10 @@ class PanelBaseView extends View {
         }
 
         node_id = parent.dataset.id;
-        if (!this.model) {
+        if (!this.collection) {
             return;
         }
-        node = this.model.get_node({id: node_id});
+        node = this.collection.get({id: node_id});
 
         if (!node) {
             console.error(`Node not found for target ${current_target}`);
@@ -72,7 +72,9 @@ class PanelBaseView extends View {
             parent.classList.remove('checked');
         }
 
-        current_selection = this.model.get_selection();
+        current_selection = this.collection.filter(
+            (item) => { return item.is_selected; }
+        );
 
         this.trigger(
             EV_NODE_SELECTED,
@@ -98,10 +100,10 @@ class PanelBaseView extends View {
         event.preventDefault();
         // vanilla js equivalent of $(...).data('id');
         node_id = target.dataset.id;
-        if (!this.model) {
+        if (!this.collection) {
             return;
         }
-        node = this.model.get_node({id: node_id});
+        node = this.collection.get({id: node_id});
 
         if (node.is_document) {
             this.trigger(EV_DOCUMENT_CLICKED, node);
@@ -141,10 +143,10 @@ class PanelBaseView extends View {
         let html_panel = "",
             context = {};
 
-        if (!this.model) {
+        if (!this.collection) {
             return html_panel;
         }
-        context['nodes'] = this.model.nodes;
+        context['nodes'] = this.collection;
         html_panel = renderman.render(
             this.template_name,
             context

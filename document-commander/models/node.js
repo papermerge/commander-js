@@ -32,11 +32,11 @@ class Node extends Model {
 
         By default node is visible (or in view context - node is rendered as visible).
         */
-        this.visible = true;
+        this._visible = true;
         /*
         If node is visually selected
         */
-        this.selected = false;
+        this._selected = false;
     }
 
     toString() {
@@ -52,6 +52,28 @@ class Node extends Model {
 
     get is_selected() {
         return this.selected;
+    }
+
+    get selected() {
+        return this._selected;
+    }
+
+    set selected(value) {
+        if (value != this._visible) {
+            this._selected = value;
+            this.trigger("change");
+        }
+    }
+
+    get visible() {
+        return this._visible;
+    }
+
+    set visible(value) {
+        if (value != this._visible) {
+            this._visible = value;
+            this.trigger("change");
+        }
     }
 
     toggle_selection() {
