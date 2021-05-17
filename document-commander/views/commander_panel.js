@@ -39,9 +39,7 @@ class CommanderPanelView extends View {
         });
         this.options = options;
 
-        // when a node is added, panel will be re-rendered
         this.nodes_col.on("reset", this.render_panel, this);
-        this.nodes_col.on("change", this.render_panel, this);
         this.breadcrumb_col.on("reset", this.render_breadcrumb, this);
         this.breadcrumb_col.on("change-parent", this.render_breadcrumb, this);
         this.ctx_menu_model.on("change", this.render_ctx_menu, this);
@@ -88,7 +86,11 @@ class CommanderPanelView extends View {
     }
 
     on_panel_item_click(node) {
-        if (node.is_folder) {
+        if (!node) {
+            // breadcrumb's `Home` was clicked
+            // call this.folder_clicked with `undefined` node
+            this.folder_clicked.apply(this);
+        } else if (node.is_folder) {
             // invoke 'this.folder_clicked' with node as argument
             this.folder_clicked.apply(this, [node]);
         } else {
@@ -118,6 +120,7 @@ class CommanderPanelView extends View {
         // what to do when document was clicked. Just
         // inform interested parties.
         this.trigger("document_click", doc);
+        console.log(`document_click ${doc}`);
     }
 
     start_folder_clicked_feedback() {
@@ -141,6 +144,7 @@ class CommanderPanelView extends View {
             // triggers change on the node model
             node.visible = false;
         });
+        this.panel_view.render();
         this.panel_view.show_loader();
     }
 

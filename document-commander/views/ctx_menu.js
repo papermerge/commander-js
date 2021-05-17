@@ -8,14 +8,10 @@ import {
 } from "../events";
 
 
-
-const DEFAULT_TEMPLATE_NAME = "templates/ctx_menu.html";
-
-
 class CtxMenuView extends View {
 
-    get template_name() {
-        return this.options['template_name'] || DEFAULT_TEMPLATE_NAME;;
+    get default_template_name() {
+        return "templates/ctx_menu.html";
     }
 
     constructor({

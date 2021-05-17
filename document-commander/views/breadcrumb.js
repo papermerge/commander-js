@@ -9,14 +9,14 @@ import {
 } from "symposium";
 
 
-
-const DEFAULT_TEMPLATE_NAME = "templates/breadcrumb.html";
-
-
 class BreadcrumbView extends View {
 
-    get template_name() {
-        return this.options['template_name'] || DEFAULT_TEMPLATE_NAME;;
+    get default_template_name() {
+        return "templates/breadcrumb.html";
+    }
+
+    get default_template_engine() {
+        return renderman;
     }
 
     constructor({
@@ -63,7 +63,7 @@ class BreadcrumbView extends View {
 
         context['nodes'] = this.collection;
         context['root_url'] = urlconf.root_url();
-        html_breadcrumb = renderman.render(
+        html_breadcrumb = this.template_engine.render(
             this.template_name,
             context
         )

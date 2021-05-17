@@ -59,7 +59,7 @@ class Node extends Model {
     }
 
     set selected(value) {
-        if (value != this._visible) {
+        if (value != this._selected) {
             this._selected = value;
             this.trigger("change");
         }

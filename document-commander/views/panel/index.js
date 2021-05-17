@@ -1,12 +1,15 @@
 import { PanelBaseView } from "symposium";
 import { renderman } from "../../renderman";
 
-const DEFAULT_TEMPLATE_NAME = "templates/panel/grid.html";
 
 class PanelView extends PanelBaseView {
 
-    get template_name() {
-        return  this.options['template_name'] || DEFAULT_TEMPLATE_NAME;
+    get default_template_name() {
+        return "templates/panel/grid.html";
+    }
+
+    get default_template_engine() {
+        return renderman;
     }
 
     constructor({
@@ -25,14 +28,13 @@ class PanelView extends PanelBaseView {
             return html_panel;
         }
         context['objects'] = this.collection;
-        html_panel = renderman.render(
+        html_panel = this.template_engine.render(
             this.template_name,
             context
         );
 
         return html_panel;
     }
-
 };
 
 

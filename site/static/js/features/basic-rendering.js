@@ -11,12 +11,12 @@ window.addEventListener('DOMContentLoaded', () => {
     doc = new DC.Document({id: 1, title: "invoice.pdf"});
     folder = new DC.Folder({id: 2, title: "My Documents"});
 
-    doc_html = DC.render(
+    doc_html = DC.renderman.render(
         "document.html",  // path to the template
         {'node': doc}  // context
     );
 
-    folder_html = DC.render(
+    folder_html = DC.renderman.render(
         "folder.html",  // path to the template
         {'node': folder}  // context
     );
