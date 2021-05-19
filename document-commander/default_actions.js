@@ -18,11 +18,10 @@ let default_actions = [
         condition: function({selection, parent}) {
             return true;
         },
-        run: function({selection, parent})  {
+        run: function({selection})  {
             console.log(`Action ${this.id}`);
             console.log(`title ${this.title}`);
             console.log(`selection = ${selection}`);
-            console.log(`parent = ${parent}`);
         }
     },
     {
@@ -30,14 +29,13 @@ let default_actions = [
         icon_class: 'fa fa-edit',
         id: "#rename",
         enabled: false,
-        condition: function({selection, parent}) {
+        condition: function({selection}) {
             return selection.length == 1;
         },
         run: function({selection, parent}) {
             console.log(`Action ${this.id}`);
             console.log(`title ${this.title}`);
             console.log(`selection = ${selection}`);
-            console.log(`parent = ${parent}`);
         }
     },
 ];

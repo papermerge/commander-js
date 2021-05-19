@@ -63,7 +63,7 @@ class CtxMenuView extends View {
 
         // If user clicked root folder, node will be `undefined`.
         // Root breadcrumb item does not have dataset id attribute set.
-        this.trigger(EV_ACTION_CLICKED, item);
+        this.trigger(EV_CTX_MENU_ITEM_CLICK, item);
         this._dropdown_toggle();
     }
 
