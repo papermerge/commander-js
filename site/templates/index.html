@@ -6,12 +6,11 @@
     </p>
     <h1>Features Demo</h1>
     <ul>
-        <li><a href="/basic-rendering">Basic rendering</a></li>
-        <li><a href="/basic-panel-with-nodes">Basic Panel with Nodes</a></li>
-        <li><a href="/mini-browser">Mini Browser</a></li>
-        <li><a href="/slow-queries-browsing">Slow Queries Browsing</a></li>
-        <li><a href="/dual-panel-browsing">Dual Panel Browsing</a></li>
-        <li><a href="/selections-and-actions">Selections and Actions</a></li>
+        {% for feature in features %}
+            <li>
+                <a href="{{ feature.url }}">{{ feature.title }}</a>
+            </li>
+        {% endfor %}
     </ul>
   </main>
 {% endblock %}

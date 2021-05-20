@@ -1,6 +1,6 @@
-import { ActionItem } from "./models/action_item";
+import { CtxMenuItem } from "symposium";
 
-/* All functions in `default_actions` must be declared
+/* All functions in `ctx_menu_items` must be declared
 with `function` keyword.
 
 Don't use arrow function here!
@@ -10,7 +10,7 @@ from surrounding context.
 Arrow functions remember context at the time of
 definitions - a context which cannot be changed.
 */
-let default_actions = [
+let ctx_menu_items = [
     {
         title: 'New Folder',
         icon_class: 'fa fa-plus',
@@ -40,11 +40,11 @@ let default_actions = [
     },
 ];
 
-default_actions = default_actions.map(
+ctx_menu_items = ctx_menu_items.map(
     (params) => {
         let action_item;
 
-        action_item = new ActionItem(params);
+        action_item = new CtxMenuItem(params);
         /*
         Prepare correct context (i.e. `this` object) for
         the `run` function. `this` will point to
@@ -59,4 +59,4 @@ default_actions = default_actions.map(
 );
 
 
-export { default_actions }
+export { ctx_menu_items }

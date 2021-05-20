@@ -7,10 +7,39 @@ from flask import (
     request
 )
 
+global_context = {
+    'features': [
+        {
+            'url': '/01-basic-rendering',
+            'title': '01 - Basic rendering'
+        },
+        {
+            'url': '/02-basic-panel-with-nodes',
+            'title': '02 - Panel with Nodes'
+        },
+        {
+            'url': '/03-mini-browser',
+            'title': '03 - Mini Browser'
+        },
+        {
+            'url': '/04-slow-queries-browsing',
+            'title': '04 - Slow Queries Browsing'
+        },
+        {
+            'url': '/05-dual-panel-browsing',
+            'title': '05 - Dual Panel Browsing'
+        },
+        {
+            'url': '/06-selections-and-actions',
+            'title': '06 - Selections and Actions'
+        }
+    ]
+}
+
 
 def _get_template_name(req):
     name_with_slashes = req.url_rule.rule
-    template_name = name_with_slashes.replace('/', '')
+    template_name = name_with_slashes.split('/')[1]
 
     return f"{template_name}.html"
 
@@ -106,7 +135,10 @@ def create_blueprint(name, request_delay=0):
     def browser():
         template_name = f"features/{_get_template_name(request)}"
         time.sleep(request_delay)
-        return render_template(template_name)
+        return render_template(
+            template_name,
+            **global_context
+        )
 
     @blueprint.route('/folder/')
     def browser_root_folder():

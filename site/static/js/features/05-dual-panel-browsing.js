@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
         switch_2_dual;
 
 
-    DC.urlconf.prefix = '/dual-panel-browsing';
+    DC.urlconf.prefix = '/05-dual-panel-browsing';
 
     duo_commander = new DC.CommanderDualPanelView({
         'panel_left': {

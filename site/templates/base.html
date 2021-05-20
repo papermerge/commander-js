@@ -29,12 +29,11 @@
                 Features
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/basic-rendering">Basic Rendering</a></li>
-                <li><a class="dropdown-item" href="/basic-panel-with-nodes">Panel with Nodes</a></li>
-                <li><a class="dropdown-item" href="/mini-browser">Mini Browser</a></li>
-                <li><a class="dropdown-item" href="/slow-queries-browsing">Slow Queries Browsing</a></li>
-                <li><a class="dropdown-item" href="/dual-panel-browsing">Dual Panel Browsing</a></li>
-                <li><a class="dropdown-item" href="/selections-and-actions">Selections and Actions</a></li>
+                {% for feature in features %}
+                  <li class="dropdown-item">
+                      <a href="{{ feature.url }}">{{ feature.title }}</a>
+                  </li>
+                {% endfor %}
               </ul>
             </li>
             <li class="nav-item">

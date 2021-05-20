@@ -3,8 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
         commander_panel,
         nodes;
 
-
-    DC.urlconf.prefix = '/mini-browser';
+    DC.urlconf.prefix = '/04-slow-queries-browsing';
 
     commander_panel = new DC.CommanderPanelView({
         'panel': {'el': document.querySelector('#panel')},
@@ -28,5 +27,5 @@ window.addEventListener('DOMContentLoaded', () => {
     commander_panel.reset(nodes);
     commander_panel.on('document_clicked', (doc) => {
         alert(`Document id=${doc.id} title=${doc.title} clicked`);
-      });
+    });
 });

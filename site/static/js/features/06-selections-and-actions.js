@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
         commander_panel,
         nodes;
 
-    DC.urlconf.prefix = '/selections-and-actions';
+    DC.urlconf.prefix = '/06-selections-and-actions';
 
     commander_panel = new DC.CommanderPanelView({
         'panel': {'el': document.querySelector('#panel')},
