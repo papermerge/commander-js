@@ -7,19 +7,19 @@ import {
 } from "./models/index";
 import {
     PanelView,
-    CommanderPanelView,
-    CommanderDualPanelView
+    CommanderView,
 } from "./views/index";
 import { renderman } from "./renderman";
 import { urlconf } from "./urls";
+import { fetch_children } from "./requests";
 
 export {
     renderman,
     Document,
     Folder,
     PanelView,
-    CommanderPanelView,
-    CommanderDualPanelView,
+    CommanderView,
     Collection,
-    urlconf
+    urlconf,
+    fetch_children
 };

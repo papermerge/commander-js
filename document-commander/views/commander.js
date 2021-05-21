@@ -16,7 +16,7 @@ import {
 } from "symposium";
 
 
-class CommanderPanelView extends View {
+class CommanderView extends View {
 
     constructor(options={}) {
         super();
@@ -189,4 +189,4 @@ class CommanderPanelView extends View {
     }
 }
 
-export { CommanderPanelView };
+export { CommanderView };
