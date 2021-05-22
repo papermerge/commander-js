@@ -43,7 +43,7 @@ def create_app(delay_seconds=0, no_cache=False):
     )
     app.register_blueprint(
         create_blueprint('selections-and-actions', request_delay=0.3),
-        url_prefix='/06-selections-and-actions'
+        url_prefix='/05-selections-and-actions'
     )
 
     @app.route('/')

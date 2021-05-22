@@ -3,9 +3,9 @@ window.addEventListener('DOMContentLoaded', () => {
         commander_panel,
         nodes;
 
-    DC.urlconf.prefix = '/06-selections-and-actions';
+    DC.urlconf.prefix = '/05-selections-and-actions';
 
-    commander_panel = new DC.CommanderPanelView({
+    commander_panel = new DC.CommanderView({
         'panel': {'el': document.querySelector('#panel')},
         'breadcrumb': {'el': document.querySelector("#breadcrumb")},
         // context menu is attached to whole document

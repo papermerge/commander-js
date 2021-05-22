@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     DC.urlconf.prefix = '/04-slow-queries-browsing';
 
-    commander_panel = new DC.CommanderPanelView({
+    commander_panel = new DC.CommanderView({
         'panel': {'el': document.querySelector('#panel')},
         'breadcrumb': {'el': document.querySelector("#breadcrumb")}
     });

@@ -26,12 +26,8 @@ global_context = {
             'title': '04 - Slow Queries Browsing'
         },
         {
-            'url': '/05-dual-panel-browsing',
-            'title': '05 - Dual Panel Browsing'
-        },
-        {
-            'url': '/06-selections-and-actions',
-            'title': '06 - Selections and Actions'
+            'url': '/05-selections-and-actions',
+            'title': '05 - Selections and Actions'
         }
     ]
 }
