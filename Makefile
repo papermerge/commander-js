@@ -14,4 +14,4 @@ watch:
 	npx webpack --config webpack.config --watch
 
 run:
-	source ./site/.venv/bin/activate && cd site/ && ./run.sh
+	source ./playground/.venv/bin/activate && cd playground/ && ./run.sh
