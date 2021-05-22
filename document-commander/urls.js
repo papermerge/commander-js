@@ -8,7 +8,7 @@ class UrlConf {
      */
 
     constructor(prefix="/browser") {
-        this.prefix = prefix;
+        this._prefix = prefix;
     }
 
     folder_url(folder) {
@@ -42,6 +42,14 @@ class UrlConf {
 
     root_url() {
         return this.prefix;
+    }
+
+    set prefix(value) {
+        this._prefix = value;
+    }
+
+    get prefix() {
+        return this._prefix;
     }
 }
 
