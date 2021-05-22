@@ -17,6 +17,35 @@ import {
 
 
 class CommanderView extends View {
+    /*
+    Think of CommanderView as build from several pieces interacting one with
+    another. These pieces are as follows:
+
+        * Panel
+        * Breadcrumb
+        * Context Menu
+
+    Panel is a collection of nodes. A node can be either a folder or a document
+    (document model in this case, don't confuse with DOM concept of document).
+
+    Breadcrumb is a collection of folders which indicates the current
+    location of the nodes listed in Panel.
+
+    Context Menu is a collection of items which trigger different actions.
+
+    * CommanderView receives as argument an options
+    dictionary with following keys:
+
+        * el
+        * panel
+        * breadcrumb
+        * ctx_menu
+
+    Following keys `panel`, `breadcrumb` and `ctx_menu` are passed down to the
+    respective views i.e. whatever is in `panel` key will be verbatim
+    transmitted as options to the PanelView, whatever is in `breadcrumb` key
+    will be transmitted verbatim to the BreadcrumbView etc.
+    */
 
     constructor(options={}) {
         super();
