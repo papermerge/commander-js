@@ -135,11 +135,10 @@ class CommanderView extends View {
     }
 
     document_clicked(doc) {
-        // Panel does not know (and rightfully so)
+        // Commander does not know (and rightfully so)
         // what to do when document was clicked. Just
         // inform interested parties.
-        this.trigger("document_click", doc);
-        console.log(`document_click ${doc}`);
+        this.trigger("document-click", doc);
     }
 
     start_folder_clicked_feedback() {
@@ -186,6 +185,10 @@ class CommanderView extends View {
     reset(item_or_items) {
         this.nodes_col.reset(item_or_items);
         this.breadcrumb_col.reset(new Collection());
+    }
+
+    toString() {
+        return `CommanderView`;
     }
 }
 
