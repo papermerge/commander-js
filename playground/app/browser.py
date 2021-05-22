@@ -28,6 +28,14 @@ global_context = {
         {
             'url': '/05-selections-and-actions',
             'title': '05 - Selections and Actions'
+        },
+        {
+            'url': '/06-default-templates',
+            'title': '06 - Default Templates'
+        },
+        {
+            'url': '/07-open-close',
+            'title': '07 - Multiple Open/Close Sequences'
         }
     ]
 }

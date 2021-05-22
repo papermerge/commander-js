@@ -45,6 +45,14 @@ def create_app(delay_seconds=0, no_cache=False):
         create_blueprint('selections-and-actions', request_delay=0.3),
         url_prefix='/05-selections-and-actions'
     )
+    app.register_blueprint(
+        create_blueprint('default-templates', request_delay=0.2),
+        url_prefix='/06-default-templates'
+    )
+    app.register_blueprint(
+        create_blueprint('open-close', request_delay=0.2),
+        url_prefix='/05-open-close'
+    )
 
     @app.route('/')
     def index():
