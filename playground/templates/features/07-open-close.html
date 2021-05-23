@@ -11,7 +11,24 @@
       User can trigger multiple open/close sequences (eventually with different folder root each). In such case commander will "appear" and "disappear" i.e. open and close.
     </p>
     <div id="selections-and-actions" class="showroom">
-        <div id="commander">
+      <div>
+        <select id="which-commander">
+          <option value="#commander1">Commander 1</option>
+          <option value="#commander2">Commander 2</option>
+        </select>
+
+        <select id="which-action">
+          <option value="open">Open</option>
+          <option value="close">Close</option>
+          <option value="insert-dummy">Insert Dummy</option>
+        </select>
+
+        <a class="btn btn-success" id="go">Go</a>
+      </div>
+
+        <div id="commander1">
+        </div>
+        <div id="commander2">
         </div>
     </div>
   </main>

@@ -169,6 +169,13 @@ class CommanderView extends View {
         });
     }
 
+    open() {
+        return this.initial_fetch();
+    }
+
+    close() {
+    }
+
     get_selection() {
         return this.nodes_col.filter(
             (node) => { return node.is_selected; }
