@@ -8,9 +8,9 @@ window.addEventListener('DOMContentLoaded', () => {
     commander_panel = new DC.CommanderView({
         'panel': {'el': document.querySelector('#panel')},
         'breadcrumb': {'el': document.querySelector("#breadcrumb")},
-        // context menu is attached to whole document
         'ctx_menu': {
-            'el': document,
+            // context menu root element
+            'el': document.querySelector("#selections-and-actions"),
             'el_menu': document.querySelector("#ctx-menu")
         }
     });

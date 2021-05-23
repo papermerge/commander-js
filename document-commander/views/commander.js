@@ -61,15 +61,48 @@ class CommanderView extends View {
         return renderman;
     }
 
-    get default_ctx_menu_options() {
+    get ctx_menu_options() {
+        /*
+            If this.el is defined, it means that commander
+            was build from its own template and it is attached
+            to the root DOM element (this.el).
+            In this case, context menu will have same root element
+            as commander (i.e. it will listen to all clicks starting
+            from this.el) and will attach rendered menu items to the
+            .ctx-menu class element found under this.el.
+
+            If this.el is not defined, this means ctx menu will
+            be a DOM element provided by this.options['ctx_menu'] i.e.
+            user desires custom context menu DOM element.
+        */
         if (this.el) {
             return {
-                'el': document,
+                'el': this.el,
                 'el_menu': this.el.querySelector('.ctx-menu')
             }
         }
 
-        return {};
+        return this.options['ctx_menu'];
+    }
+
+    get breadcrumb_options() {
+        if (this.el) {
+            return {
+                'el': this.el.querySelector('.breadcrumb')
+            }
+        }
+
+        return this.options['breadcrumb'];
+    }
+
+    get panel_options() {
+        if (this.el) {
+            return {
+                'el': this.el.querySelector('.panel')
+            }
+        }
+
+        return this.options['panel'];
     }
 
     constructor(options={}) {
@@ -77,24 +110,24 @@ class CommanderView extends View {
 
         this.options = options;
         if (this.el) {
-            // if el was provided, build commander
+            // if root el was provided, build commander
             // from its own default template
             this.render();
         }
         this.nodes_col = new Collection();
         this.panel_view = new PanelView({
             collection: this.nodes_col,
-            options: options['panel'] || {'el': '.panel'}
+            options: this.panel_options
         });
         this.breadcrumb_col = new Breadcrumb();
         this.breadcrumb_view = new BreadcrumbView({
             collection: this.breadcrumb_col,
-            options: options['breadcrumb'] || {'el': '.breadcrumb'}
+            options: this.breadcrumb_options
         });
         this.ctx_menu_col = new CtxMenu();
         this.ctx_menu_view = new CtxMenuView({
             collection: this.ctx_menu_col,
-            options: options['ctx_menu'] || this.default_ctx_menu_options
+            options: this.ctx_menu_options
         });
 
         this.nodes_col.on("reset", this.render_panel, this);
