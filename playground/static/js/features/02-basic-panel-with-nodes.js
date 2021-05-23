@@ -15,22 +15,23 @@ window.addEventListener('DOMContentLoaded', () => {
         new DC.Document({id: 2, title: 'invoice2.pdf'}),
         new DC.Folder({id: 3, title: 'My Document'})
     ]);
+
     panel_list_view = new DC.PanelView({
         collection: nodes,
         options: {
+            'el': '#panel-list',
             'template_name': 'templates/panel/list.html'
         }
     });
+
     panel_grid_view = new DC.PanelView({
         collection: nodes,
         options: {
+            'el': '#panel-grid',
             'template_name': 'templates/panel/grid.html'
         }
     });
 
     panel_list_html = panel_list_view.render();
     panel_grid_html = panel_grid_view.render();
-
-    document.querySelector("#panel-list").innerHTML = panel_list_html;
-    document.querySelector("#panel-grid").innerHTML = panel_grid_html;
 });

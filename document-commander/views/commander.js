@@ -61,6 +61,17 @@ class CommanderView extends View {
         return renderman;
     }
 
+    get default_ctx_menu_options() {
+        if (this.el) {
+            return {
+                'el': document,
+                'el_menu': this.el.querySelector('.ctx-menu')
+            }
+        }
+
+        return {};
+    }
+
     constructor(options={}) {
         super(options);
 
@@ -83,7 +94,7 @@ class CommanderView extends View {
         this.ctx_menu_col = new CtxMenu();
         this.ctx_menu_view = new CtxMenuView({
             collection: this.ctx_menu_col,
-            options: options['ctx_menu'] || {'el': '.ctx-menu'}
+            options: options['ctx_menu'] || this.default_ctx_menu_options
         });
 
         this.nodes_col.on("reset", this.render_panel, this);
