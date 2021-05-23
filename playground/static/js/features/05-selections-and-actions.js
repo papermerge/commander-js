@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     commander_panel.initial_fetch();
-    commander_panel.on('document_clicked', (doc) => {
+    commander_panel.on('document-click', (doc) => {
         alert(`Document id=${doc.id} title=${doc.title} clicked`);
     });
 });
