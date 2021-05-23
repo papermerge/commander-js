@@ -51,7 +51,7 @@ def create_app(delay_seconds=0, no_cache=False):
     )
     app.register_blueprint(
         create_blueprint('open-close', request_delay=0.2),
-        url_prefix='/05-open-close'
+        url_prefix='/07-open-close'
     )
 
     @app.route('/')

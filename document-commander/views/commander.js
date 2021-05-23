@@ -1,5 +1,6 @@
 import { Collection, View } from "symposium";
 import { CtxMenu } from "symposium";
+import { renderman } from "../renderman";
 
 import { PanelView } from "./panel/index";
 import { BreadcrumbView } from "./breadcrumb";
@@ -45,26 +46,45 @@ class CommanderView extends View {
     respective views i.e. whatever is in `panel` key will be verbatim
     transmitted as options to the PanelView, whatever is in `breadcrumb` key
     will be transmitted verbatim to the BreadcrumbView etc.
+
+    `el` key if present - instructs CommanderView to built itself using predefined
+    template and attach it self to the `el`.
+    `el` is the DOM element to which commander will attach itself.
+    If `el` is ommited, you need to provide DOM elements for each individual
+    component of the commander - panel, breadcrumb, ctx_menu.
     */
+    get default_template_name() {
+        return "templates/commander.html";
+    }
+
+    get default_template_engine() {
+        return renderman;
+    }
 
     constructor(options={}) {
-        super();
+        super(options);
+
+        this.options = options;
+        if (this.el) {
+            // if el was provided, build commander
+            // from its own default template
+            this.render();
+        }
         this.nodes_col = new Collection();
         this.panel_view = new PanelView({
             collection: this.nodes_col,
-            options: options['panel']
+            options: options['panel'] || {'el': '.panel'}
         });
         this.breadcrumb_col = new Breadcrumb();
         this.breadcrumb_view = new BreadcrumbView({
             collection: this.breadcrumb_col,
-            options: options['breadcrumb']
+            options: options['breadcrumb'] || {'el': '.breadcrumb'}
         });
         this.ctx_menu_col = new CtxMenu();
         this.ctx_menu_view = new CtxMenuView({
             collection: this.ctx_menu_col,
-            options: options['ctx_menu']
+            options: options['ctx_menu'] || {'el': '.ctx-menu'}
         });
-        this.options = options;
 
         this.nodes_col.on("reset", this.render_panel, this);
         this.breadcrumb_col.on("reset", this.render_breadcrumb, this);
@@ -99,9 +119,9 @@ class CommanderView extends View {
 
         fetch_children(folder).then((nodes) => {
             that.nodes_col.reset(nodes);
-            this.breadcrumb_col.change_parent(folder);
+            that.breadcrumb_col.change_parent(folder);
         }).catch((error) => {
-            alert(`Error while fetchinf folder '${folder}': ${error}`);
+            alert(`Error while fetching folder '${folder}': ${error}`);
         });
     }
 
@@ -214,6 +234,17 @@ class CommanderView extends View {
     reset(item_or_items) {
         this.nodes_col.reset(item_or_items);
         this.breadcrumb_col.reset(new Collection());
+    }
+
+    render_to_string() {
+        let html, context = {};
+
+        html = this.template_engine.render(
+            this.template_name,
+            context
+        );
+
+        return html;
     }
 
     toString() {

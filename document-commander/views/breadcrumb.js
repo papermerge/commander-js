@@ -26,7 +26,6 @@ class BreadcrumbView extends View {
         super(options);
         this.collection = collection;
         this.options = options;
-        this.el = options['el'];
     }
 
     events() {
