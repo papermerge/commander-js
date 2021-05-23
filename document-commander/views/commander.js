@@ -236,17 +236,6 @@ class CommanderView extends View {
         this.breadcrumb_col.reset(new Collection());
     }
 
-    render_to_string() {
-        let html, context = {};
-
-        html = this.template_engine.render(
-            this.template_name,
-            context
-        );
-
-        return html;
-    }
-
     toString() {
         return `CommanderView`;
     }
