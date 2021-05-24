@@ -24,6 +24,8 @@ window.addEventListener('DOMContentLoaded', () => {
         new DC.Folder({id: 3, title: "My Documents"})
     );
 
+    commander_panel.create_views();
+
     commander_panel.reset(nodes);
     commander_panel.on('document-click', (doc) => {
         alert(`Document id=${doc.id} title=${doc.title} clicked`);

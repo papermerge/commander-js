@@ -115,17 +115,6 @@ class CommanderView extends View {
         this.ctx_menu_col = new CtxMenu();
     }
 
-    initial_fetch(folder) {
-        let that = this;
-
-        fetch_children(folder).then((nodes) => {
-            that.nodes_col.reset(nodes);
-            that.breadcrumb_col.change_parent(folder);
-        }).catch((error) => {
-            alert(`Error while fetching folder '${folder}': ${error}`);
-        });
-    }
-
     create_views() {
 
         if (this.el) { // created from default template?
@@ -176,8 +165,16 @@ class CommanderView extends View {
     }
 
     open(folder) {
+        let that = this;
+
         this.create_views();
-        return this.initial_fetch(folder);
+
+        fetch_children(folder).then((nodes) => {
+            that.nodes_col.reset(nodes);
+            that.breadcrumb_col.change_parent(folder);
+        }).catch((error) => {
+            alert(`Error while fetching folder '${folder}': ${error}`);
+        });
     }
 
     close() {
