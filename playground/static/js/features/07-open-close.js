@@ -25,7 +25,7 @@ function _attach_dummy(dom_id) {
 
     dummy = document.querySelector(dom_id);
 
-    dummy.innerHTML = '<div class="dummy"></div>';
+    dummy.innerHTML = '<a href="#" class="dummy">I am dummy</a>';
     dummy.querySelector('.dummy').addEventListener("click", () => {
         console.log(".dummy click");
     });
@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', () => {
             _open(commander, undefined, which_commander.value);
         } else if ( which_action.value == "close" ) {
             _close(commander);
-        } else if (which_action == "insert-dummy") {
+        } else if (which_action.value == "insert-dummy") {
             _attach_dummy(which_commander.value);
         }
     });

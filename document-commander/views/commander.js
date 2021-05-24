@@ -109,22 +109,39 @@ class CommanderView extends View {
         super(options);
 
         this.options = options;
-        if (this.el) {
-            // if root el was provided, build commander
-            // from its own default template
+
+        this.nodes_col = new Collection();
+        this.breadcrumb_col = new Breadcrumb();
+        this.ctx_menu_col = new CtxMenu();
+    }
+
+    initial_fetch(folder) {
+        let that = this;
+
+        fetch_children(folder).then((nodes) => {
+            that.nodes_col.reset(nodes);
+            that.breadcrumb_col.change_parent(folder);
+        }).catch((error) => {
+            alert(`Error while fetching folder '${folder}': ${error}`);
+        });
+    }
+
+    create_views() {
+
+        if (this.el) { // created from default template?
             this.render();
         }
-        this.nodes_col = new Collection();
+
         this.panel_view = new PanelView({
             collection: this.nodes_col,
             options: this.panel_options
         });
-        this.breadcrumb_col = new Breadcrumb();
+
         this.breadcrumb_view = new BreadcrumbView({
             collection: this.breadcrumb_col,
             options: this.breadcrumb_options
         });
-        this.ctx_menu_col = new CtxMenu();
+
         this.ctx_menu_view = new CtxMenuView({
             collection: this.ctx_menu_col,
             options: this.ctx_menu_options
@@ -158,22 +175,31 @@ class CommanderView extends View {
         this.ctx_menu_col.reset(ctx_menu_items);
     }
 
-    initial_fetch(folder) {
-        let that = this;
-
-        fetch_children(folder).then((nodes) => {
-            that.nodes_col.reset(nodes);
-            that.breadcrumb_col.change_parent(folder);
-        }).catch((error) => {
-            alert(`Error while fetching folder '${folder}': ${error}`);
-        });
-    }
-
-    open() {
-        return this.initial_fetch();
+    open(folder) {
+        this.create_views();
+        return this.initial_fetch(folder);
     }
 
     close() {
+
+        if (this.panew_view) {
+            this.panel_view.undelegateEvents();
+            this.panel_view = undefined;
+        }
+
+        if (this.breadcrumb_view) {
+            this.breadcrumb_view.undelegateEvents();
+            this.breadcrumb_view = undefined;
+        }
+
+        if (this.ctx_menu_view) {
+            this.ctx_menu_view.undelegateEvents();
+            this.ctx_menu_view = undefined;
+        }
+
+        if( this.el ) {
+            this.el.innerHTML = "";
+        }
     }
 
     get_selection() {
