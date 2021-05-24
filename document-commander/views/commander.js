@@ -29,8 +29,8 @@ class CommanderView extends View {
     Panel is a collection of nodes. A node can be either a folder or a document
     (document model in this case, don't confuse with DOM concept of document).
 
-    Breadcrumb is a collection of folders which indicates the current
-    location of the nodes listed in Panel.
+    Breadcrumb is a collection of folders that indicates the current
+    location witin the Panel.
 
     Context Menu is a collection of items which trigger different actions.
 

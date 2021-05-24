@@ -11,11 +11,10 @@ window.addEventListener('DOMContentLoaded', () => {
         'ctx_menu': {
             // context menu root element
             'el': document.querySelector("#selections-and-actions"),
-            'el_menu': document.querySelector("#ctx-menu")
+            'el_menu': document.querySelector("div.ctx-menu")
         }
     });
 
-    commander_panel.create_views();
     commander_panel.open();
     commander_panel.on('document-click', (doc) => {
         alert(`Document id=${doc.id} title=${doc.title} clicked`);
