@@ -41,11 +41,13 @@ class CommanderView extends View {
 
     (1) - Create CommanderView from External DOM Elements
 
-    Instanciate CommanderView this way when you want more control on what DOM elements
-are used for each individual component (panel, breadcrumb, context menu).
-    In this case CommanderView DOES NOT HAVE it's own internal DOM root element: commander_view.el won't not defined.
+    Instanciate CommanderView this way when you want more control on what DOM
+elements are used for each individual component (panel, breadcrumb, context
+menu). In this case CommanderView DOES NOT HAVE it's own internal DOM root
+element: commander_view.el won't not defined.
 
-    When CommanderView is created from external DOM elements it must receive as arguments following keys:
+    When CommanderView is created from external DOM elements it must receive
+    as arguments following keys:
 
         * panel
         * breadcrumb
@@ -76,9 +78,26 @@ are used for each individual component (panel, breadcrumb, context menu).
 
         commander_view = new DC.CommanderView({'el': "#commander"});
 
-    `el` is the DOM element to which commander will attach itself.
-    In this case commander_view.el is defined and points the "#commander" DOM
+    `el` is the DOM element to which commander will attach itself. In this
+    case commander_view.el is defined and points the "#commander" DOM
     HTMLElement.
+
+    Once you have an reference to CommanderView, you can render it in two
+    distinct ways:
+
+        (A) using `open` method
+        (B) using `create_views` and then `reset` method.
+
+    (A) Use `open` Method
+
+    High level API method `open` will render for you all nodes
+    of the folder provided as argument. If `open` does not have any argument
+    root nodes are rendered.
+
+    (B) Use `create_views` and then `reset`
+
+    This method give you more control.
+
     */
     get default_template_name() {
         return "templates/commander.html";
