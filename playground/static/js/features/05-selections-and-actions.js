@@ -1,11 +1,10 @@
 window.addEventListener('DOMContentLoaded', () => {
     let DC = DocumentCommander,
-        commander_panel,
-        nodes;
+        commander_view;
 
     DC.urlconf.prefix = '/05-selections-and-actions';
 
-    commander_panel = new DC.CommanderView({
+    commander_view = new DC.CommanderView({
         'panel': {'el': document.querySelector('#panel')},
         'breadcrumb': {'el': document.querySelector("#breadcrumb")},
         'ctx_menu': {
@@ -15,8 +14,8 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    commander_panel.open();
-    commander_panel.on('document-click', (doc) => {
+    commander_view.open();
+    commander_view.on('document-click', (doc) => {
         alert(`Document id=${doc.id} title=${doc.title} clicked`);
     });
 });

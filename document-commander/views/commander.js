@@ -34,10 +34,19 @@ class CommanderView extends View {
 
     Context Menu is a collection of items which trigger different actions.
 
-    * CommanderView receives as argument an options
-    dictionary with following keys:
+    CommanderView can be instanciated in two distinct ways:
 
-        * el
+        (1) from external dom elements
+        (2) from its own default template
+
+    (1) - Create CommanderView from External DOM Elements
+
+    Instanciate CommanderView this way when you want more control on what DOM elements
+are used for each individual component (panel, breadcrumb, context menu).
+    In this case CommanderView DOES NOT HAVE it's own internal DOM root element: commander_view.el won't not defined.
+
+    When CommanderView is created from external DOM elements it must receive as arguments following keys:
+
         * panel
         * breadcrumb
         * ctx_menu
@@ -47,11 +56,29 @@ class CommanderView extends View {
     transmitted as options to the PanelView, whatever is in `breadcrumb` key
     will be transmitted verbatim to the BreadcrumbView etc.
 
-    `el` key if present - instructs CommanderView to built itself using predefined
-    template and attach it self to the `el`.
+    For example:
+
+        commander_view = new DC.CommanderView({
+            'panel': {'el': document.querySelector('#panel')},
+            'breadcrumb': {'el': document.querySelector("#breadcrumb")},
+            'ctx_menu': {
+                'el': document.querySelector("#selections-and-actions"),
+                'el_menu': document.querySelector("div.ctx-menu")
+            }
+        });
+
+    (2) - Create CommanderView from Its Own Default Template
+
+    In this case CommanderView will be created from 'defaults': you provide
+    just a DOM element where to attach (and render) commander.
+
+    For example:
+
+        commander_view = new DC.CommanderView({'el': "#commander"});
+
     `el` is the DOM element to which commander will attach itself.
-    If `el` is ommited, you need to provide DOM elements for each individual
-    component of the commander - panel, breadcrumb, ctx_menu.
+    In this case commander_view.el is defined and points the "#commander" DOM
+    HTMLElement.
     */
     get default_template_name() {
         return "templates/commander.html";

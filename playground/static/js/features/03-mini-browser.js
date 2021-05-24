@@ -1,12 +1,12 @@
 window.addEventListener('DOMContentLoaded', () => {
     let DC = DocumentCommander,
-        commander_panel,
+        commander_view,
         nodes;
 
 
     DC.urlconf.prefix = '/03-mini-browser';
 
-    commander_panel = new DC.CommanderView({
+    commander_view = new DC.CommanderView({
         'panel': {'el': document.querySelector('#panel')},
         'breadcrumb': {'el': document.querySelector("#breadcrumb")}
     });
@@ -25,10 +25,10 @@ window.addEventListener('DOMContentLoaded', () => {
         new DC.Folder({id: 3, title: "My Documents"})
     );
 
-    commander_panel.create_views();
+    commander_view.create_views();
 
-    commander_panel.reset(nodes);
-    commander_panel.on('document-click', (doc) => {
+    commander_view.reset(nodes);
+    commander_view.on('document-click', (doc) => {
         alert(`Document id=${doc.id} title=${doc.title} clicked`);
       });
 });
