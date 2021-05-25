@@ -225,7 +225,7 @@ element: commander_view.el won't not defined.
 
     close() {
 
-        if (this.panew_view) {
+        if (this.panel_view) {
             this.panel_view.undelegateEvents();
             this.panel_view = undefined;
         }
