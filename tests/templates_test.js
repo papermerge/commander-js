@@ -1,7 +1,7 @@
 import { assert } from "chai";
 
 import { renderman } from '../document-commander/renderman';
-import { exceptions } from 'symposium';
+import { exceptions } from '@papermerge/symposium';
 
 
 describe("Templates API test suite", () => {

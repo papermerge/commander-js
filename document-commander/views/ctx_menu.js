@@ -1,4 +1,4 @@
-import { CtxMenuBaseView } from "symposium";
+import { CtxMenuBaseView } from "@papermerge/symposium";
 import { renderman } from "../renderman";
 
 class CtxMenuView extends CtxMenuBaseView {

@@ -1,4 +1,4 @@
-import { CtxMenuItem } from "symposium";
+import { CtxMenuItem } from "@papermerge/symposium";
 
 /* All functions in `ctx_menu_items` must be declared
 with `function` keyword.

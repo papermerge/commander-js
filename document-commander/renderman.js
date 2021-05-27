@@ -1,4 +1,4 @@
-import { Renderman } from "symposium";
+import { Renderman } from "@papermerge/symposium";
 
 import { templates_map } from "./templates/index";
 

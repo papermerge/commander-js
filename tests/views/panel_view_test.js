@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { Collection } from "symposium";
+import { Collection } from "@papermerge/symposium";
 import { PanelView } from "../../document-commander/views/panel/index";
 import {
     Document,

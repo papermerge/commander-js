@@ -1,4 +1,4 @@
-import { Collection } from "symposium";
+import { Collection } from "@papermerge/symposium";
 
 
 class Breadcrumb extends Collection {

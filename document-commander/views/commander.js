@@ -1,5 +1,5 @@
-import { Collection, View } from "symposium";
-import { CtxMenu } from "symposium";
+import { Collection, View } from "@papermerge/symposium";
+import { CtxMenu } from "@papermerge/symposium";
 import { renderman } from "../renderman";
 
 import { PanelView } from "./panel/index";
@@ -14,7 +14,7 @@ import {
     EV_PANEL_ITEM_CLICK,
     EV_PANEL_ITEM_SELECTED,
     EV_CTX_MENU_ITEM_CLICK
-} from "symposium";
+} from "@papermerge/symposium";
 
 
 class CommanderView extends View {

@@ -1,4 +1,4 @@
-import { Model } from "symposium";
+import { Model } from "@papermerge/symposium";
 import { Metadata } from "./metadata";
 
 class Node extends Model {

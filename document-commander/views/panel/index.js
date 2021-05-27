@@ -1,4 +1,4 @@
-import { PanelBaseView } from "symposium";
+import { PanelBaseView } from "@papermerge/symposium";
 import { renderman } from "../../renderman";
 
 

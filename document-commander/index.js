@@ -1,6 +1,6 @@
 import "./assets/scss/index.scss";
 
-import { Collection } from "symposium";
+import { Collection } from "@papermerge/symposium";
 import {
     Document,
     Folder,

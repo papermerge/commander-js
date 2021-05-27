@@ -1,4 +1,4 @@
-import { View } from "symposium";
+import { View } from "@papermerge/symposium";
 import { renderman } from "../renderman";
 import { urlconf } from "../urls";
 
@@ -6,7 +6,7 @@ import { Breadcrumb } from "../models/breadcrumb";
 
 import {
     EV_PANEL_ITEM_CLICK,
-} from "symposium";
+} from "@papermerge/symposium";
 
 
 class BreadcrumbView extends View {

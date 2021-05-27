@@ -1,6 +1,6 @@
 import { assert } from "chai";
 
-import { Collection } from "symposium";
+import { Collection } from "@papermerge/symposium";
 
 import { CommanderView } from "../../document-commander/views/commander";
 
