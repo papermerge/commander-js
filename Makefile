@@ -15,3 +15,6 @@ watch:
 
 run:
 	source ./playground/.venv/bin/activate && cd playground/ && ./run.sh
+
+publish:
+	npm publish --access public
