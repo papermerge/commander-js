@@ -1,15 +1,16 @@
-import { View } from "@papermerge/symposium";
-import { renderman } from "../renderman";
-import { urlconf } from "../urls";
-
-import { Breadcrumb } from "../models/breadcrumb";
+import { BreadcrumbBaseView } from "@papermerge/symposium";
+import { Breadcrumb } from "@papermerge/symposium";
 
 import {
     EV_PANEL_ITEM_CLICK,
 } from "@papermerge/symposium";
 
 
-class BreadcrumbView extends View {
+import { renderman } from "../renderman";
+import { urlconf } from "../urls";
+
+
+class BreadcrumbView extends BreadcrumbBaseView {
 
     get default_template_name() {
         return "templates/breadcrumb.html";
@@ -19,55 +20,13 @@ class BreadcrumbView extends View {
         return renderman;
     }
 
-    constructor({
-        collection=new Breadcrumb(),
-        options={}
-    }) {
-        super(options);
-        this.collection = collection;
-        this.options = options;
-    }
-
-    events() {
-        // DOM events
-        let event_map = {
-            "click li.item > a": "on_item_clicked",
-        }
-        return event_map;
-    }
-
-    on_item_clicked(event) {
-        let target = event.currentTarget,
-        node_id,
-        node;
-
-        event.preventDefault();
-        // vanilla js equivalent of $(...).data('id');
-        node_id = target.dataset.id;
-
-        if (!this.collection) {
-            return;
-        }
-
-        node = this.collection.get({id: node_id});
-
-        // If user clicked root folder, node will be `undefined`.
-        // Root breadcrumb item does not have dataset id attribute set.
-        this.trigger(EV_PANEL_ITEM_CLICK, node);
-    }
-
-    render_to_string() {
-
-        let html_breadcrumb, context = {};
+    get default_context() {
+        let context = {};
 
         context['nodes'] = this.collection;
         context['root_url'] = urlconf.root_url();
-        html_breadcrumb = this.template_engine.render(
-            this.template_name,
-            context
-        )
 
-        return html_breadcrumb;
+        return context;
     }
 };
 

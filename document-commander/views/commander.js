@@ -1,11 +1,12 @@
 import { Collection, View } from "@papermerge/symposium";
 import { CtxMenu } from "@papermerge/symposium";
+import { Breadcrumb } from "@papermerge/symposium";
+
 import { renderman } from "../renderman";
 
 import { PanelView } from "./panel/index";
 import { BreadcrumbView } from "./breadcrumb";
 
-import { Breadcrumb } from "../models/breadcrumb";
 import { CtxMenuView } from "./ctx_menu";
 import { fetch_children } from "../requests";
 import { ctx_menu_items } from "../ctx_menu_items";
