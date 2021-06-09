@@ -100,6 +100,17 @@ element: commander_view.el won't not defined.
     This method give you more control.
 
     */
+
+    constructor(options={}) {
+        super(options);
+
+        this.options = options;
+
+        this.nodes_col = new Collection();
+        this.breadcrumb_col = new Breadcrumb();
+        this.ctx_menu_col = new CtxMenu();
+    }
+
     get default_template_name() {
         return "templates/commander.html";
     }
@@ -152,14 +163,8 @@ element: commander_view.el won't not defined.
         return this.options['panel'];
     }
 
-    constructor(options={}) {
-        super(options);
-
-        this.options = options;
-
-        this.nodes_col = new Collection();
-        this.breadcrumb_col = new Breadcrumb();
-        this.ctx_menu_col = new CtxMenu();
+    get breadcrumb() {
+        return this.breadcrumb_col;
     }
 
     create_views() {
