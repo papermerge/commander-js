@@ -216,14 +216,18 @@ element: commander_view.el won't not defined.
         this.ctx_menu_col.reset(ctx_menu_items);
     }
 
-    open(folder) {
+    open({folder, breadcrumb}) {
         let that = this;
 
         this.create_views();
 
         fetch_children(folder).then((nodes) => {
             that.nodes_col.reset(nodes);
-            that.breadcrumb_col.change_parent(folder);
+            if (!breadcrumb) {
+                that.breadcrumb_col.change_parent(folder);
+            } else {
+                that.breadcrumb_col.reset(breadcrumb);
+            }
         }).catch((error) => {
             alert(`Error while fetching folder '${folder}': ${error}`);
         });
