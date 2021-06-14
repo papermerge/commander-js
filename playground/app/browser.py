@@ -36,6 +36,10 @@ global_context = {
         {
             'url': '/07-open-close',
             'title': '07 - Multiple Open/Close Sequences'
+        },
+        {
+            'url': '/08-with-action-buttons',
+            'title': '08 - With Action Buttons'
         }
     ]
 }

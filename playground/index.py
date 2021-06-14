@@ -53,6 +53,10 @@ def create_app(delay_seconds=0, no_cache=False):
         create_blueprint('open-close', request_delay=0.2),
         url_prefix='/07-open-close'
     )
+    app.register_blueprint(
+        create_blueprint('with-action-buttons', request_delay=0.1),
+        url_prefix='/08-with-action-buttons'
+    )
 
     @app.route('/')
     def index():
