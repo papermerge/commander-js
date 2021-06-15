@@ -1,0 +1,9 @@
+<ul class="nav nav-pills action-buttons">
+    {% for item in items %}
+        {% if item.has_perm %}
+            <li class="mr-1">
+                <button type="button" name="{{ item.name }}" class="btn placeholder">{{ item.title }}</button>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

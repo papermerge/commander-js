@@ -1,4 +1,26 @@
 <div class="ctx-menu"></div>
+<div class="action-buttons-wrapper d-flex justify-content-between">
+    <div class="action-buttons-wrapper">
+        <ul class="nav nav-pills action-buttons">
+            {% for x in [1, 2, 3] %}
+                <li class="mr-1">
+                    <!-- placeholder - will be replaced when view is fully loaded -->
+                    <button type="button" class="btn placeholder">Upload</button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="action-modes-wrapper">
+        <ul class="nav nav-pills action-modes">
+            {% for x in [1, 2, 3, 4] %}
+            <!-- placeholder - will be replaced when view is fully loaded -->
+                <li class="mr-1">
+                    <button type="button" class="btn placeholder">OK</button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div> <!-- action buttons wrapper -->
 <div class="breadcrumb">
   <ol class="breadcrumb">
       {% for x in [1, 2, 3] %}

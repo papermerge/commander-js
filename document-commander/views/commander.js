@@ -216,7 +216,7 @@ element: commander_view.el won't not defined.
         this.ctx_menu_col.reset(ctx_menu_items);
     }
 
-    open({folder, breadcrumb}) {
+    open({folder, breadcrumb}={}) {
         let that = this;
 
         this.create_views();
