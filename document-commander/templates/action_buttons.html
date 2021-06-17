@@ -1,8 +1,16 @@
 <ul class="nav nav-pills action-buttons">
     {% for item in items %}
         {% if item.has_perm %}
-            <li class="mr-1">
-                <button type="button" name="{{ item.name }}" class="btn placeholder">{{ item.title }}</button>
+            <li class="mx-1">
+                <button
+                    type="button"
+                    name="{{ item.name }}"
+                    class="btn btn-outline-dark d-flex align-items-center">
+                        <i class="{{ item.css_icon_class }} text-success"></i>
+                        <div class="mx-2">
+                            {{ item.title }}
+                        </div>
+                </button>
             </li>
         {% endif %}
     {% endfor %}

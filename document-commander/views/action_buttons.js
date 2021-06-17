@@ -1,4 +1,4 @@
-import { View } from "@papermerge/symposium";p
+import { View } from "@papermerge/symposium";
 import { renderman } from "../renderman";
 
 class ActionButtonsView extends View {

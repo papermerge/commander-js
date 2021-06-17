@@ -1,26 +1,30 @@
 <ul class="nav nav-pills action-modes">
     {% for item in items %}
-        <li class="mr-1">
-            <button type="button" class="btn btn-light dropdown-toggle">
-                <i class="{{ item.title_css_class }}"></i>
+        <li class="mx-1 {% if item.sub_items %}dropdown{% endif %}">
+            <button  id="{{item.id}}" type="button"  data-bs-toggle="dropdown" class="btn btn-outline-dark {% if item.sub_items %}dropdown-toggle{% endif %}">
+                <i class="{{ item.css_icon_class }}"></i>
             </button>
-            <ul class="dropdown-menu dropdown-menu-right">
-                {% for sub_item in item %}
-                    {% if sub_item.is_divider %}
-                        <li><hr class="dropdown-divider"></li>
-                    {% else %}
-                        <li><a href="#" class="dropdown-item {{sub_item.css_class}}">
-                            {% if sub_item.css_icon_class %}
-                                <i class="{{ sub_item.css_icon_class }}"></i>
-                            {% endif %}
-                            <span class="px-2">{{ sub_item.title }}</span>
-                            {% if sub_item.is_checked %}
-                                <i class="bi-check text-green"></i>
-                            {% endif %}
-                        </a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+            {% if item.sub_items %}
+                <ul class="dropdown-menu" aria-expand="false" aria-labelledby="{{ item.id }}">
+            {% endif %}
+            {% for sub_item in item.sub_items %}
+                {% if sub_item.is_divider %}
+                    <li class="dropdown-item"><hr class="dropdown-divider"></li>
+                {% else %}
+                    <li class="dropdown-item"><div href="#" class="{{sub_item.css_class}}">
+                        {% if sub_item.css_icon_class %}
+                            <i class="{{ sub_item.css_icon_class }}"></i>
+                        {% endif %}
+                        <span class="px-2">{{ sub_item.title }}</span>
+                        {% if sub_item.is_checked %}
+                            <i class="bi-check-lg text-success"></i>
+                        {% endif %}
+                    </div></li>
+                {% endif %}
+            {% endfor %}
+            {% if item.sub_items %}
+                </ul>
+            {% endif %}
         </li>
     {% endfor %}
 </ul>

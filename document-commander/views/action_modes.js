@@ -1,4 +1,4 @@
-import { View } from "@papermerge/symposium";p
+import { View } from "@papermerge/symposium";
 import { renderman } from "../renderman";
 
 class ActionModesView extends View {
@@ -21,4 +21,4 @@ class ActionModesView extends View {
     }
 }
 
-export { ActionButtonsView };
+export { ActionModesView };
