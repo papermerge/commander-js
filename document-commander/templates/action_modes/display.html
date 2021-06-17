@@ -1,0 +1,26 @@
+<button
+    id="display-mode"
+    type="button"
+    data-bs-toggle="dropdown"
+    class="btn btn-outline-dark dropdown-toggle">
+    <i class="bi-grid"></i>
+    <ul class="dropdown-menu" aria-expand="false" aria-labelledby="display-mode">
+        {% for item in items %}
+            <li class="dropdown-item">
+                {% if item.is_divider %}
+                    <hr class="dropdown-divider"></hr>
+                {% else %}
+                    <div>
+                        {% if item.css_icon_class %}
+                            <i class="{{ item.css_icon_class }}"></i>
+                        {% endif %}
+                        <span class="px-2">{{ item.title }}</span>
+                        {% if item.is_checked %}
+                            <i class="bi-check-lg text-success"></i>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </li> <!-- dropdown-item -->
+        {% endif %}
+    </ul> <!-- dropdown-menu -->
+</button>

@@ -1,0 +1,9 @@
+{% if has_perm %}
+    <select name="lang" id="lang" class="custom-select">
+        {% for item in items %}
+            <option value="{{item.value}}" {% if item.is_selected %} selected="" {% endif %}>
+                {{ item.title }}
+            </option>
+        {% endfor %}
+    </select>
+{% endif %}

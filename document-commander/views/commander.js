@@ -18,6 +18,16 @@ import { ctx_menu_items } from "../ctx_menu_items";
 import { action_buttons_items } from "../action_buttons_items";
 import { action_modes_items } from "../action_modes_items";
 
+import { NewFolderButtonView } from "./action_buttons/new_folder";
+import { OCRLangView } from "./action_buttons/ocr_lang";
+import { UploadButtonView } from "./action_buttons/upload";
+
+import { DetailsModeView } from "./action_modes/details";
+import { DisplayModeView } from "./action_modes/display";
+import { OpenModeView } from "./action_modes/open";
+import { PanelModeView } from "./action_modes/panel";
+import { SortModeView } from "./action_modes/sort";
+
 import {
     EV_PANEL_ITEM_CLICK,
     EV_PANEL_ITEM_SELECTED,
@@ -33,6 +43,8 @@ class CommanderView extends View {
         * Panel
         * Breadcrumb
         * Context Menu
+        * Action Buttons (upload, new folder, OCR language)
+        * Action Modes (sort, display, panel mode, open mode, details mode)
 
     Panel is a collection of nodes. A node can be either a folder or a document
     (document model in this case, don't confuse with DOM concept of document).
