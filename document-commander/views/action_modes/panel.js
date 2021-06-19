@@ -23,12 +23,54 @@ class PanelModeView extends View {
         this._mode = mode;
     }
 
+    events() {
+        let event_map = {
+            'click': 'onclick'
+        };
+
+        return event_map;
+    }
+
+    onclick(event) {
+        if (this.mode == PanelModeView.SINGLE) {
+            this.mode = PanelModeView.DUAL;
+            this.trigger('switch-2-dual');
+        } else {
+            this.mode = PanelModeView.SINGLE;
+            this.trigger('switch-2-single');
+        }
+    }
+
+    set mode(value) {
+        this._mode = value;
+        this.trigger("change");
+    }
+
+    get mode() {
+        return this._mode;
+    }
+
+    get is_single() {
+        return this._mode == PanelModeView.SINGLE;
+    }
+
+    get is_dual() {
+        return this._mode == PanelModeView.DUAL;
+    }
+
     get default_template_name() {
         return "templates/action_modes/panel.html";
     }
 
     get default_template_engine() {
         return renderman;
+    }
+
+    get default_context() {
+        return {
+            'is_single': this.is_single,
+            'is_dual': this.is_dual
+        }
     }
 }
 

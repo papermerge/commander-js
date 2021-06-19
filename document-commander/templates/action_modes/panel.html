@@ -1,3 +1,7 @@
 <button  id="panel-mode" type="button" class="btn btn-light mx-1">
-    <i class="bi-layout-split"></i>
+    {% if is_single %}
+        <i class="bi-layout-split"></i>
+    {% else %}
+        <i class="bi-x-lg"></i>
+    {% endif %}
 </button>
