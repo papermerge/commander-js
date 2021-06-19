@@ -1,3 +1,7 @@
 <button  id="open-mode" type="button" class="btn btn-light mx-1">
-    <i class="bi-arrow-down"></i>
+    {% if is_inline %}
+        <i class="bi-arrow-down"></i>
+    {% else %}
+        <i class="bi-arrow-90deg-up"></i>
+    {% endif %}
 </button>

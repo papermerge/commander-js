@@ -17,12 +17,52 @@ class OpenModeView extends View {
         this._mode = mode;
     }
 
+    events() {
+        let event_map = {
+            'click': 'onclick'
+        };
+
+        return event_map;
+    }
+
+    onclick(event) {
+        if (this.mode == OpenModeView.INLINE) {
+            this.mode = OpenModeView.OTHER_PANEL;
+        } else {
+            this.mode = OpenModeView.INLINE;
+        }
+    }
+
+    set mode(value) {
+        this._mode = value;
+        this.trigger("change");
+    }
+
+    get mode() {
+        return this._mode;
+    }
+
+    get is_inline() {
+        return this._mode == OpenModeView.INLINE;
+    }
+
+    get is_other_panel() {
+        return this._mode == OpenModeView.OTHER_PANEL;
+    }
+
     get default_template_name() {
         return "templates/action_modes/open.html";
     }
 
     get default_template_engine() {
         return renderman;
+    }
+
+    get default_context() {
+        return {
+            'is_inline': this.is_inline,
+            'is_other_panel': this.is_other_panel
+        }
     }
 }
 

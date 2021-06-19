@@ -6,6 +6,7 @@ class PanelModeView extends View {
     Panel mode toggles between single mode and dual mode.
 
     This view is a single button in two states:
+
         * single
         * dual
 
