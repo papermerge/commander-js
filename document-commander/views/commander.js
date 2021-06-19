@@ -13,10 +13,10 @@ import { ActionButtonsView } from "./action_buttons";
 import { ActionModesView } from "./action_modes";
 
 import { CtxMenuView } from "./ctx_menu";
-import { fetch_children } from "../requests";
+import { fetch_children, fetch_ocr_langs } from "../requests";
 import { ctx_menu_items } from "../ctx_menu_items";
-import { action_buttons_items } from "../action_buttons_items";
-import { action_modes_items } from "../action_modes_items";
+import { sort_mode_collection } from "../models/sort_mode";
+import { display_mode_collection } from "../models/display_mode";
 
 import { NewFolderButtonView } from "./action_buttons/new_folder";
 import { OCRLangView } from "./action_buttons/ocr_lang";
@@ -122,6 +122,7 @@ element: commander_view.el won't not defined.
 
     constructor(options={}) {
         super(options);
+        let that = this;
 
         this.options = options;
 
@@ -130,6 +131,20 @@ element: commander_view.el won't not defined.
         this.ctx_menu_col = new CtxMenu();
         this.action_buttons_col = new ActionButtons();
         this.action_modes_col = new ActionModes();
+
+        // collection of OCR languages
+        // actual data is retrieved from the server
+        this.ocr_lang_col = new Collection();
+        fetch_ocr_langs().then((ocr_langs) => {
+            that.ocr_lang_col.reset(ocr_langs);
+        });
+
+        // widgets metadata is not visible by default
+        this.details_mode = DetailsModeView.HIDE;
+        this.display_mode_col = display_mode_collection;
+        this.open_mode = OpenModeView.INLINE;
+        this.panel_mode = PanelModeView.SINGLE;
+        this.sort_mode_col = sort_mode_collection;
     }
 
     get default_template_name() {
@@ -164,24 +179,84 @@ element: commander_view.el won't not defined.
         return this.options['ctx_menu'];
     }
 
-    get action_modes_options() {
+    get upload_button_options() {
         if (this.el) {
             return {
-                'el': this.el.querySelector('.action-modes-wrapper')
+                'el': this.el.querySelector('.upload-action-wrapper')
             }
         }
 
-        return this.options['action-modes'];
+        return this.options['upload-button'];
     }
 
-    get action_buttons_options() {
+    get new_folder_button_options() {
         if (this.el) {
             return {
-                'el': this.el.querySelector('.action-buttons-wrapper')
+                'el': this.el.querySelector('.new-folder-action-wrapper')
             }
         }
 
-        return this.options['action-buttons'];
+        return this.options['new-folder-button'];
+    }
+
+    get ocr_lang_options() {
+        if (this.el) {
+            return {
+                'el': this.el.querySelector('.ocr-lang-action-wrapper')
+            }
+        }
+
+        return this.options['ocr-lang-dropdown'];
+    }
+
+    get sort_mode_options() {
+        if (this.el) {
+            return {
+                'el': this.el.querySelector('.sort-mode-wrapper')
+            }
+        }
+
+        return this.options['sort-mode-dropdown'];
+    }
+
+    get display_mode_options() {
+        if (this.el) {
+            return {
+                'el': this.el.querySelector('.display-mode-wrapper')
+            }
+        }
+
+        return this.options['display-mode-dropdown'];
+    }
+
+    get details_mode_options() {
+        if (this.el) {
+            return {
+                'el': this.el.querySelector('.details-mode-wrapper')
+            }
+        }
+
+        return this.options['details-mode-button'];
+    }
+
+    get open_mode_options() {
+        if (this.el) {
+            return {
+                'el': this.el.querySelector('.open-mode-wrapper')
+            }
+        }
+
+        return this.options['open-mode-button'];
+    }
+
+    get panel_mode_options() {
+        if (this.el) {
+            return {
+                'el': this.el.querySelector('.panel-mode-wrapper')
+            }
+        }
+
+        return this.options['panel-mode-button'];
     }
 
     get breadcrumb_options() {
@@ -229,14 +304,42 @@ element: commander_view.el won't not defined.
             options: this.ctx_menu_options
         });
 
-        this.action_buttons_view = new ActionButtonsView({
-            collection: this.action_buttons_col,
-            options: this.action_buttons_options
+        // action "buttons"
+        // new folder button
+        this.new_folder_button_view = new NewFolderButtonView({
+            options: this.new_folder_button_options
+        });
+        // OCR language dropdown list
+        this.ocr_lang_view = new OCRLangView({
+            collection: this.ocr_lang_col,
+            options: this.ocr_lang_options
+        });
+        // Upload button
+        this.upload_button_view = new UploadButtonView({
+            options: this.upload_button_options
         });
 
-        this.action_modes_view = new ActionModesView({
-            collection: this.action_modes_col,
-            options: this.action_modes_options
+        // action modes
+        // toggles on/off extra views e.g. widgets panel
+        this.details_mode_view = new DetailsModeView({
+            mode: this.details_mode,
+            options: this.details_mode_options
+        });
+        this.display_mode_view = new DisplayModeView({
+            collection: this.display_mode_col,
+            options: this.display_mode_options
+        });
+        this.open_mode_view = new OpenModeView({
+            mode: this.open_mode,
+            options: this.open_mode_options
+        });
+        this.panel_mode_view = new PanelModeView({
+            model: this.panel_mode,
+            options: this.panel_mode_options
+        });
+        this.sort_mode_view = new SortModeView({
+            collection: this.sort_col,
+            options: this.sort_mode_options
         });
 
         this.nodes_col.on("reset", this.render_panel, this);
@@ -248,6 +351,8 @@ element: commander_view.el won't not defined.
         this.action_modes_col.on("change", this.render_action_modes, this);
         this.action_buttons_col.on("reset", this.render_action_buttons, this);
         this.action_buttons_col.on("change", this.render_action_buttons, this);
+
+        this.ocr_lang_col.on("reset", this.render_ocr_langs, this);
 
         // events generated by user
         this.panel_view.on(
@@ -282,8 +387,7 @@ element: commander_view.el won't not defined.
                 that.breadcrumb_col.reset(breadcrumb);
             }
             that.ctx_menu_col.reset(ctx_menu_items);
-            that.action_modes_col.reset(action_modes_items);
-            that.action_buttons_col.reset(action_buttons_items);
+            that.render_action_buttons();
         }).catch((error) => {
             alert(`Error while fetching folder '${folder}': ${error}`);
         });
@@ -418,11 +522,33 @@ element: commander_view.el won't not defined.
     }
 
     render_action_modes() {
-        this.action_modes_view.render();
+        if (this.new_folder_button_view) {
+            this.new_folder_button_view.render();
+        }
+        if (this.ocr_lang_view) {
+            this.ocr_lang_view.render();
+        }
+        if (this.upload_button_view) {
+            this.upload_button_view.render();
+        }
     }
 
     render_action_buttons() {
-        this.action_buttons_view.render();
+        if (this.new_folder_button_view) {
+            this.new_folder_button_view.render();
+        }
+        if (this.ocr_lang_view) {
+            this.ocr_lang_view.render();
+        }
+        if (this.upload_button_view) {
+            this.upload_button_view.render();
+        }
+    }
+
+    render_ocr_langs() {
+        if (this.ocr_lang_view) {
+            this.ocr_lang_view.render();
+        }
     }
 
     reset(item_or_items) {

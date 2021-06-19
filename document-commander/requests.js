@@ -1,5 +1,6 @@
 import { Collection } from "@papermerge/symposium";
 import { Folder, Document } from "./models/index";
+import { OcrLang } from "./models/ocr_lang";
 import { urlconf } from "./urls";
 
 
@@ -65,4 +66,33 @@ function fetch_children(folder) {
     return response;
 }
 
-export { fetch_children };
+function fetch_ocr_langs() {
+    let options,
+        response,
+        promise;
+
+    options = {
+        'headers': {
+            'Content-Type': 'application/json'
+        }
+    }
+    response = fetch(urlconf.ocr_langs_url(), options).then((response) => {
+        if (response.status != 200) {
+            throw new Error(response.statusText);
+        }
+        // response.json() returns a Promise!
+        return response.json();
+    }).then(json_response => {
+        let ocr_langs = new Collection();
+
+        ocr_langs = json_response['ocr_langs'].map((item_attrs) => {
+            return new OcrLang(item_attrs);
+        });
+
+        return ocr_langs;
+    });
+
+    return response;
+}
+
+export { fetch_children, fetch_ocr_langs };

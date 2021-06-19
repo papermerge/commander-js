@@ -32,4 +32,7 @@ class PanelModeView extends View {
     }
 }
 
+PanelModeView.SINGLE = 'single';
+PanelModeView.DUAL = 'dual';
+
 export { PanelModeView };

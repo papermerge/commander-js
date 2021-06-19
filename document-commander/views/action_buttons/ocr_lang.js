@@ -11,6 +11,7 @@ class OCRLangView extends View {
     constructor({collection, options}) {
         super(options);
         this.collection = collection;
+        this.has_perm = true;
     }
 
     get default_template_name() {
@@ -22,7 +23,10 @@ class OCRLangView extends View {
     }
 
     get default_context() {
-        return {'items': this.collection};
+        return {
+            'items': this.collection,
+            'has_perm': this.has_perm
+        };
     }
 }
 

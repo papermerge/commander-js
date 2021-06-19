@@ -12,6 +12,12 @@ class NewFolderButtonView extends View {
     get default_template_engine() {
         return renderman;
     }
+
+    get default_context() {
+        return {
+            'has_perm': true
+        }
+    }
 }
 
 export { NewFolderButtonView };

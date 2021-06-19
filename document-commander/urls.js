@@ -40,6 +40,11 @@ class UrlConf {
         return `${this.prefix}/document/${doc_id}`;
     }
 
+    ocr_langs_url() {
+        /* returns a list of server-side enabled OCR languages */
+        return `${this.prefix}/ocr-langs/`;
+    }
+
     root_url() {
         return this.prefix;
     }

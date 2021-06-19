@@ -22,4 +22,7 @@ class DetailsModeView extends View {
     }
 }
 
+DetailsModeView.SHOW = 'show';
+DetailsModeView.HIDE = 'hide';
+
 export { DetailsModeView };

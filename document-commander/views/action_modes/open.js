@@ -26,4 +26,7 @@ class OpenModeView extends View {
     }
 }
 
-export { PanelModeView };
+OpenModeView.INLINE = 'inline';
+OpenModeView.OTHER_PANEL = 'other_panel';
+
+export { OpenModeView };

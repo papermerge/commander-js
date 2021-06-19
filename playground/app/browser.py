@@ -189,4 +189,15 @@ def create_blueprint(name, request_delay=0):
             **document_dict
         )
 
+    @blueprint.route('/ocr-langs/')
+    def ocr_langs():
+        return {
+            'ocr_langs': [
+                {'title': 'Deutsch', 'value': 'deu'},
+                {'title': 'English', 'value': 'eng'},
+                {'title': 'Русский', 'value': 'rus'},
+                {'title': 'Română', 'value': 'rom'},
+            ]
+        }
+
     return blueprint
