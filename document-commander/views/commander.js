@@ -326,7 +326,7 @@ element: commander_view.el won't not defined.
             options: this.details_mode_options
         });
         this.display_mode_view = new DisplayModeView({
-            collection: this.display_mode_col,
+            collection: display_mode_collection, // comes from antother module
             options: this.display_mode_options
         });
         this.open_mode_view = new OpenModeView({
@@ -338,7 +338,7 @@ element: commander_view.el won't not defined.
             options: this.panel_mode_options
         });
         this.sort_mode_view = new SortModeView({
-            collection: this.sort_col,
+            collection: sort_mode_collection, // comes from antother module
             options: this.sort_mode_options
         });
 
@@ -388,6 +388,7 @@ element: commander_view.el won't not defined.
             }
             that.ctx_menu_col.reset(ctx_menu_items);
             that.render_action_buttons();
+            that.render_action_modes();
         }).catch((error) => {
             alert(`Error while fetching folder '${folder}': ${error}`);
         });
@@ -522,14 +523,22 @@ element: commander_view.el won't not defined.
     }
 
     render_action_modes() {
-        if (this.new_folder_button_view) {
-            this.new_folder_button_view.render();
+        if (this.details_mode_view) {
+            this.details_mode_view.render();
         }
-        if (this.ocr_lang_view) {
-            this.ocr_lang_view.render();
+
+        if (this.display_mode_view) {
+            this.display_mode_view.render();
         }
-        if (this.upload_button_view) {
-            this.upload_button_view.render();
+
+        if (this.open_mode_view) {
+            this.open_mode_view.render();
+        }
+        if (this.panel_mode_view) {
+            this.panel_mode_view.render();
+        }
+        if (this.sort_mode_view) {
+            this.sort_mode_view.render();
         }
     }
 

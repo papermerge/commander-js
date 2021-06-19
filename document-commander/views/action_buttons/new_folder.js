@@ -5,6 +5,10 @@ class NewFolderButtonView extends View {
     /*
     * Very simple view just to render a single (new folder) button.
     */
+    constructor({options}) {
+        super(options);
+    }
+
     get default_template_name() {
         return "templates/action_buttons/new_folder.html";
     }
