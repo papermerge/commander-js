@@ -360,6 +360,14 @@ element: commander_view.el won't not defined.
             that.trigger("switch-2-dual");
             console.log("switching to dual mode");
         });
+        this.on("mode-button-dual", function(){
+            // dual commander transitioned from dual to single panel
+            // and this panel is the one currently displayed.
+            // Change its mode button to be ready to transition back
+            // to dual mode - without triggering a message
+            that.panel_mode_view._mode = PanelModeView.SINGLE;
+            that.panel_mode_view.render();
+        });
         this.panel_mode_view.on("change", this.render_panel_mode, this);
 
         this.open_mode_view.on("change", this.render_open_mode, this);
@@ -398,12 +406,13 @@ element: commander_view.el won't not defined.
             that.ctx_menu_col.reset(ctx_menu_items);
             that.render_action_buttons();
             that.render_action_modes();
+            that.el.style.display = 'block';
         }).catch((error) => {
             alert(`Error while fetching folder '${folder}': ${error}`);
         });
     }
 
-    close() {
+    close({display}={display: true}) {
 
         if (this.panel_view) {
             this.panel_view.undelegateEvents();
@@ -423,7 +432,21 @@ element: commander_view.el won't not defined.
         if( this.el ) {
             this.el.innerHTML = "";
         }
+        if (!display) {
+            this.el.style.display = 'None';
+        }
     }
+
+    fullscreen() {
+        this.el.classList.remove("col-6");
+        this.el.classList.add("col-12");
+    }
+
+    halfscreen() {
+        this.el.classList.remove("col-12");
+        this.el.classList.add("col-6");
+    }
+
 
     get_selection() {
         return this.nodes_col.filter(
