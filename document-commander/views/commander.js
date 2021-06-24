@@ -9,8 +9,6 @@ import { ActionModes } from "../models/action_modes";
 
 import { PanelView } from "./panel/index";
 import { BreadcrumbView } from "./breadcrumb";
-import { ActionButtonsView } from "./action_buttons";
-import { ActionModesView } from "./action_modes";
 
 import { CtxMenuView } from "./ctx_menu";
 import { fetch_children, fetch_ocr_langs } from "../requests";
@@ -125,6 +123,11 @@ element: commander_view.el won't not defined.
         let that = this;
 
         this.options = options;
+
+        // current parent id
+        this.parent_id = undefined;
+        // current OCR language
+        this.lang = undefined;
 
         this.nodes_col = new Collection();
         this.breadcrumb_col = new Breadcrumb();
@@ -317,6 +320,8 @@ element: commander_view.el won't not defined.
         });
         // Upload button
         this.upload_button_view = new UploadButtonView({
+            lang: this.lang,
+            parent_id: this.parent_id,
             options: this.upload_button_options
         });
 
@@ -348,17 +353,14 @@ element: commander_view.el won't not defined.
         this.breadcrumb_col.on("change-parent", this.render_breadcrumb, this);
         this.ctx_menu_col.on("reset", this.render_ctx_menu, this);
         this.ctx_menu_col.on("change", this.render_ctx_menu, this);
-        this.action_modes_col.on("change", this.render_action_modes, this);
-        this.action_buttons_col.on("change", this.render_action_buttons, this);
 
         this.ocr_lang_col.on("reset", this.render_ocr_langs, this);
+
         this.panel_mode_view.on("switch-2-single", function() {
             that.trigger("switch-2-single");
-            console.log("switching to single mode");
         });
         this.panel_mode_view.on("switch-2-dual", function() {
             that.trigger("switch-2-dual");
-            console.log("switching to dual mode");
         });
         this.on("mode-button-dual", function(){
             // dual commander transitioned from dual to single panel
