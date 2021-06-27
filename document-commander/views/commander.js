@@ -127,7 +127,7 @@ element: commander_view.el won't not defined.
         // current parent id
         this.parent_id = undefined;
         // current OCR language
-        this.lang = undefined;
+        this.lang = 'deu';
 
         this.nodes_col = new Collection();
         this.breadcrumb_col = new Breadcrumb();
