@@ -124,8 +124,6 @@ element: commander_view.el won't not defined.
 
         this.options = options;
 
-        // current parent id
-        this.parent_id = undefined;
         // current OCR language
         this.lang = 'deu';
 
@@ -321,7 +319,7 @@ element: commander_view.el won't not defined.
         // Upload button
         this.upload_button_view = new UploadButtonView({
             lang: this.lang,
-            parent_id: this.parent_id,
+            parent: this.breadcrumb_col.parent,
             options: this.upload_button_options
         });
 
@@ -351,10 +349,12 @@ element: commander_view.el won't not defined.
         this.nodes_col.on("reset", this.render_panel, this);
         this.breadcrumb_col.on("reset", this.render_breadcrumb, this);
         this.breadcrumb_col.on("change-parent", this.render_breadcrumb, this);
+        this.listenTo(this.breadcrumb_col, "change-parent", this.update_parent);
         this.ctx_menu_col.on("reset", this.render_ctx_menu, this);
         this.ctx_menu_col.on("change", this.render_ctx_menu, this);
 
         this.ocr_lang_col.on("reset", this.render_ocr_langs, this);
+        this.listenTo(this.upload_button_view, "upload-success", this.add_document);
 
         this.panel_mode_view.on("switch-2-single", function() {
             that.trigger("switch-2-single");
@@ -542,6 +542,15 @@ element: commander_view.el won't not defined.
 
     stop_folder_clicked_feedback() {
         this.panel_view.hide_loader();
+    }
+
+    add_document(doc_dict) {
+        console.log(`commander ${doc_dict}`);
+    }
+
+    update_parent() {
+        this.upload_button_view.parent = this.breadcrumb_col.parent;
+        console.log(`New parent changed to ${this.upload_button_view.parent}`);
     }
 
     render_panel() {
