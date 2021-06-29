@@ -4,6 +4,8 @@ import { Breadcrumb } from "@papermerge/symposium";
 
 import { renderman } from "../renderman";
 
+
+import { Document } from "../models/document";
 import { ActionButtons } from "../models/action_buttons";
 import { ActionModes } from "../models/action_modes";
 
@@ -346,14 +348,14 @@ element: commander_view.el won't not defined.
             options: this.sort_mode_options
         });
 
-        this.nodes_col.on("reset", this.render_panel, this);
-        this.breadcrumb_col.on("reset", this.render_breadcrumb, this);
-        this.breadcrumb_col.on("change-parent", this.render_breadcrumb, this);
-        this.listenTo(this.breadcrumb_col, "change-parent", this.update_parent);
-        this.ctx_menu_col.on("reset", this.render_ctx_menu, this);
-        this.ctx_menu_col.on("change", this.render_ctx_menu, this);
+        this.listenTo(this.nodes_col, "add, reset", this.render_panel);
 
-        this.ocr_lang_col.on("reset", this.render_ocr_langs, this);
+        this.listenTo(this.breadcrumb_col, "change_parent, reset", this.render_breadcrumb);
+        this.listenTo(this.breadcrumb_col, "change-parent", this.update_parent);
+
+        this.listenTo(this.ctx_menu_col, "reset, change", this.render_ctx_menu);
+
+        this.listenTo(this.ocr_lang_col, "reset", this.render_ocr_langs);
         this.listenTo(this.upload_button_view, "upload-success", this.add_document);
 
         this.panel_mode_view.on("switch-2-single", function() {
@@ -546,6 +548,10 @@ element: commander_view.el won't not defined.
 
     add_document(doc_dict) {
         console.log(`commander ${doc_dict}`);
+        let doc;
+
+        doc = new Document(doc_dict);
+        this.nodes_col.add(doc);
     }
 
     update_parent() {
