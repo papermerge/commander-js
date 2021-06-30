@@ -8,6 +8,8 @@ import {
 import {
     PanelView,
     CommanderView,
+    OpenModeView,
+    PanelModeView
 } from "./views/index";
 import { renderman } from "./renderman";
 import { urlconf } from "./urls";
@@ -19,6 +21,8 @@ export {
     Folder,
     PanelView,
     CommanderView,
+    OpenModeView,
+    PanelModeView,
     Collection,
     urlconf,
     fetch_children
