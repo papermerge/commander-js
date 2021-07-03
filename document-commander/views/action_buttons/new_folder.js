@@ -1,5 +1,7 @@
 import { View } from "@papermerge/symposium";
+
 import { renderman } from "../../renderman";
+
 
 class NewFolderButtonView extends View {
     /*
@@ -21,6 +23,18 @@ class NewFolderButtonView extends View {
         return {
             'has_perm': true
         }
+    }
+
+    events() {
+        let events_map = {
+            'click button': 'onclick'
+        }
+
+        return events_map;
+    }
+
+    onclick(event) {
+        this.trigger('click');
     }
 }
 

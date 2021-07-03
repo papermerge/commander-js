@@ -1,11 +1,12 @@
 import { Collection, View } from "@papermerge/symposium";
 import { CtxMenu } from "@papermerge/symposium";
 import { Breadcrumb } from "@papermerge/symposium";
+import { NewFolderView } from "@papermerge/dialogs";
 
 import { renderman } from "../renderman";
 
-
 import { Document } from "../models/document";
+import { Folder } from "../models/folder";
 import { ActionButtons } from "../models/action_buttons";
 import { ActionModes } from "../models/action_modes";
 
@@ -348,13 +349,14 @@ element: commander_view.el won't not defined.
 
         this.listenTo(this.nodes_col, "add, reset", this.render_panel);
 
-        this.listenTo(this.breadcrumb_col, "change_parent, reset", this.render_breadcrumb);
+        this.listenTo(this.breadcrumb_col, "change-parent, reset", this.render_breadcrumb);
         this.listenTo(this.breadcrumb_col, "change-parent", this.update_parent);
 
         this.listenTo(this.ctx_menu_col, "reset, change", this.render_ctx_menu);
 
         this.listenTo(this.ocr_lang_col, "reset", this.render_ocr_langs);
         this.listenTo(this.upload_button_view, "upload-success", this.add_document);
+        this.listenTo(this.new_folder_button_view, "click", this.on_new_folder);
 
         this.panel_mode_view.on("switch-2-single", function() {
             that.trigger("switch-2-single");
@@ -552,6 +554,25 @@ element: commander_view.el won't not defined.
 
         doc = new Document(doc_dict);
         this.nodes_col.add(doc);
+    }
+
+    on_new_folder() {
+        let new_folder_view,
+            that = this,
+            folder;
+
+        new_folder_view = new NewFolderView({
+            parent: this.breadcrumb_col.parent
+        });
+
+        new_folder_view.show();
+        new_folder_view.on('submit', (kwargs) => {
+            folder = new Folder({
+                parent: kwargs['parent'],
+                title: kwargs['title']
+            });
+            that.nodes_col.add(folder);
+        });
     }
 
     update_parent() {
