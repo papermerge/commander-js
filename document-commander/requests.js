@@ -95,4 +95,40 @@ function fetch_ocr_langs() {
     return response;
 }
 
-export { fetch_children, fetch_ocr_langs };
+function create_new_folder({title, parent}) {
+    let options,
+        response,
+        promise,
+        data = {};
+
+    data = {
+        'title': title,
+        'parent': {
+            'id': parent && parent.id
+        }
+    };
+
+    options = {
+        'headers': {
+            'Content-Type': 'application/json'
+        },
+        'method': 'POST',
+        'body': JSON.stringify(data)
+    }
+
+    response = fetch(urlconf.folder_url(), options).then((response) => {
+        if (response.status != 200) {
+            throw new Error(response.statusText);
+        }
+        // response.json() returns a Promise!
+        return response.json();
+    });
+
+    return response;
+}
+
+export {
+    fetch_children,
+    fetch_ocr_langs,
+    create_new_folder
+};

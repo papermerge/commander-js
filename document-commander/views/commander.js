@@ -14,7 +14,11 @@ import { PanelView } from "./panel/index";
 import { BreadcrumbView } from "./breadcrumb";
 
 import { CtxMenuView } from "./ctx_menu";
-import { fetch_children, fetch_ocr_langs } from "../requests";
+import {
+    fetch_children,
+    fetch_ocr_langs,
+    create_new_folder
+} from "../requests";
 import { ctx_menu_items } from "../ctx_menu_items";
 import { sort_mode_collection } from "../models/sort_mode";
 import { display_mode_collection } from "../models/display_mode";
@@ -567,11 +571,16 @@ element: commander_view.el won't not defined.
 
         new_folder_view.show();
         new_folder_view.on('submit', (kwargs) => {
-            folder = new Folder({
-                parent: kwargs['parent'],
-                title: kwargs['title']
+            create_new_folder({
+                title: kwargs['title'],
+                parent: kwargs['parent']
+            }).then((json_response) => {
+                folder = new Folder({
+                    parent: json_response['folder']['parent'],
+                    title: json_response['folder']['title']
+                });
+                that.nodes_col.add(folder);
             });
-            that.nodes_col.add(folder);
         });
     }
 
