@@ -11,6 +11,10 @@ class UrlConf {
         this._prefix = prefix;
     }
 
+    folder_add_url() {
+        return `${this.prefix}/folder/add/`;
+    }
+
     folder_url(folder) {
         /**
          * `folder` parameter can be a `models.Folder` instance or
