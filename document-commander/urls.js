@@ -7,7 +7,7 @@ class UrlConf {
      * Central point for managing urls.
      */
 
-    constructor(prefix="/browser") {
+    constructor(prefix="/core") {
         this._prefix = prefix;
     }
 
