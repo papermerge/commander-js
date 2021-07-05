@@ -16,6 +16,8 @@ class UrlConf {
     }
 
     folder_url(folder) {
+        let result;
+
         /**
          * `folder` parameter can be a `models.Folder` instance or
          * `undefined`. Latter means that user clicked root folder.
@@ -29,7 +31,13 @@ class UrlConf {
             folder_id = folder;
         }
         // folder_id here can be empty string!
-        return `${this.prefix}/folder/${folder_id}`;
+        result = `${this.prefix}/folder/${folder_id}`;
+        if (folder_id) {
+            // in django all URLs end with slash
+            result += "/";
+        }
+
+        return result;
     }
 
     document_url(doc) {
@@ -41,7 +49,7 @@ class UrlConf {
             doc_id = doc;
         }
 
-        return `${this.prefix}/document/${doc_id}`;
+        return `${this.prefix}/document/${doc_id}/`;
     }
 
     ocr_langs_url() {

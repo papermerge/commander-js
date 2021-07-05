@@ -107,9 +107,7 @@ function create_new_folder({title, parent}) {
 
     data = {
         'title': title,
-        'parent': {
-            'id': parent && parent.id
-        }
+        'parent_id':  parent && parent.id
     };
 
     options = {
