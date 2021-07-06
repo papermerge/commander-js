@@ -31,18 +31,18 @@ describe("UrlConf API test suite", () => {
 
     assert.equal(
         urlconf.folder_url(folder),
-        "/prefix-for-test/folder/101"
+        "/prefix-for-test/folder/101/"
     );
 
     assert.equal(
         urlconf.folder_url("104"),
-        "/prefix-for-test/folder/104",
+        "/prefix-for-test/folder/104/",
         "folder_url failed with string input"
     );
 
     assert.equal(
         urlconf.folder_url(102),
-        "/prefix-for-test/folder/102",
+        "/prefix-for-test/folder/102/",
         "folder_url failed with integer input"
     );
   }); // it
@@ -57,18 +57,18 @@ describe("UrlConf API test suite", () => {
 
     assert.equal(
         urlconf.document_url(doc),
-        "/prefix-for-test/document/101"
+        "/prefix-for-test/document/101/"
     );
 
     assert.equal(
         urlconf.document_url(104),
-        "/prefix-for-test/document/104",
+        "/prefix-for-test/document/104/",
         "document_url failed with integer input"
     );
 
     assert.equal(
         urlconf.document_url("102"),
-        "/prefix-for-test/document/102",
+        "/prefix-for-test/document/102/",
         "document_url failed with string input"
     );
   }); // it

@@ -24,7 +24,7 @@ class UrlConf {
          */
         let folder_id = ""; // empty string in case of root folder.
 
-        if (folder instanceof Folder) {
+        if (folder && folder.id) {
             folder_id = folder.id;
         } else if (folder) {
             // i.e. folder != undefined
