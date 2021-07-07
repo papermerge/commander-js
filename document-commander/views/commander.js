@@ -417,6 +417,7 @@ element: commander_view.el won't not defined.
             that.render_action_buttons();
             that.render_action_modes();
             that.el.style.display = 'block';
+            that.trigger("open", folder);
         }).catch((error) => {
             alert(`Error while fetching folder '${folder}': ${error}`);
         });
@@ -445,6 +446,8 @@ element: commander_view.el won't not defined.
         if (!display) {
             this.el.style.display = 'None';
         }
+
+        this.trigger("close");
     }
 
     fullscreen() {
@@ -510,6 +513,7 @@ element: commander_view.el won't not defined.
         fetch_children(folder).then((nodes) => {
             that.nodes_col.reset(nodes);
             that.stop_folder_clicked_feedback();
+            that.trigger("folder-click", folder);
         }).catch((error) => {
             that.stop_folder_clicked_feedback();
             alert(`Error while fetching folder '${folder}': ${error}`);
