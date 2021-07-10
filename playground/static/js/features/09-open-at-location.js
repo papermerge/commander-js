@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     folder = {id: 3};
     breadcrumb = [
-        {id: 1, title: "My documents", href: "/folder/3/"},
+        {id: 1, title: "My documents", href: "/09-open-at-location/folder/3/"},
     ];
     commander = new DC.CommanderView({'el': "#commander1"});
     commander.open({folder, breadcrumb});

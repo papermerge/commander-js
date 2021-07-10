@@ -7,6 +7,9 @@ Provides look and feel of typical modern desktop file manager e.g. [Gnome's File
 Document Commander is part by [Papermerge Core](https://github.com/papermerge/papermerge-core).
 
 
+![Commander](./img/screenshot.svg)
+
+
 ## Requirements
 
 The core requirements for this project are NodeJs, npm (node package manager) and webpack:

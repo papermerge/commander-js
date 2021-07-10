@@ -411,13 +411,17 @@ element: commander_view.el won't not defined.
 
     open({folder, breadcrumb}={}) {
         /*
-            Opens in commander given folder.
+            Opens given folder and eventually updates breadcrumb.
 
             `folder` can be anything which has `id` attributes.
             if `folder` is undefined will open root location (i.e. top most folder).
 
             `breadcrumb`  is an array (or collection) of objects with following
-            attributes: `id`, `title` and `href`.
+            attributes: `id`, `title` and `href`. If `breadcrumb` is provided
+            as argument is defined and non-empty it will reset commander's breadcrumb view.
+
+            If `breadcrumb` provided as argument is undefined commander
+            will update its breadcrumb based on data retrieved from server side.
         */
         let that = this;
 
