@@ -42,8 +42,8 @@ import {
 
 class CommanderView extends View {
     /*
-    Think of CommanderView as build from several pieces interacting one with
-    another. These pieces are as follows:
+    CommanderView is build from several pieces interacting one with
+    another:
 
         * Panel
         * Breadcrumb
@@ -61,13 +61,13 @@ class CommanderView extends View {
 
     CommanderView can be instanciated in two distinct ways:
 
-        (1) from external dom elements
-        (2) from its own default template
+        (1) using external DOM elements
+        (2) using its own default template
 
     (1) - Create CommanderView from External DOM Elements
 
     Instanciate CommanderView this way when you want more control on what DOM
-elements are used for each individual component (panel, breadcrumb, context
+elements which are used for each individual component (panel, breadcrumb, context
 menu). In this case CommanderView DOES NOT HAVE it's own internal DOM root
 element: commander_view.el won't not defined.
 
@@ -77,6 +77,7 @@ element: commander_view.el won't not defined.
         * panel
         * breadcrumb
         * ctx_menu
+        etc
 
     Following keys `panel`, `breadcrumb` and `ctx_menu` are passed down to the
     respective views i.e. whatever is in `panel` key will be verbatim
@@ -401,7 +402,23 @@ element: commander_view.el won't not defined.
         );
     }
 
+    reset(item_or_items) {
+        /* Resets commander to given items */
+
+        this.nodes_col.reset(item_or_items);
+        this.breadcrumb_col.reset(new Collection());
+    }
+
     open({folder, breadcrumb}={}) {
+        /*
+            Opens in commander given folder.
+
+            `folder` can be anything which has `id` attributes.
+            if `folder` is undefined will open root location (i.e. top most folder).
+
+            `breadcrumb`  is an array (or collection) of objects with following
+            attributes: `id`, `title` and `href`.
+        */
         let that = this;
 
         this.create_views();
@@ -656,11 +673,6 @@ element: commander_view.el won't not defined.
         if (this.panel_mode_view) {
             this.panel_mode_view.render();
         }
-    }
-
-    reset(item_or_items) {
-        this.nodes_col.reset(item_or_items);
-        this.breadcrumb_col.reset(new Collection());
     }
 
     toString() {
