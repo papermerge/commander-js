@@ -38,9 +38,9 @@ In order to setup and run playground, use following commands:
     $ make run
 
 
-## CommanderJS API
+## Document Commander API
 
-At vary basic, you can instanciate Commander and open root folder as follows::
+At vary basic, you can instanciate Document Commander and open root folder as follows::
 
     let DC = DocummentCommander, commander;
 
@@ -51,5 +51,18 @@ At vary basic, you can instanciate Commander and open root folder as follows::
 
 Where ``#commander`` is some DOM div element. Notice when `commander.open`
 method is without arguments Commander will open root folder i.e. will issue
-request `GET /core/folder/` from the server side.
+request `GET /core/folder/` from the server side. The `core` part of the url request
+is so called `urlconf` prefix. If no further configuration is provided, default `urlconf` prefix is used - which is `/core`.
 
+You can change default `urlconf` prefix as follows::
+
+    let DC = DocummentCommander, commander;
+
+    DC.urlconf.prefix = "/app";
+    commander = new DC.CommanderView({
+        'el': '#commander'
+    });
+    commander.open();
+
+In this case DocumentCommander will issue `GET /app/folder` http request to
+fetch root folder data.
