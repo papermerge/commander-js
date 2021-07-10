@@ -40,6 +40,10 @@ global_context = {
         {
             'url': '/08-with-action-buttons',
             'title': '08 - With Action Buttons'
+        },
+        {
+            'url': '/09-open-at-location',
+            'title': '09 - Open at Location'
         }
     ]
 }
