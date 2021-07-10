@@ -61,7 +61,7 @@ def _static_folder_abs_path():
     return abs_path
 
 
-# Mocks server responses for GET /folder/<int:folder_id>
+# Mocks server responses for GET /folder/<int:folder_id>/
 FOLDERS = {
     -1: {
         'current_nodes': [
@@ -91,7 +91,7 @@ FOLDERS = {
     }
 }
 
-# Mocks server resonses for GET /document/<int:document_id>
+# Mocks server resonses for GET /document/<int:document_id>/
 DOCUMENTS = {
     1: {
         'document': {
@@ -129,8 +129,8 @@ def create_blueprint(name, request_delay=0):
     # Reusable app. It provides views for following URLS:
     #  - /
     #  - /folder/
-    #  - /folder/<int:node_id>
-    #  - /document/<int:node_id>
+    #  - /folder/<int:node_id>/
+    #  - /document/<int:node_id>/
     blueprint = Blueprint(
         name,  # unique name
         name,  # import_name
@@ -155,7 +155,7 @@ def create_blueprint(name, request_delay=0):
         if content_type and content_type == 'application/json':
             return FOLDERS.get(-1)
 
-    @blueprint.route('/folder/<int:node_id>')
+    @blueprint.route('/folder/<int:node_id>/')
     def browser_folder(node_id):
         time.sleep(request_delay)
         template_name = f"features/{_get_template_name(request)}"
@@ -171,7 +171,7 @@ def create_blueprint(name, request_delay=0):
             template_name, **folder_dict
         )
 
-    @blueprint.route('/document/<int:node_id>')
+    @blueprint.route('/document/<int:node_id>/')
     def browser_document(node_id):
         time.sleep(request_delay)
         template_name = f"features/{_get_template_name(request)}"

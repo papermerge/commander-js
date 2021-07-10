@@ -9,7 +9,7 @@
 
     <!-- CSS file used by this side only -->
     <link rel="stylesheet" href="static/css/playground.css">
-    <link rel="stylesheet" href="static/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="static/vendor/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="static/vendor/bootstrap-icons/bootstrap-icons.css">
   </head>
   <body>
@@ -26,10 +26,11 @@
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle"
+                href="#" id="features-toggle" data-bs-toggle="dropdown">
                 Features
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu" aria-labelledby="features-toggle">
                 {% for feature in features %}
                   <li class="dropdown-item">
                       <a href="{{ feature.url }}">{{ feature.title }}</a>
@@ -41,21 +42,13 @@
               <a class="nav-link" href="/about">About</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
         </div>
       </div>
     </nav>
   {% block content %}
   {% endblock %}
-
-  <!-- Used by this site only -->
-  <script src="static/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="static/vendor/jquery.js"></script>
-  <!-- Distribution bundle (file created and distributed by LEDStatus project) -->
-  <script src="static/dist/document-commander.bundle.js"></script>
+    <!--This bundle includes bootstrap js, please do not include bootstrap again -->
+    <script src="static/dist/document-commander.bundle.js"></script>
   {% block extra_js %}
   {% endblock %}
   </body>
