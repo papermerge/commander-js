@@ -40,6 +40,7 @@ In order to setup and run playground, use following commands:
 
 ## Document Commander API
 
+
 At vary basic, you can instanciate Document Commander and open root folder as follows::
 
     let DC = DocummentCommander, commander;
@@ -66,3 +67,17 @@ You can change default `urlconf` prefix as follows::
 
 In this case DocumentCommander will issue `GET /app/folder` http request to
 fetch root folder data.
+
+In order to open at specific folder, provide that folder as named parameter to `open` method::
+
+    let DC = DocummentCommander,
+        commander,
+        folder;
+
+    commander = new DC.CommanderView({
+        'el': '#commander'
+    });
+    folder = new DC.Folder({id: 3});
+    commander.open({folder});
+
+In this case Document Commander will fetch folder nodes from `GET /core/folder/3/` location.

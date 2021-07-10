@@ -1,8 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
     let DC = DocumentCommander,
         commander,
-        folder,
-        breadcrumb;
+        folder;
 
     DC.urlconf.prefix = '/09-open-at-location';
 
