@@ -7,7 +7,7 @@ Provides look and feel of typical modern desktop file manager e.g. [Gnome's File
 Document Commander is part by [Papermerge Core](https://github.com/papermerge/papermerge-core).
 
 
-![Commander](./img/screenshot.svg)
+![Commander](./img/commander.svg)
 
 
 ## Requirements
