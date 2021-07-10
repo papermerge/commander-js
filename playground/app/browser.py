@@ -73,7 +73,7 @@ FOLDERS = {
             {'title': 'payment_1.pdf', 'id': 1, 'model': 'document'},
             {'title': 'payment_2.pdf', 'id': 2, 'model': 'document'},
             {'title': 'My Documents', 'id': 3, 'model': 'folder'},
-        ]
+        ],
     },
     3: {
         # notice 'model' attribute which specifies type of node either document
@@ -84,6 +84,9 @@ FOLDERS = {
             {'title': 'mydoc2.pdf', 'id': 6, 'model': 'document'},
             {'title': 'Some Folder', 'id': 7, 'model': 'folder'},
         ],
+        'breadcrumb': [
+            {'id': 3, 'title': 'My Documents'}
+        ]
     },
     7: {
         'current_nodes': [

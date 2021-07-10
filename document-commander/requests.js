@@ -5,7 +5,7 @@ import { urlconf } from "./urls";
 import { settings } from "./conf";
 
 
-function fetch_children(folder) {
+function fetch_folder(folder) {
     /**
      Fetches children of given folder via ajax request.
 
@@ -48,9 +48,9 @@ function fetch_children(folder) {
         return response.json();
     }).then(json_response => {
         let nodes = new Collection(),
-            ancestors = new Collection(),
-            current_nodes,
-            ancestor_nodes;
+            breadcrumb_col,
+            folders_arr,
+            current_nodes;
 
         current_nodes = json_response['current_nodes'].map((item_attrs) => {
             if (item_attrs['model'] == 'document') {
@@ -59,13 +59,20 @@ function fetch_children(folder) {
                 return new Folder(item_attrs);
             };
         });
+        if (json_response['breadcrumb']) {
+            breadcrumb_col = new Collection();
+            folders_arr = json_response['breadcrumb'].map((item_attrs) => {
+                return new Folder(item_attrs);
+            });
+            breadcrumb_col.add(folders_arr);
+        }
         nodes.add(current_nodes);
 
-        return nodes;
+        return {nodes: nodes, breadcrumb: breadcrumb_col};
     });
 
     return response;
-}
+} // fetch_folder
 
 function fetch_ocr_langs() {
     let options,
@@ -145,7 +152,7 @@ function create_new_folder({title, parent}) {
 }
 
 export {
-    fetch_children,
+    fetch_folder,
     fetch_ocr_langs,
     create_new_folder
 };

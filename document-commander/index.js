@@ -13,7 +13,7 @@ import {
 } from "./views/index";
 import { renderman } from "./renderman";
 import { urlconf } from "./urls";
-import { fetch_children } from "./requests";
+import { fetch_folder } from "./requests";
 
 export {
     renderman,
@@ -25,5 +25,5 @@ export {
     PanelModeView,
     Collection,
     urlconf,
-    fetch_children
+    fetch_folder
 };

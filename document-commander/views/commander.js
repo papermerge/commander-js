@@ -15,7 +15,7 @@ import { BreadcrumbView } from "./breadcrumb";
 
 import { CtxMenuView } from "./ctx_menu";
 import {
-    fetch_children,
+    fetch_folder,
     fetch_ocr_langs,
     create_new_folder
 } from "../requests";
@@ -427,13 +427,22 @@ element: commander_view.el won't not defined.
 
         this.create_views();
 
-        fetch_children(folder).then((nodes) => {
-            that.nodes_col.reset(nodes);
+        fetch_folder(folder).then((resp) => {
+            that.nodes_col.reset(resp['nodes']);
+
             if (!breadcrumb) {
-                that.breadcrumb_col.change_parent(folder);
+                if (resp['breadcrumb']) {
+                    // server response's breadcrumb has higher priority
+                    that.breadcrumb_col.reset(resp['breadcrumb']);
+                } else {
+                    that.breadcrumb_col.change_parent(folder);
+                }
             } else {
+                // breadcrumb proided as argument to `open` method
+                // overwrites everything
                 that.breadcrumb_col.reset(breadcrumb);
             }
+
             that.ctx_menu_col.reset(ctx_menu_items);
             that.render_action_buttons();
             that.render_action_modes();
@@ -531,8 +540,8 @@ element: commander_view.el won't not defined.
         this.start_folder_clicked_feedback();
         // notice that `folder` parameter here might be `undefined`
         // (which means that user clicked the root folder).
-        fetch_children(folder).then((nodes) => {
-            that.nodes_col.reset(nodes);
+        fetch_folder(folder).then((resp) => {
+            that.nodes_col.reset(resp['nodes']);
             that.stop_folder_clicked_feedback();
             that.trigger("folder-click", folder);
         }).catch((error) => {
