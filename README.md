@@ -36,3 +36,20 @@ In order to setup and run playground, use following commands:
     $ pip install -r requirements.txt
     $ cd ..
     $ make run
+
+
+## CommanderJS API
+
+At vary basic, you can instanciate Commander and open root folder as follows::
+
+    let DC = DocummentCommander, commander;
+
+    commander = new DC.CommanderView({
+        'el': '#commander'
+    });
+    commander.open();
+
+Where ``#commander`` is some DOM div element. Notice when `commander.open`
+method is without arguments Commander will open root folder i.e. will issue
+request `GET /core/folder/` from the server side.
+
