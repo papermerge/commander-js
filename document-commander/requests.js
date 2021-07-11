@@ -151,8 +151,26 @@ function create_new_folder({title, parent}) {
     return response;
 }
 
+function download_document(doc) {
+    fetch(urlconf.document_download_url(doc)).then(
+        res => res.blob()
+    ).then( blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+
+        a.style.display = 'none';
+        a.href = url;
+        // the filename you want
+        a.download = doc.title;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    });
+}
+
 export {
     fetch_folder,
     fetch_ocr_langs,
-    create_new_folder
+    create_new_folder,
+    download_document
 };

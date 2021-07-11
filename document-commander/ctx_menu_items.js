@@ -1,4 +1,5 @@
 import { CtxMenuItem } from "@papermerge/symposium";
+import { download_document } from "./requests";
 
 /* All functions in `ctx_menu_items` must be declared
 with `function` keyword.
@@ -13,7 +14,7 @@ definitions - a context which cannot be changed.
 let ctx_menu_items = [
     {
         title: 'New Folder',
-        icon_class: 'fa fa-plus',
+        icon_class: 'bi-folder-plus',
         id: "#new-folder",
         condition: function({selection, parent}) {
             return true;
@@ -25,12 +26,40 @@ let ctx_menu_items = [
         }
     },
     {
+        title: 'Download',
+        icon_class: 'bi-cloud-download',
+        id: "#download",
+        enabled: false,
+        condition: function({selection, parent}) {
+            return selection.length >= 1;
+        },
+        run: function({selection})  {
+            if (selection.length == 1 && selection[0].is_document) {
+                download_document(selection[0]);
+            }
+        }
+    },
+    {
         title: 'Rename',
-        icon_class: 'fa fa-edit',
+        icon_class: 'bi-pencil',
         id: "#rename",
         enabled: false,
         condition: function({selection}) {
             return selection.length == 1;
+        },
+        run: function({selection, parent}) {
+            console.log(`Action ${this.id}`);
+            console.log(`title ${this.title}`);
+            console.log(`selection = ${selection}`);
+        }
+    },
+    {
+        title: 'Delete',
+        icon_class: 'bi-x-lg text-danger',
+        id: "#delete",
+        enabled: false,
+        condition: function({selection}) {
+            return selection.length >= 1;
         },
         run: function({selection, parent}) {
             console.log(`Action ${this.id}`);

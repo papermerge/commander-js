@@ -52,6 +52,18 @@ class UrlConf {
         return `${this.prefix}/document/${doc_id}/`;
     }
 
+    document_download_url(doc) {
+        let doc_id;
+
+        if (doc instanceof Document) {
+            doc_id = doc.id;
+        } else {
+            doc_id = doc;
+        }
+
+        return `${this.prefix}/document/${doc_id}/download/`;
+    }
+
     ocr_langs_url() {
         /* returns a list of server-side enabled OCR languages */
         return `${this.prefix}/ocr-langs/`;
