@@ -407,6 +407,8 @@ element: commander_view.el won't not defined.
 
         this.nodes_col.reset(item_or_items);
         this.breadcrumb_col.reset(new Collection());
+        this.render_action_buttons();
+        this.render_action_modes();
     }
 
     open({folder, breadcrumb}={}) {

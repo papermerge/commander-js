@@ -54,6 +54,13 @@
             }
         }
 
+        .title_and_ocr_status {
+            display: flex;
+            div.ocr_status {
+                margin-right: 0.3rem;
+            }
+        }
+
         .icon {
             width: 6rem !important;
             height: 8rem !important;

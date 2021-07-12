@@ -44,6 +44,10 @@ global_context = {
         {
             'url': '/09-open-at-location',
             'title': '09 - Open at Location'
+        },
+        {
+            'url': '/10-ocr-status',
+            'title': '10 - OCR Status'
         }
     ]
 }

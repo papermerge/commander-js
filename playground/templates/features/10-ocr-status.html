@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block extra_js %}
+    <script type="module" src="static/js/features/10-ocr-status.js"></script>
+{% endblock %}
+
+{% block content %}
+    <main class="container py-3">
+        <h1>OCR Status</h1>
+        <p>
+            OCR status indicator changes if model document status changes
+        </p>
+        <div id="with-action-buttons" class="showroom">
+            <div id="commander1">
+            </div>
+        </div>
+    </main>
+{% endblock %}

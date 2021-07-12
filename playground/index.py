@@ -61,6 +61,10 @@ def create_app(delay_seconds=0, no_cache=False):
         create_blueprint('open-at-location', request_delay=0.1),
         url_prefix='/09-open-at-location'
     )
+    app.register_blueprint(
+        create_blueprint('ocr-status', request_delay=0),
+        url_prefix='/10-ocr-status'
+    )
 
     @app.route('/')
     def index():
