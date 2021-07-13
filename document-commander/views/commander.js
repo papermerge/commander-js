@@ -4,6 +4,7 @@ import { Breadcrumb } from "@papermerge/symposium";
 import { NewFolderView } from "@papermerge/dialogs";
 
 import { renderman } from "../renderman";
+import { urlconf } from "../urls";
 
 import { Document } from "../models/document";
 import { Folder } from "../models/folder";
@@ -127,6 +128,22 @@ element: commander_view.el won't not defined.
     */
 
     constructor(options={}) {
+        /*
+            options is a dictionary with following keys:
+
+                * el - DOM element to which commander will be attached
+                * ctx_menu - options for contextual menu view
+                * upload_button - options for upload button view
+                * new_folder_button - options for new folder button view
+                * ocr_lang_dropdown - options for ocr dropdown view
+                * sort_mode_dropdown - options for sort mode dropdown view
+                * display_mode_dropdown - options for display mode dropdown view
+                * details_mode_button - options for details mode button view
+                * open_mode_button - options for open mode button view
+                * panel_mode_button - options for panel mode button view
+                * breadcrumb - options for breadcrumb view
+                * panel - options for panel view
+        */
         super(options);
         let that = this;
 
@@ -193,7 +210,7 @@ element: commander_view.el won't not defined.
             }
         }
 
-        return this.options['upload-button'];
+        return this.options['upload_button'];
     }
 
     get new_folder_button_options() {
@@ -203,7 +220,7 @@ element: commander_view.el won't not defined.
             }
         }
 
-        return this.options['new-folder-button'];
+        return this.options['new_folder_button'];
     }
 
     get ocr_lang_options() {
@@ -213,7 +230,7 @@ element: commander_view.el won't not defined.
             }
         }
 
-        return this.options['ocr-lang-dropdown'];
+        return this.options['ocr_lang_dropdown'];
     }
 
     get sort_mode_options() {
@@ -223,7 +240,7 @@ element: commander_view.el won't not defined.
             }
         }
 
-        return this.options['sort-mode-dropdown'];
+        return this.options['sort_mode_dropdown'];
     }
 
     get display_mode_options() {
@@ -233,7 +250,7 @@ element: commander_view.el won't not defined.
             }
         }
 
-        return this.options['display-mode-dropdown'];
+        return this.options['display_mode_dropdown'];
     }
 
     get details_mode_options() {
@@ -243,7 +260,7 @@ element: commander_view.el won't not defined.
             }
         }
 
-        return this.options['details-mode-button'];
+        return this.options['details_mode_button'];
     }
 
     get open_mode_options() {
@@ -253,7 +270,7 @@ element: commander_view.el won't not defined.
             }
         }
 
-        return this.options['open-mode-button'];
+        return this.options['open_mode_button'];
     }
 
     get panel_mode_options() {
@@ -263,7 +280,7 @@ element: commander_view.el won't not defined.
             }
         }
 
-        return this.options['panel-mode-button'];
+        return this.options['panel_mode_button'];
     }
 
     get breadcrumb_options() {
@@ -352,7 +369,7 @@ element: commander_view.el won't not defined.
             options: this.sort_mode_options
         });
 
-        this.listenTo(this.nodes_col, "add, reset", this.render_panel);
+        this.listenTo(this.nodes_col, "add, reset, change", this.render_panel);
 
         this.listenTo(this.breadcrumb_col, "change-parent, reset", this.render_breadcrumb);
         this.listenTo(this.breadcrumb_col, "change-parent", this.update_parent);
@@ -480,6 +497,16 @@ element: commander_view.el won't not defined.
         }
 
         this.trigger("close");
+    }
+
+    wsevents() {
+        // map websocket events
+        let events_map = {
+            // `wsdocument` is urlconf's named url; `message` is websocket event type
+            'wsdocument message': 'on_wsdocument'
+        };
+
+        return events_map;
     }
 
     fullscreen() {

@@ -52,6 +52,11 @@ class UrlConf {
         return `${this.prefix}/document/${doc_id}/`;
     }
 
+    ws_document_url() {
+        /* websockets URL for incoming document updates (e.g. ocr_status changes) */
+        return `${this.prefix}/document/`;
+    }
+
     document_download_url(doc) {
         let doc_id;
 

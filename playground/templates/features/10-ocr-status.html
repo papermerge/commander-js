@@ -10,6 +10,25 @@
         <p>
             OCR status indicator changes if model document status changes
         </p>
+        <div>
+            <div class="mb-2">
+                <select class="form-select" id="which-document">
+                    <option value="1">Document 1</option>
+                    <option value="2">Document 2</option>
+                    <option value="5">Document 3</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <select class="form-select" id="which-status">
+                    <option value="unknown">Unknown</option>
+                    <option value="received">Received</option>
+                    <option value="started">Started</option>
+                    <option value="succeeded">Succeeded</option>
+                    <option value="failed">Failed</option>
+                </select>
+            </div>
+            <button id="go" class="btn btn-success">Go!</button>
+        </div>
         <div id="with-action-buttons" class="showroom">
             <div id="commander1">
             </div>
