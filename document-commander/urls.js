@@ -1,94 +1,18 @@
+import { UrlConf, path } from "@papermerge/symposium";
 import { Folder, Document } from "./models/index";
 
-
-class UrlConf {
-    /**
-     *
-     * Central point for managing urls.
-     */
-
-    constructor(prefix="/core") {
-        this._prefix = prefix;
-    }
-
-    folder_add_url() {
-        return `${this.prefix}/folder/add/`;
-    }
-
-    folder_url(folder) {
-        let result;
-
-        /**
-         * `folder` parameter can be a `models.Folder` instance or
-         * `undefined`. Latter means that user clicked root folder.
-         */
-        let folder_id = ""; // empty string in case of root folder.
-
-        if (folder && folder.id) {
-            folder_id = folder.id;
-        } else if (folder) {
-            // i.e. folder != undefined
-            folder_id = folder;
-        }
-        // folder_id here can be empty string!
-        result = `${this.prefix}/folder/${folder_id}`;
-        if (folder_id) {
-            // in django all URLs end with slash
-            result += "/";
-        }
-
-        return result;
-    }
-
-    document_url(doc) {
-        let doc_id;
-
-        if (doc instanceof Document) {
-            doc_id = doc.id;
-        } else {
-            doc_id = doc;
-        }
-
-        return `${this.prefix}/document/${doc_id}/`;
-    }
-
-    ws_document_url() {
-        /* websockets URL for incoming document updates (e.g. ocr_status changes) */
-        return `${this.prefix}/document/`;
-    }
-
-    document_download_url(doc) {
-        let doc_id;
-
-        if (doc instanceof Document) {
-            doc_id = doc.id;
-        } else {
-            doc_id = doc;
-        }
-
-        return `${this.prefix}/document/${doc_id}/download/`;
-    }
-
-    ocr_langs_url() {
-        /* returns a list of server-side enabled OCR languages */
-        return `${this.prefix}/ocr-langs/`;
-    }
-
-    root_url() {
-        return this.prefix;
-    }
-
-    set prefix(value) {
-        this._prefix = value;
-    }
-
-    get prefix() {
-        return this._prefix;
-    }
-}
+let urlpatterns = [
+    path('folder/add/', 'folder_add'),
+    path('folder/:folder_id/', 'folder'),
+    path('document/:document_id/', 'document'),
+    path('document/', 'ws_document'),  // url used for websockets (ws) connection
+    path('document/:document_id/download/', 'document_download'),
+    path('ocr-langs/', 'ocr_langs'),
+],
+prefix = '/core';
 
 // there is only one UrlConf instance
-let urlconf = new UrlConf();
+let urlconf = new UrlConf({prefix, urlpatterns});
 
 
 export { urlconf };
