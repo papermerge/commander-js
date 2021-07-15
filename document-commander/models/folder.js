@@ -17,7 +17,10 @@ class Folder extends Node {
     }
 
     get href() {
-        return urlconf.folder_url(this);
+        return urlconf.url(
+            'folder',
+            {'folder_id': this.id}
+        );
     }
 }
 

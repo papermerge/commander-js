@@ -33,14 +33,18 @@ function fetch_folder(folder) {
     */
     let options,
         response,
-        promise;
+        promise,
+        url;
 
     options = {
         'headers': {
             'Content-Type': 'application/json'
         }
     }
-    response = fetch(urlconf.folder_url(folder), options).then((response) => {
+    url = urlconf.url(
+        'folder' , {'folder_id': folder.id}
+    );
+    response = fetch(url, options).then((response) => {
         if (response.status != 200) {
             throw new Error(response.statusText);
         }
@@ -84,7 +88,7 @@ function fetch_ocr_langs() {
             'Content-Type': 'application/json'
         }
     }
-    response = fetch(urlconf.ocr_langs_url(), options).then((response) => {
+    response = fetch(urlconf.url('ocr_langs'), options).then((response) => {
         if (response.status != 200) {
             throw new Error(response.statusText);
         }
@@ -140,7 +144,7 @@ function create_new_folder({title, parent}) {
         console.warn("CSRF selector not found");
     }
 
-    response = fetch(urlconf.folder_add_url(), options).then((response) => {
+    response = fetch(urlconf.url('folder_add'), options).then((response) => {
         if (response.status != 200) {
             throw new Error(response.statusText);
         }
@@ -152,7 +156,7 @@ function create_new_folder({title, parent}) {
 }
 
 function download_document(doc) {
-    fetch(urlconf.document_download_url(doc)).then(
+    fetch(urlconf.url('document_download', doc)).then(
         res => res.blob()
     ).then( blob => {
         const url = window.URL.createObjectURL(blob);

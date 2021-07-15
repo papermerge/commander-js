@@ -54,7 +54,7 @@ class Document extends Node {
     }
 
     get href() {
-        return urlconf.document_url(this.id);
+        return urlconf.url('document', {'document_id': this.id});
     }
 }
 
