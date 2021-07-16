@@ -1,8 +1,8 @@
 <div class="panel grid">
     {% for obj in objects %}
-        <div class="item {% if obj.visible %} visible {% else %} hidden {% endif %} {% if obj.is_document %} document {% else %} folder {% endif %}" data-id="{{ obj.id }}">
+        <div class="item {% if obj.visible %} visible {% else %} hidden {% endif %} {% if obj.is_document %} document {% else %} folder {% endif %} {% if obj.selected %} checked {% endif %}" data-id="{{ obj.id }}">
             <div class="icon {% if obj.is_document %} document {% else %} folder {% endif %}"></div>
-            <input type="checkbox" name="_selected_action" value="{{ obj.id }}" class="action-select">
+            <input type="checkbox" {% if obj.selected %} checked {% endif %} name="_selected_action" value="{{ obj.id }}" class="action-select">
             <div class="title_and_ocr_status">
                 {% if obj.is_document %}
                     <div class="ocr_status">

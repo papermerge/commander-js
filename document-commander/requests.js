@@ -34,16 +34,28 @@ function fetch_folder(folder) {
     let options,
         response,
         promise,
-        url;
+        url,
+        folder_dict;
 
     options = {
         'headers': {
             'Content-Type': 'application/json'
         }
     }
-    url = urlconf.url(
-        'folder' , {'folder_id': folder.id}
-    );
+
+    if (folder && folder.id) {
+        url = urlconf.url('folder' , {
+            folder_id: folder.id
+        });
+    } else if (folder) {
+        url = urlconf.url('folder' , {
+            folder_id: folder
+        });
+    } else {
+        url = urlconf.url('folder');
+    }
+
+    console.log(`Fetching url=${url}`);
     response = fetch(url, options).then((response) => {
         if (response.status != 200) {
             throw new Error(response.statusText);

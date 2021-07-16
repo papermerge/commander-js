@@ -465,7 +465,9 @@ element: commander_view.el won't not defined.
             that.ctx_menu_col.reset(ctx_menu_items);
             that.render_action_buttons();
             that.render_action_modes();
-            that.el.style.display = 'block';
+            if (that.el) {
+                that.el.style.display = 'block';
+            }
             that.trigger("open", folder);
         }).catch((error) => {
             alert(`Error while fetching folder '${folder}': ${error}`);

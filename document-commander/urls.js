@@ -1,5 +1,5 @@
 import { UrlConf, path } from "@papermerge/symposium";
-import { Folder, Document } from "./models/index";
+
 
 let urlpatterns = [
     path('folder/add/', 'folder_add'),
