@@ -379,6 +379,7 @@ element: commander_view.el won't not defined.
         this.listenTo(this.ocr_lang_col, "reset", this.render_ocr_langs);
         this.listenTo(this.upload_button_view, "upload-success", this.add_document);
         this.listenTo(this.new_folder_button_view, "click", this.on_new_folder);
+        this.listenTo(this, "new-folder", this.on_new_folder); // event sent by context menu
 
         this.panel_mode_view.on("switch-2-single", function() {
             that.trigger("switch-2-single");
@@ -462,7 +463,9 @@ element: commander_view.el won't not defined.
                 that.breadcrumb_col.reset(breadcrumb);
             }
 
-            that.ctx_menu_col.reset(ctx_menu_items);
+            that.ctx_menu_col.reset(
+                ctx_menu_items({parent_view: that})
+            );
             that.render_action_buttons();
             that.render_action_modes();
             if (that.el) {
@@ -630,6 +633,7 @@ element: commander_view.el won't not defined.
             that = this,
             folder;
 
+        console.log("on_new_folder ...");
         new_folder_view = new NewFolderView({
             parent: this.breadcrumb_col.parent
         });

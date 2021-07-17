@@ -11,7 +11,7 @@ from surrounding context.
 Arrow functions remember context at the time of
 definitions - a context which cannot be changed.
 */
-let ctx_menu_items = [
+let _ctx_menu_items = [
     {
         title: 'New Folder',
         icon_class: 'bi-folder-plus',
@@ -20,9 +20,8 @@ let ctx_menu_items = [
             return true;
         },
         run: function({selection})  {
-            console.log(`Action ${this.id}`);
-            console.log(`title ${this.title}`);
-            console.log(`selection = ${selection}`);
+            // proxy event to commander view
+            this.parent_view.trigger("new-folder");
         }
     },
     {
@@ -69,11 +68,11 @@ let ctx_menu_items = [
     },
 ];
 
-ctx_menu_items = ctx_menu_items.map(
-    (params) => {
+function ctx_menu_items({parent_view}) {
+    return _ctx_menu_items.map((params) => {
         let action_item;
 
-        action_item = new CtxMenuItem(params);
+        action_item = new CtxMenuItem({parent_view, ...params});
         /*
         Prepare correct context (i.e. `this` object) for
         the `run` function. `this` will point to
@@ -84,8 +83,8 @@ ctx_menu_items = ctx_menu_items.map(
         action_item.run = action_item.run.bind(action_item);
 
         return action_item;
-    }
-);
+    });
+};
 
 
 export { ctx_menu_items }
