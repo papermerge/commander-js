@@ -167,7 +167,11 @@ function create_new_folder({title, parent}) {
 }
 
 function download_document(doc) {
-    fetch(urlconf.url('document_download', doc)).then(
+    let url;
+
+    url = urlconf.url('document_download', {document_id: doc});
+
+    fetch(url).then(
         res => res.blob()
     ).then( blob => {
         const url = window.URL.createObjectURL(blob);
