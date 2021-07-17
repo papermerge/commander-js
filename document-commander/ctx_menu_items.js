@@ -21,6 +21,7 @@ let _ctx_menu_items = [
         },
         run: function({selection})  {
             // proxy event to commander view
+            console.log("triggering new-folder event");
             this.parent_view.trigger("new-folder");
         }
     },
@@ -68,22 +69,39 @@ let _ctx_menu_items = [
     },
 ];
 
+
+let singleton = undefined;
+
+
 function ctx_menu_items({parent_view}) {
-    return _ctx_menu_items.map((params) => {
-        let action_item;
+    /*
+        On every call will return the same instance if menu items.
+        Menu items instance use reference to the same `parent_view`.
+    */
 
-        action_item = new CtxMenuItem({parent_view, ...params});
-        /*
-        Prepare correct context (i.e. `this` object) for
-        the `run` function. `this` will point to
-        action_item instance. It is possible only if
-        `run` was declared using `function` keyword.
-        */
-        action_item.condition = action_item.condition.bind(action_item);
-        action_item.run = action_item.run.bind(action_item);
+    // Inside `_ctx_menu_items`` this.parent_view.trigger(...) is used.
+    // If N instances of `_ctx_menu_items` are declared, then
+    // `trigger` method will fire multiple N times.
+    // Here we make sure that only one instance of `_ctx_menu_items` is created
+    if (!singleton) { // singleton == only one instance
+        singleton = _ctx_menu_items.map((params) => {
+            let action_item;
 
-        return action_item;
-    });
+            action_item = new CtxMenuItem({parent_view, ...params});
+            /*
+            Prepare correct context (i.e. `this` object) for
+            the `run` function. `this` will point to
+            action_item instance. It is possible only if
+            `run` was declared using `function` keyword.
+            */
+            action_item.condition = action_item.condition.bind(action_item);
+            action_item.run = action_item.run.bind(action_item);
+
+            return action_item;
+        });
+    }
+
+    return singleton;
 };
 
 

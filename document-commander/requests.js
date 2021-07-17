@@ -55,7 +55,6 @@ function fetch_folder(folder) {
         url = urlconf.url('folder');
     }
 
-    console.log(`Fetching url=${url}`);
     response = fetch(url, options).then((response) => {
         if (response.status != 200) {
             throw new Error(response.statusText);
