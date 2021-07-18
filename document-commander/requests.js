@@ -187,9 +187,35 @@ function download_document(doc) {
     });
 }
 
+function delete_nodes(selection) {
+    let url, data, options, nodes;
+
+    url = urlconf.url('nodes');
+
+    nodes = selection.map((item) => { return {'id': item.id}; });
+
+    data = {'nodes': nodes};
+
+    options = {
+        'headers': {
+            'Content-Type': 'application/json',
+        },
+        'method': 'DELETE',
+        'body': JSON.stringify(data)
+    }
+
+    fetch(url, options).then((response) => {
+        if (response.status != 200) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    });
+}
+
 export {
     fetch_folder,
     fetch_ocr_langs,
     create_new_folder,
-    download_document
+    download_document,
+    delete_nodes
 };

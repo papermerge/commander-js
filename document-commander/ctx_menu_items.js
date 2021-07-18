@@ -1,5 +1,5 @@
 import { CtxMenuItem } from "@papermerge/symposium";
-import { download_document } from "./requests";
+import { download_document, delete_nodes } from "./requests";
 
 /* All functions in `ctx_menu_items` must be declared
 with `function` keyword.
@@ -63,9 +63,15 @@ let _ctx_menu_items = [
             return selection.length >= 1;
         },
         run: function({selection, parent}) {
-            console.log(`Action ${this.id}`);
-            console.log(`title ${this.title}`);
-            console.log(`selection = ${selection}`);
+            let confirmation, that = this;
+
+            if (!confirm("Are you sure you want to delete selected nodes?")) {
+                return;
+            }
+
+            delete_nodes(selection).then(() => {
+                that.parent_view.nodes_col.remove(selection);
+            });
         }
     },
 ];
