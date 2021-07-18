@@ -20,9 +20,10 @@ let _ctx_menu_items = [
             return true;
         },
         run: function({selection})  {
-            // proxy event to commander view
-            console.log("triggering new-folder event");
-            this.parent_view.trigger("new-folder");
+            // proxy click event to commander's new_folder_button view
+            if (this.parent_view && this.parent_view.new_folder_button_view) {
+                this.parent_view.new_folder_button_view.trigger("click");
+            }
         }
     },
     {

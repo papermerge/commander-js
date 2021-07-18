@@ -379,7 +379,6 @@ element: commander_view.el won't not defined.
         this.listenTo(this.ocr_lang_col, "reset", this.render_ocr_langs);
         this.listenTo(this.upload_button_view, "upload-success", this.add_document);
         this.listenTo(this.new_folder_button_view, "click", this.on_new_folder);
-        this.listenTo(this, "new-folder", this.on_new_folder); // event sent by context menu
 
         this.panel_mode_view.on("switch-2-single", function() {
             that.trigger("switch-2-single");
@@ -492,6 +491,11 @@ element: commander_view.el won't not defined.
         if (this.ctx_menu_view) {
             this.ctx_menu_view.undelegateEvents();
             this.ctx_menu_view = undefined;
+        }
+
+        if (this.new_folder_button_view) {
+            this.new_folder_button_view.undelegateEvents();
+            this.new_folder_button_view = undefined;
         }
 
         if( this.el ) {
