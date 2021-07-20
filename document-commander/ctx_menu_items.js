@@ -69,8 +69,8 @@ let _ctx_menu_items = [
                 return;
             }
 
-            delete_nodes(selection).then(() => {
-                that.parent_view.nodes_col.remove(selection);
+            delete_nodes(selection).then((json_reponse) => {
+                this.parent_view.nodes_col.remove(json_reponse['nodes']);
             });
         }
     },

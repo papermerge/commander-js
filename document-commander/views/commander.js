@@ -369,7 +369,11 @@ element: commander_view.el won't not defined.
             options: this.sort_mode_options
         });
 
-        this.listenTo(this.nodes_col, "add, reset, change", this.render_panel);
+        this.listenTo(
+            this.nodes_col,
+            "add, remove, reset, change",
+            this.render_panel
+        );
 
         this.listenTo(this.breadcrumb_col, "change-parent, reset", this.render_breadcrumb);
         this.listenTo(this.breadcrumb_col, "change-parent", this.update_parent);
