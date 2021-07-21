@@ -1,11 +1,12 @@
 import { Collection } from "@papermerge/symposium";
+import { Request, JsonRequest } from "@papermerge/symposium";
 import { Folder, Document } from "./models/index";
 import { OcrLang } from "./models/ocr_lang";
 import { urlconf } from "./urls";
 import { settings } from "./conf";
 
 
-function fetch_folder(folder) {
+class FetchFolder extends JsonRequest {
     /**
      Fetches children of given folder via ajax request.
 
@@ -31,209 +32,192 @@ function fetch_folder(folder) {
     Notice that `model` key will be either 'document' or 'folder' depending
     of the type of node.
     */
-    let options,
-        response,
-        promise,
-        url,
-        folder_dict;
-
-    options = {
-        'headers': {
-            'Content-Type': 'application/json'
-        }
+    constructor(folder) {
+        super();
+        this.folder = folder;
     }
 
-    if (folder && folder.id) {
-        url = urlconf.url('folder' , {
-            folder_id: folder.id
-        });
-    } else if (folder) {
-        url = urlconf.url('folder' , {
-            folder_id: folder
-        });
-    } else {
-        url = urlconf.url('folder');
-    }
+    get url() {
+        let ret;
 
-    response = fetch(url, options).then((response) => {
-        if (response.status != 200) {
-            throw new Error(response.statusText);
-        }
-        // response.json() returns a Promise!
-        return response.json();
-    }).then(json_response => {
-        let nodes = new Collection(),
-            breadcrumb_col,
-            folders_arr,
-            current_nodes;
-
-        current_nodes = json_response['current_nodes'].map((item_attrs) => {
-            if (item_attrs['model'] == 'document') {
-                return new Document(item_attrs);
-            } else {
-                return new Folder(item_attrs);
-            };
-        });
-        if (json_response['breadcrumb']) {
-            breadcrumb_col = new Collection();
-            folders_arr = json_response['breadcrumb'].map((item_attrs) => {
-                return new Folder(item_attrs);
+        if (this.folder && this.folder.id) {
+            ret = urlconf.url('folder' , {
+                folder_id: this.folder.id
             });
-            breadcrumb_col.add(folders_arr);
+        } else if (this.folder) {
+            ret = urlconf.url('folder' , {
+                folder_id: this.folder
+            });
+        } else {
+            ret = urlconf.url('folder');
         }
-        nodes.add(current_nodes);
 
-        return {nodes: nodes, breadcrumb: breadcrumb_col};
-    });
-
-    return response;
-} // fetch_folder
-
-function fetch_ocr_langs() {
-    let options,
-        response,
-        promise;
-
-    options = {
-        'headers': {
-            'Content-Type': 'application/json'
-        }
+        return ret;
     }
-    response = fetch(urlconf.url('ocr_langs'), options).then((response) => {
-        if (response.status != 200) {
-            throw new Error(response.statusText);
-        }
-        // response.json() returns a Promise!
-        return response.json();
-    }).then(json_response => {
-        let ocr_langs = new Collection();
 
-        ocr_langs = json_response['ocr_langs'].map((item_attrs) => {
-            return new OcrLang(item_attrs);
+    get() {
+        let ret, response;
+
+        ret = super.get();
+        response = ret.then(json_response => {
+            let nodes = new Collection(),
+                breadcrumb_col,
+                folders_arr,
+                current_nodes;
+
+            current_nodes = json_response['current_nodes'].map((item_attrs) => {
+                if (item_attrs['model'] == 'document') {
+                    return new Document(item_attrs);
+                } else {
+                    return new Folder(item_attrs);
+                };
+            });
+            if (json_response['breadcrumb']) {
+                breadcrumb_col = new Collection();
+                folders_arr = json_response['breadcrumb'].map((item_attrs) => {
+                    return new Folder(item_attrs);
+                });
+                breadcrumb_col.add(folders_arr);
+            }
+            nodes.add(current_nodes);
+
+            return {nodes: nodes, breadcrumb: breadcrumb_col};
         });
 
-        return ocr_langs;
-    });
+        return response;
+    }
 
-    return response;
+    get default_settings() {
+        return settings;
+    }
 }
 
-function create_new_folder({title, parent}) {
-    let options,
-        response,
-        promise,
-        data = {},
-        csrf_selector,
-        csrf_header,
-        token;
 
-    data = {
-        'title': title,
-        'parent_id':  parent && parent.id
-    };
-
-    options = {
-        'headers': {
-            'Content-Type': 'application/json',
-        },
-        'method': 'POST',
-        'body': JSON.stringify(data)
+class CreateNewFolder extends JsonRequest {
+    constructor({title, parent}) {
+        super();
+        this.title = title;
+        this.parent = parent;
     }
 
-    csrf_selector = settings.get('csrf-selector');
-    csrf_header = settings.get('csrf-header');
-
-    if (csrf_selector) {
-        token = document.querySelector(csrf_selector);
-        if (!token) {
-            console.warn("CSRF token DOM element not found");
-        } else {
-            // set csrf header to token generated by django backend
-            options['headers'][csrf_header] = token.value;
-        }
-    } else {
-        console.warn("CSRF selector not found");
+    get data() {
+        return {
+            'title': this.title,
+            'parent_id': this.parent && this.parent.id
+        };
     }
 
-    response = fetch(urlconf.url('folder_add'), options).then((response) => {
-        if (response.status != 200) {
-            throw new Error(response.statusText);
-        }
-        // response.json() returns a Promise!
-        return response.json();
-    });
+    get url() {
+        return urlconf.url('folder_add');
+    }
 
-    return response;
+    get default_settings() {
+        return settings;
+    }
+}
+
+
+class DownloadDocument extends Request {
+    constructor(doc) {
+        this.doc = doc;
+    }
+
+    get url() {
+        return urlconf.url(
+            'download_document',
+            {document_id: this.doc}
+        );
+    }
+
+    get() {
+        let ret;
+
+        ret = fetch(this.url, this.options).then(
+            respose => respose.blob()
+        ).then( blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+
+            a.style.display = 'none';
+            a.href = url;
+            // the filename you want
+            a.download = doc.title;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        });
+
+        return ret;
+    }
+}
+
+
+class OcrLangs extends JsonRequest {
+    get url() {
+        return urlconf.url('ocr_langs');
+    }
+
+    get() {
+        return super.get().then((json_response) => {
+            let ocr_langs = new Collection();
+
+            ocr_langs = json_response['ocr_langs'].map((item_attrs) => {
+                return new OcrLang(item_attrs);
+            });
+
+            return ocr_langs;
+        });
+    }
+
+    get default_settings() {
+        return settings;
+    }
+}
+
+
+class DeleteNodes extends JsonRequest {
+    constructor(selection) {
+        this.selection = selection;
+    }
+
+    get data() {
+        let nodes;
+
+        nodes = this.selection.map((item) => {
+            return {'id': item.id};
+        });
+
+        return {'nodes': nodes};
+    }
+
+    get url() {
+        return urlconf.url('nodes');
+    }
+
+    get default_settings() {
+        return settings;
+    }
+}
+
+/* Thin layer of syntastic sugar */
+function fetch_folder(folder) {
+    return new FetchFolder(folder).get();
+}
+
+function fetch_ocr_langs() {
+    return new OcrLangs().get();
+}
+
+function create_new_folder({folder, parent}) {
+    return new CreateNewFolder({folder, parent}).post();
 }
 
 function download_document(doc) {
-    let url;
-
-    url = urlconf.url('document_download', {document_id: doc});
-
-    fetch(url).then(
-        res => res.blob()
-    ).then( blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-
-        a.style.display = 'none';
-        a.href = url;
-        // the filename you want
-        a.download = doc.title;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-    });
+    return new DownloadDocument(doc).get();
 }
 
 function delete_nodes(selection) {
-    let url,
-        data,
-        options,
-        nodes,
-        csrf_selector,
-        csrf_header,
-        token,
-        response;
-
-    url = urlconf.url('nodes');
-
-    nodes = selection.map((item) => { return {'id': item.id}; });
-
-    data = {'nodes': nodes};
-
-    options = {
-        'headers': {
-            'Content-Type': 'application/json',
-        },
-        'method': 'DELETE',
-        'body': JSON.stringify(data)
-    }
-
-    csrf_selector = settings.get('csrf-selector');
-    csrf_header = settings.get('csrf-header');
-
-    if (csrf_selector) {
-        token = document.querySelector(csrf_selector);
-        if (!token) {
-            console.warn("CSRF token DOM element not found");
-        } else {
-            // set csrf header to token generated by django backend
-            options['headers'][csrf_header] = token.value;
-        }
-    } else {
-        console.warn("CSRF selector not found");
-    }
-
-    response = fetch(url, options).then((response) => {
-        if (response.status != 200) {
-            throw new Error(response.statusText);
-        }
-        return response.json();
-    });
-
-    return response;
+    return new DeleteNodes(selection).delete();
 }
 
 export {
