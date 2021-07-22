@@ -179,6 +179,10 @@ element: commander_view.el won't not defined.
         return renderman;
     }
 
+    get default_urlconf() {
+        return urlconf;
+    }
+
     get ctx_menu_options() {
         /*
             If this.el is defined, it means that commander
@@ -515,8 +519,8 @@ element: commander_view.el won't not defined.
     wsevents() {
         // map websocket events
         let events_map = {
-            // `wsdocument` is urlconf's named url; `message` is websocket event type
-            'wsdocument message': 'on_wsdocument'
+            // `ws:document` is prefixed urlconf's named url; `message` is websocket event type
+            'ws:document message': 'on_wsdocument'
         };
 
         return events_map;
@@ -641,7 +645,6 @@ element: commander_view.el won't not defined.
             that = this,
             folder;
 
-        console.log("on_new_folder ...");
         new_folder_view = new NewFolderView({
             parent: this.breadcrumb_col.parent
         });
@@ -733,6 +736,10 @@ element: commander_view.el won't not defined.
 
     toString() {
         return `CommanderView`;
+    }
+
+    on_wsdocument(message) {
+        console.log(`websocket message=${message} received!`);
     }
 }
 

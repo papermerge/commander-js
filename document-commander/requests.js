@@ -119,6 +119,7 @@ class CreateNewFolder extends JsonRequest {
 
 class DownloadDocument extends Request {
     constructor(doc) {
+        super();
         this.doc = doc;
     }
 
@@ -177,6 +178,7 @@ class OcrLangs extends JsonRequest {
 
 class DeleteNodes extends JsonRequest {
     constructor(selection) {
+        super();
         this.selection = selection;
     }
 
@@ -208,8 +210,8 @@ function fetch_ocr_langs() {
     return new OcrLangs().get();
 }
 
-function create_new_folder({folder, parent}) {
-    return new CreateNewFolder({folder, parent}).post();
+function create_new_folder({title, parent}) {
+    return new CreateNewFolder({title, parent}).post();
 }
 
 function download_document(doc) {
