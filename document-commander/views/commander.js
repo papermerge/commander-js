@@ -656,6 +656,7 @@ element: commander_view.el won't not defined.
                 parent: kwargs['parent']
             }).then((json_response) => {
                 folder = new Folder({
+                    id: json_response['folder']['id'],
                     parent: json_response['folder']['parent'],
                     title: json_response['folder']['title']
                 });
@@ -738,8 +739,30 @@ element: commander_view.el won't not defined.
         return `CommanderView`;
     }
 
-    on_wsdocument(message) {
-        console.log(`websocket message=${message} received!`);
+    on_wsdocument(event) {
+        let message,
+            doc,
+            doc_id;
+
+        message = JSON.parse(event.data);
+        doc_id = message['document_id'];
+
+        doc = this.nodes_col.get({id: doc_id});
+        if (!doc) {
+            // will happen when websocket message arrived before
+            // adding document model to `this.nodes_col` collection
+            return;
+        }
+
+        if (message['type'] == 'ocrdocumenttask.taskreceived') {
+            doc.ocr_status = Document.RECEIVED;
+        } else if (message['type'] == 'ocrdocumenttask.taskstarted') {
+            doc.ocr_status = Document.STARTED;
+        } else if (message['type'] == 'ocrdocumenttask.tasksucceeded') {
+            doc.ocr_status = Document.SUCCEEDED;
+        } else if (message['type'] == 'ocrdocumenttask.tasksfailed') {
+            doc.ocr_status = Document.FAILED;
+        }
     }
 }
 

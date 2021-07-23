@@ -2,7 +2,7 @@ import { UrlConfs, UrlConf, path } from "@papermerge/symposium";
 
 
 let core_urlpatterns = [
-    // all paths here are prefixed with /core
+    // all paths here are prefixed with core
     path('folder/add/', 'folder_add'),
     path('folder/(:folder_id/)', 'folder'),
     path('document/:document_id/', 'document'),
@@ -11,7 +11,7 @@ let core_urlpatterns = [
     path('ocr-langs/', 'ocr_langs'),
 ],
 ws_urlpatterns = [
-    // all paths here are prefixed with /ws
+    // all paths here are prefixed with ws
     path('document/', 'document')
 ];
 
