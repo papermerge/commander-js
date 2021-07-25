@@ -7,7 +7,7 @@ import { Folder, Document } from '../document-commander/models/index';
 describe("UrlConf API test suite", () => {
 
   it("can set custom urlconf prefix", () => {
-    urlconf.prefix = "/prefix-for-test"
+    urlconf.prefix = "prefix-for-test"
 
     assert.equal(
         urlconf.prefix,
@@ -18,7 +18,7 @@ describe("UrlConf API test suite", () => {
   it("can use folder_url", () => {
     let folder;
 
-    urlconf.prefix = "/prefix-for-test"
+    urlconf.prefix = "prefix-for-test"
 
     assert.equal(
         urlconf.url('folder'),
@@ -49,7 +49,7 @@ describe("UrlConf API test suite", () => {
   it("can use document_url", () => {
     let doc;
 
-    urlconf.prefix = "/prefix-for-test"
+    urlconf.prefix = "prefix-for-test"
 
     doc = new Document({id: 101, title: "invoice.pdf"});
 

@@ -675,6 +675,7 @@ element: commander_view.el won't not defined.
     }
 
     render_panel() {
+        this.trigger("render");
         this.panel_view.render()
     }
 

@@ -80,6 +80,13 @@ class Node extends Model {
         this.selected = !this.selected;
         return this.selected;
     }
+
+    equal(other) {
+        /*
+        Two Nodes are considered equal if they have same `id` and
+        `title` attributes */
+        return this.id === other.id && this.title === other.title;
+    }
 }
 
 
