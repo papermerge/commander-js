@@ -14,4 +14,26 @@ describe("Folder model test suite", () => {
         assert.isFalse(folder.is_document);
     });
 
+    it("Can compare distinct Folder instances", () => {
+        let folder1,
+            folder2,
+            folder3;
+
+        folder1 = new Folder({id: 1, title: "My Documents"});
+        folder2 = new Folder({id: 1, title: "My Documents"});
+        folder3 = new Folder({id: 2, title: "X"});
+
+        // different folder instances, contain
+        // same id && title
+        assert.isTrue(
+            folder1.equal(folder2)
+        );
+        assert.isTrue(
+            folder2.equal(folder1)
+        );
+        assert.isFalse(
+            folder1.equal(folder3)
+        );
+    });
+
 });
