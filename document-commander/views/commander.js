@@ -379,6 +379,22 @@ element: commander_view.el won't not defined.
             this.render_panel
         );
 
+        this.listenTo(
+            this.nodes_col,
+            "remove",
+            function(item) {
+                that.trigger("remove", item);
+            }
+        );
+
+        this.listenTo(
+            this.nodes_col,
+            "add",
+            function(item) {
+                that.trigger("add", item);
+            }
+        );
+
         this.listenTo(this.breadcrumb_col, "change-parent, reset", this.render_breadcrumb);
         this.listenTo(this.breadcrumb_col, "change-parent", this.update_parent);
 
@@ -675,8 +691,7 @@ element: commander_view.el won't not defined.
     }
 
     render_panel() {
-        this.trigger("render");
-        this.panel_view.render()
+        this.panel_view.render();
     }
 
     update_panel_mode() {
