@@ -542,6 +542,17 @@ element: commander_view.el won't not defined.
         return events_map;
     }
 
+    events() {
+        let events_map = {
+            "dragstart .item": "on_item_dragstart",
+            "dragend .item": "on_item_dragend",
+            "dragenter": "on_dragenter",
+            "dragover": "on_dragover",
+        }
+
+        return events_map;
+    }
+
     fullscreen() {
         this.el.classList.remove("col-6");
         this.el.classList.add("col-12");
@@ -780,6 +791,28 @@ element: commander_view.el won't not defined.
             doc.ocr_status = Document.FAILED;
         }
     }
+
+    on_item_dragstart(event) {
+        event.originalEvent.dataTransfer.effectAllowed = "move";
+        event.originalEvent.dataTransfer.dropEffect = "move";
+        console.log("On item dragstart");
+        console.log(event.originalEvent.dataTransfer);
+    }
+
+    on_item_dragend(event) {
+        console.log("On item dragend");
+    }
+
+    on_dragenter(event) {
+        event.preventDefault();
+        console.log("On drag enter");
+    }
+
+    on_dragover() {
+        event.preventDefault();
+        console.log("On drag over");
+    }
+
 }
 
 export { CommanderView };
