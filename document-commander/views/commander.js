@@ -34,6 +34,8 @@ import { OpenModeView } from "./action_modes/open";
 import { PanelModeView } from "./action_modes/panel";
 import { SortModeView } from "./action_modes/sort";
 
+import svg_document from "../assets/img/document.svg";
+
 import {
     EV_PANEL_ITEM_CLICK,
     EV_PANEL_ITEM_SELECTED,
@@ -796,7 +798,8 @@ element: commander_view.el won't not defined.
         let current_target,
             item_id,
             parent_folder,
-            selection;
+            selection,
+            image;
 
         current_target = event.currentTarget;
 
@@ -817,6 +820,8 @@ element: commander_view.el won't not defined.
                 selection
             );
         }
+
+        this._drag_with_custom_image(event.originalEvent);
 
         console.log(event.originalEvent.dataTransfer);
     }
@@ -840,6 +845,30 @@ element: commander_view.el won't not defined.
     on_dragover() {
         event.preventDefault();
         console.log("On drag over");
+    }
+
+    _drag_with_custom_image(event) {
+        /**
+        * Draw a custom event around cursor while dragging documents/folders
+        **/
+
+        let canvas,
+            ctx,
+            data,
+            image;
+
+        image = new Image();
+        image.src = svg_document;
+
+        canvas = document.createElement("canvas");
+        canvas.width = canvas.height = 50;
+
+        ctx = canvas.getContext("2d");
+        ctx.drawImage(image, 0, 0, 50, 50);
+        ctx.font = '20px serif';
+        ctx.fillText("5", 20, 30);
+
+        event.dataTransfer.setDragImage(canvas, 0, 0);
     }
 
 }
