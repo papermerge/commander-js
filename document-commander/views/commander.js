@@ -793,14 +793,43 @@ element: commander_view.el won't not defined.
     }
 
     on_item_dragstart(event) {
-        event.originalEvent.dataTransfer.effectAllowed = "move";
-        event.originalEvent.dataTransfer.dropEffect = "move";
-        console.log("On item dragstart");
+        let current_target,
+            item_id,
+            parent_folder,
+            selection;
+
+        current_target = event.currentTarget;
+
+        parent_folder = this.breadcrumb_col.last();
+
+        item_id = current_target.dataset.id;
+
+        event.originalEvent.dataTransfer.setData("application/node-id", item_id);
+        if (parent_folder) {
+            event.originalEvent.dataTransfer.setData("application/parent-node-id", parent.id);
+        }
+
+        selection = this.get_selection();
+
+        if (selection) {
+            event.originalEvent.dataTransfer.setData(
+                "application/selection",
+                selection
+            );
+        }
+
         console.log(event.originalEvent.dataTransfer);
     }
 
     on_item_dragend(event) {
+        let selection, node_id;
+
+        selection = event.originalEvent.dataTransfer.getData("application/selection");
+        node_id = event.originalEvent.dataTransfer.getData("application/node-id");
         console.log("On item dragend");
+        console.log(selection);
+        console.log(node_id);
+
     }
 
     on_dragenter(event) {
