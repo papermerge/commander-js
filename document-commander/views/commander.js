@@ -35,6 +35,8 @@ import { PanelModeView } from "./action_modes/panel";
 import { SortModeView } from "./action_modes/sort";
 
 import svg_document from "../assets/img/document.svg";
+import svg_folder from "../assets/img/folder.svg";
+import { nodes_count } from "../utils";
 
 import {
     EV_PANEL_ITEM_CLICK,
@@ -797,6 +799,7 @@ element: commander_view.el won't not defined.
     on_item_dragstart(event) {
         let current_target,
             item_id,
+            node,
             parent_folder,
             selection,
             image;
@@ -806,6 +809,7 @@ element: commander_view.el won't not defined.
         parent_folder = this.breadcrumb_col.last();
 
         item_id = current_target.dataset.id;
+        node = this.nodes_col.get({id: item_id});
 
         event.originalEvent.dataTransfer.setData("application/node-id", item_id);
         if (parent_folder) {
@@ -821,7 +825,11 @@ element: commander_view.el won't not defined.
             );
         }
 
-        this._drag_with_custom_image(event.originalEvent);
+        this._drag_with_custom_image({
+            event: event.originalEvent,
+            node: node,
+            selection: selection
+        });
 
         console.log(event.originalEvent.dataTransfer);
     }
@@ -847,9 +855,15 @@ element: commander_view.el won't not defined.
         console.log("On drag over");
     }
 
-    _drag_with_custom_image(event) {
+    _drag_with_custom_image({event, node, selection}) {
         /**
-        * Draw a custom event around cursor while dragging documents/folders
+        * Draw a custom image (+text) around cursor while dragging documents/folders
+        *
+        * User can drag one or multiple nodes. In case of dragging
+        * multiple nodes - selection will be a non-empty collection of nodes.
+        * If user drags one single node - selection will be empty.
+        * The main point is to present user relevant feedback depending
+        * of what he/she is dragging with mouse pointer.
         **/
 
         let canvas,
@@ -857,20 +871,36 @@ element: commander_view.el won't not defined.
             data,
             image;
 
-        image = new Image();
-        image.src = svg_document;
+        const {folder_count, doc_count} = nodes_count({
+            node, selection
+        });
 
+        image = new Image();
         canvas = document.createElement("canvas");
         canvas.width = canvas.height = 50;
 
         ctx = canvas.getContext("2d");
-        ctx.drawImage(image, 0, 0, 50, 50);
         ctx.font = '20px serif';
-        ctx.fillText("5", 20, 30);
+
+        if (doc_count === 1 && folder_count === 0) {
+            // user drags only one document
+            image.src = svg_document;
+        } else if (doc_count > 1 && folder_count === 0) {
+            // user drags multiple documents
+        } else if (doc_count === 0 && folder_count === 1) {
+            // user drags only one folder
+            image.src = svg_folder;
+        } else if (doc_count === 0 && folder_count > 1) {
+            // user drags multiple folders
+        } else if (doc_count >= 1 && folder_count >= 1) {
+            // user drags multiple documents and folders
+        }
+
+        ctx.drawImage(image, 0, 0, 50, 50);
+        ctx.fillText(doc_count + folder_count, 20, 30);
 
         event.dataTransfer.setDragImage(canvas, 0, 0);
     }
-
 }
 
 export { CommanderView };
