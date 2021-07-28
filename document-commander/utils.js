@@ -4,7 +4,9 @@ function nodes_count({node, selection}) {
     /*
     * Counts number of folders and docs in given selection + node.
     *
-    *
+    * Returns a dictionary with two keys:
+    * - folder_count - number of folders
+    * - doc_count - number of documents
     */
     let ret = {
         folder_count: 0,
