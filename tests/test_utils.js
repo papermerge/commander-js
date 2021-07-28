@@ -72,4 +72,30 @@ describe("Utils test suite", () => {
             "Document count is not correct :("
         );
     }); // it
+
+    it("nodes_count does not count duplicate nodes", () => {
+
+        let selection = [
+            new Document({id: 2, title: "2.pdf"}),
+            new Document({id: 3, title: "3.pdf"}),
+            new Folder({id: 4, title: "IamFolder"}),
+        ];
+        // node is a duplicate already found in selection
+        let node = new Document({id: 3, title: "3.pdf"});
+
+        const {folder_count, doc_count} = nodes_count({
+            node, selection
+        });
+
+        assert.equal(
+            folder_count,
+            1,
+            "Folder count is not correct :("
+        );
+        assert.equal(
+            doc_count,
+            2,
+            "Document count is not correct. Mind the duplicates!"
+        );
+    }); // it
 }); // describe

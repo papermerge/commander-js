@@ -21,10 +21,14 @@ function nodes_count({node, selection}) {
 
     if (selection) {
         selection.forEach((item) => {
-            if (item.is_folder) {
-                ret['folder_count']++;
+            if (item.is_folder && item.id ) {
+                if (node && item.id != node.id) {
+                    ret['folder_count']++;
+                }
             } else if (item.is_document) {
-                ret['doc_count']++;
+                if (node && item.id != node.id) {
+                    ret['doc_count']++;
+                }
             };
         });
     }

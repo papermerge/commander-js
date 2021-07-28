@@ -885,19 +885,23 @@ element: commander_view.el won't not defined.
         if (doc_count === 1 && folder_count === 0) {
             // user drags only one document
             image.src = svg_document;
+            ctx.drawImage(image, 0, 0, 50, 50);
+            ctx.fillText(doc_count + folder_count, 20, 30);
         } else if (doc_count > 1 && folder_count === 0) {
             // user drags multiple documents
+            image.src = svg_document;
+            ctx.drawImage(image, 0, 0, 50, 50);
+            ctx.fillText(doc_count + folder_count, 20, 30);
         } else if (doc_count === 0 && folder_count === 1) {
             // user drags only one folder
             image.src = svg_folder;
+            ctx.drawImage(image, 0, 0, 50, 50);
+            ctx.fillText(doc_count + folder_count, 20, 40);
         } else if (doc_count === 0 && folder_count > 1) {
             // user drags multiple folders
         } else if (doc_count >= 1 && folder_count >= 1) {
             // user drags multiple documents and folders
         }
-
-        ctx.drawImage(image, 0, 0, 50, 50);
-        ctx.fillText(doc_count + folder_count, 20, 30);
 
         event.dataTransfer.setDragImage(canvas, 0, 0);
     }
