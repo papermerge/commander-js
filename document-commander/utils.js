@@ -7,6 +7,9 @@ function nodes_count({node, selection}) {
     * Returns a dictionary with two keys:
     * - folder_count - number of folders
     * - doc_count - number of documents
+    *
+    * If `node` is among `selection` - it won't be counted!
+    * Duplicates within `selection` are not taken into account.
     */
     let ret = {
         folder_count: 0,
