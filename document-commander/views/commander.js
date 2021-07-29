@@ -18,7 +18,8 @@ import { CtxMenuView } from "./ctx_menu";
 import {
     fetch_folder,
     fetch_ocr_langs,
-    create_new_folder
+    create_new_folder,
+    move_nodes
 } from "../requests";
 import { ctx_menu_items } from "../ctx_menu_items";
 import { sort_mode_collection } from "../models/sort_mode";
@@ -553,6 +554,7 @@ element: commander_view.el won't not defined.
             "dragend .item": "on_item_dragend",
             "dragenter": "on_dragenter",
             "dragover": "on_dragover",
+            "drop": "on_drop"
         }
 
         return events_map;
@@ -803,43 +805,51 @@ element: commander_view.el won't not defined.
             node,
             parent_folder,
             selection,
-            image;
+            image,
+            duplicate_node;
 
         current_target = event.currentTarget;
-
-        parent_folder = this.breadcrumb_col.last();
 
         item_id = current_target.dataset.id;
         node = this.nodes_col.get({id: item_id});
 
-        event.originalEvent.dataTransfer.setData("application/node-id", item_id);
-        if (parent_folder) {
-            event.originalEvent.dataTransfer.setData("application/parent-node-id", parent.id);
-        }
-
         selection = this.get_selection();
+        // add node to selection (keeping in mind duplicates)
+        if (node) {
+            duplicate_node = selection.find(item => item.id === node.id);
+            if (!duplicate_node) {
+                selection.push(node);
+            }
+        }
 
         if (selection) {
             event.originalEvent.dataTransfer.setData(
                 "application/selection",
-                selection
+                selection.map(item => item.id).join(',')
             );
         }
 
         this._drag_with_custom_image({
             event: event.originalEvent,
-            node: node,
             selection: selection
         });
-
-        console.log(event.originalEvent.dataTransfer);
     }
 
     on_item_dragend(event) {
-        let selection, node_id;
+    }
+
+    on_drop(event) {
+        let selection,
+            node_id,
+            parent;
 
         selection = event.originalEvent.dataTransfer.getData("application/selection");
-        node_id = event.originalEvent.dataTransfer.getData("application/node-id");
+        parent = this.breadcrumb_col.parent;
+
+        move_nodes({
+            selection: selection.split(","),
+            target: parent
+        });
     }
 
     on_dragenter(event) {
@@ -850,7 +860,7 @@ element: commander_view.el won't not defined.
         event.preventDefault();
     }
 
-    _drag_with_custom_image({event, node, selection}) {
+    _drag_with_custom_image({event, selection}) {
         /**
         * Draw a custom image (+text) around cursor while dragging documents/folders
         *
@@ -866,9 +876,7 @@ element: commander_view.el won't not defined.
             data,
             image;
 
-        const {folder_count, doc_count} = nodes_count({
-            node, selection
-        });
+        const {folder_count, doc_count} = nodes_count(selection);
 
         image = new Image();
         canvas = document.createElement("canvas");

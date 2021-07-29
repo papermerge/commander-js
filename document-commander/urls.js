@@ -8,6 +8,7 @@ let core_urlpatterns = [
     path('document/:document_id/', 'document'),
     path('document/:document_id/download/', 'document_download'),
     path('nodes/', 'nodes'),
+    path('nodes/move/', 'nodes_move'),
     path('ocr-langs/', 'ocr_langs'),
 ],
 ws_urlpatterns = [

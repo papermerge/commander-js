@@ -201,6 +201,44 @@ class DeleteNodes extends JsonRequest {
     }
 }
 
+class MoveNodes extends JsonRequest {
+    constructor({selection, target}) {
+        super();
+        // selection is an array of ids (of nodes to move)
+        this.selection = selection;
+        // target is a node (folder where to move nodes)
+        this.target = target;
+    }
+
+    get data() {
+        let nodes,
+            target_id;
+
+        nodes = this.selection.map((item_id) => {
+            return {'id': item_id};
+        });
+
+        if (this.target && this.target.id) {
+            target_id = this.target.id;
+        } else {
+            target_id = undefined;
+        }
+
+        return {
+            'nodes': nodes,
+            'target': {'id': target_id}
+        };
+    }
+
+    get url() {
+        return urlconf.url('nodes_move');
+    }
+
+    get default_settings() {
+        return settings;
+    }
+}
+
 /* Thin layer of syntastic sugar */
 function fetch_folder(folder) {
     return new FetchFolder(folder).get();
@@ -222,10 +260,15 @@ function delete_nodes(selection) {
     return new DeleteNodes(selection).delete();
 }
 
+function move_nodes({selection, target}) {
+    return new MoveNodes({selection, target}).post();
+}
+
 export {
     fetch_folder,
     fetch_ocr_langs,
     create_new_folder,
     download_document,
-    delete_nodes
+    delete_nodes,
+    move_nodes
 };
