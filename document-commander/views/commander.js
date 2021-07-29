@@ -36,6 +36,7 @@ import { SortModeView } from "./action_modes/sort";
 
 import svg_document from "../assets/img/document.svg";
 import svg_folder from "../assets/img/folder.svg";
+import svg_document_folder from "../assets/img/document_folder.svg";
 import { nodes_count } from "../utils";
 
 import {
@@ -839,20 +840,14 @@ element: commander_view.el won't not defined.
 
         selection = event.originalEvent.dataTransfer.getData("application/selection");
         node_id = event.originalEvent.dataTransfer.getData("application/node-id");
-        console.log("On item dragend");
-        console.log(selection);
-        console.log(node_id);
-
     }
 
     on_dragenter(event) {
         event.preventDefault();
-        console.log("On drag enter");
     }
 
     on_dragover() {
         event.preventDefault();
-        console.log("On drag over");
     }
 
     _drag_with_custom_image({event, node, selection}) {
@@ -882,29 +877,25 @@ element: commander_view.el won't not defined.
         ctx = canvas.getContext("2d");
         ctx.font = '20px serif';
 
-        if (doc_count === 1 && folder_count === 0) {
-            // user drags only one document
+        if (doc_count >= 1 && folder_count === 0) {
+            // user drags only documents
             image.src = svg_document;
             ctx.drawImage(image, 0, 0, 50, 50);
             ctx.fillText(doc_count + folder_count, 20, 30);
-        } else if (doc_count > 1 && folder_count === 0) {
-            // user drags multiple documents
-            image.src = svg_document;
-            ctx.drawImage(image, 0, 0, 50, 50);
-            ctx.fillText(doc_count + folder_count, 20, 30);
-        } else if (doc_count === 0 && folder_count === 1) {
+        } else if (doc_count === 0 && folder_count >= 1) {
             // user drags only one folder
             image.src = svg_folder;
             ctx.drawImage(image, 0, 0, 50, 50);
             ctx.fillText(doc_count + folder_count, 20, 40);
-        } else if (doc_count === 0 && folder_count > 1) {
-            // user drags multiple folders
         } else if (doc_count >= 1 && folder_count >= 1) {
             // user drags multiple documents and folders
+            image.src = svg_document_folder;
+            ctx.drawImage(image, 0, 0, 50, 50);
+            ctx.fillText(doc_count + folder_count, 20, 40);
         }
 
         event.dataTransfer.setDragImage(canvas, 0, 0);
-    }
+    } // _drag_with_custom_image
 }
 
 export { CommanderView };
