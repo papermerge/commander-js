@@ -71,6 +71,10 @@ let _ctx_menu_items = [
 
             delete_nodes(selection).then((json_reponse) => {
                 this.parent_view.nodes_col.remove(json_reponse['nodes']);
+                this.parent_view.trigger(
+                    "neighbour-fetch-folder",
+                    this.parent_view.parent
+                )
             });
         }
     },

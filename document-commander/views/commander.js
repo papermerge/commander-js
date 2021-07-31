@@ -317,6 +317,10 @@ element: commander_view.el won't not defined.
         return this.breadcrumb_col;
     }
 
+    get parent() {
+        return this.breadcrumb.parent;
+    }
+
     create_views() {
         let that = this;
 
@@ -458,23 +462,8 @@ element: commander_view.el won't not defined.
         this.render_action_modes();
     }
 
-    open({folder, breadcrumb}={}) {
-        /*
-            Opens given folder and eventually updates breadcrumb.
-
-            `folder` can be anything which has `id` attributes.
-            if `folder` is undefined will open root location (i.e. top most folder).
-
-            `breadcrumb`  is an array (or collection) of objects with following
-            attributes: `id`, `title` and `href`. If `breadcrumb` is provided
-            as argument is defined and non-empty it will reset commander's breadcrumb view.
-
-            If `breadcrumb` provided as argument is undefined commander
-            will update its breadcrumb based on data retrieved from server side.
-        */
+    fetch_folder({folder, breadcrumb}={}) {
         let that = this;
-
-        this.create_views();
 
         fetch_folder(folder).then((resp) => {
             that.nodes_col.reset(resp['nodes']);
@@ -504,6 +493,26 @@ element: commander_view.el won't not defined.
         }).catch((error) => {
             alert(`Error while fetching folder '${folder}': ${error}`);
         });
+    }
+
+    open({folder, breadcrumb}={}) {
+        /*
+            Opens given folder and eventually updates breadcrumb.
+
+            `folder` can be anything which has `id` attributes.
+            if `folder` is undefined will open root location (i.e. top most folder).
+
+            `breadcrumb`  is an array (or collection) of objects with following
+            attributes: `id`, `title` and `href`. If `breadcrumb` is provided
+            as argument is defined and non-empty it will reset commander's breadcrumb view.
+
+            If `breadcrumb` provided as argument is undefined commander
+            will update its breadcrumb based on data retrieved from server side.
+        */
+        let that = this;
+
+        this.create_views();
+        this.fetch_folder({folder, breadcrumb});
     }
 
     close({display}={display: true}) {
@@ -677,11 +686,14 @@ element: commander_view.el won't not defined.
     on_new_folder() {
         let new_folder_view,
             that = this,
-            folder;
+            folder,
+            parent;
 
         new_folder_view = new NewFolderView({
             parent: this.breadcrumb_col.parent
         });
+
+        parent = this.breadcrumb_col.parent;
 
         new_folder_view.show();
         new_folder_view.on('submit', (kwargs) => {
@@ -695,6 +707,10 @@ element: commander_view.el won't not defined.
                     title: json_response['folder']['title']
                 });
                 that.nodes_col.add(folder);
+                that.trigger(
+                    "neighbour-fetch-folder",
+                    parent
+                );
             });
         });
     }
@@ -872,9 +888,9 @@ element: commander_view.el won't not defined.
             // add nodes in current panel
             that.nodes_col.add(nodes);
             // send event to neighbour panel
-            // so that it will remove nodes
-            // from its panel.
-            that.trigger("neighbour-moved", nodes);
+            // so that it will fetch again nodes
+            // from the server.
+            that.trigger("neighbour-fetch-folder", parent);
         });
     }
 
