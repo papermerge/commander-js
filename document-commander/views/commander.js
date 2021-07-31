@@ -812,6 +812,7 @@ element: commander_view.el won't not defined.
 
         item_id = current_target.dataset.id;
         node = this.nodes_col.get({id: item_id});
+        parent_folder = this.breadcrumb_col.parent;
 
         selection = this.get_selection();
         // add node to selection (keeping in mind duplicates)
@@ -820,6 +821,13 @@ element: commander_view.el won't not defined.
             if (!duplicate_node) {
                 selection.push(node);
             }
+        }
+
+        if (parent_folder && parent_folder.id) {
+            event.originalEvent.dataTransfer.setData(
+                "application/source",
+                parent_folder.id
+            );
         }
 
         if (selection) {
@@ -840,15 +848,33 @@ element: commander_view.el won't not defined.
 
     on_drop(event) {
         let selection,
+            selection_array,
             node_id,
-            parent;
+            parent,
+            parent_id,
+            source_id,
+            that = this;
 
         selection = event.originalEvent.dataTransfer.getData("application/selection");
+        source_id = event.originalEvent.dataTransfer.getData("application/source");
         parent = this.breadcrumb_col.parent;
 
+        if (parent) {
+            parent_id = parent.id;
+        }
+
+        selection_array = selection.split(",");
+
         move_nodes({
-            selection: selection.split(","),
+            selection: selection_array,
             target: parent
+        }).then((nodes) => {
+            // add nodes in current panel
+            that.nodes_col.add(nodes);
+            // send event to neighbour panel
+            // so that it will remove nodes
+            // from its panel.
+            that.trigger("neighbour-moved", nodes);
         });
     }
 

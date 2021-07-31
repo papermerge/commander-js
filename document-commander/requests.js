@@ -234,6 +234,27 @@ class MoveNodes extends JsonRequest {
         return urlconf.url('nodes_move');
     }
 
+    post() {
+        let ret, response;
+
+        ret = super.post();
+        response = ret.then(json_response => {
+            let nodes;
+
+            nodes = json_response['nodes'].map((item_attrs) => {
+                if (item_attrs['model'] == 'document') {
+                    return new Document(item_attrs);
+                } else {
+                    return new Folder(item_attrs);
+                }
+            });
+
+            return nodes;
+        });
+
+        return response;
+    }
+
     get default_settings() {
         return settings;
     }
