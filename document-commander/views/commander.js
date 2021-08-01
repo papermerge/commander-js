@@ -890,7 +890,7 @@ element: commander_view.el won't not defined.
             // send event to neighbour panel
             // so that it will fetch again nodes
             // from the server.
-            that.trigger("neighbour-fetch-folder", parent);
+            that.trigger("neighbour-fetch-folder", source_id);
         });
     }
 
